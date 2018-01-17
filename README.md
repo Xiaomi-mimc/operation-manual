@@ -378,18 +378,20 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 ### 参数列表
 
 |   Variable   | Meanings  |
-| :------------------ | :--------------------------------------------------------|
-|   $appId            |   小米开放平台申请的AppId                                  |
-|   $fromAccount      |   接入方app账号                                 |
-|   $toAccount        |   接入方app账号	                            |
-|   $topicId          |   表示群ID                                                |
-|   $utcFromTime      |   表示查询开始时间，UTC时间，单位毫秒                            |
-|   $utcToTime        |   表示查询结束时间，UTC时间，单位毫秒	                   |
-|   $row              |   表示返回的消息条数                     |
-|   $messages         |   表示返回的消息集合                    |
-|   $sequence         |   表示消息sequence	                  |
-|   $payload	      |	  表示消息体，app端自己编码解码                    |
-|   $ts               |   表示消息时间戳                    |
+| :------------------ | :----------------------------------------|
+|   $appId            |   小米开放平台申请的AppId                  |
+|   $token            |   通过token服务器获得到的token             |
+|   $account          |   接入方app账号 		             |
+|   $fromAccount      |   接入方app账号                           |
+|   $toAccount        |   接入方app账号	                     |
+|   $topicId          |   表示群ID                                |
+|   $utcFromTime      |   表示查询开始时间，UTC时间，单位毫秒       |
+|   $utcToTime        |   表示查询结束时间，UTC时间，单位毫秒       |
+|   $row              |   表示返回的消息条数                       |
+|   $messages         |   表示返回的消息集合                       |
+|   $sequence         |   表示消息sequence	                      |
+|   $payload	      |	  表示消息体，app端自己编码解码            |
+|   $ts               |   表示消息时间戳                          |
 
 ### PS：
 ```
