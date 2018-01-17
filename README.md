@@ -460,7 +460,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
          ]
      }
  }
-``
+```
 
 
 [回到顶部](#readme)
