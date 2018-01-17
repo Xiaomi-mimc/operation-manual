@@ -21,6 +21,9 @@
     * [群主踢用户退群](#群主踢用户退群)
     * [群主更新群信息](#群主更新群信息)
     * [群主销毁群](#群主销毁群)
+* [消息漫游](#消息漫游)
+     * [拉取单聊消息记录](#拉取单聊消息记录)
+     * [拉取群聊消息记录](#拉取群聊消息记录)
 
 
 ## 快速开始
@@ -370,6 +373,94 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 {"code":200,"message":"success！","data":null}
 ```
 
+## 消息漫游
+
+### 参数列表
+
+|   Variable   | Meanings  |
+| :------------------ | :--------------------------------------------------------|
+|   $appId            |   小米开放平台申请的AppId                                  |
+|   $fromAccount      |   接入方app账号                                 |
+|   $toAccount        |   接入方app账号	                            |
+|   $topicId          |   表示群ID                                                |
+|   $utcFromTime      |   表示查询开始时间，UTC时间，单位毫秒                            |
+|   $utcToTime        |   表示查询结束时间，UTC时间，单位毫秒	                   |
+|   $row              |   表示返回的消息条数                     |
+|   $messages         |   表示返回的消息集合                    |
+|   $sequence         |   表示消息sequence	                  |
+|   $payload	      |	  表示消息体，app端自己编码解码                    |
+|   $ts               |   表示消息时间戳                    |
+
+### PS：
+```
+utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime)
+```
+
+### 拉取单聊消息记录
+
+#### 如下为拉取单聊消息记录
+	
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200, 
+     "message": "success", 
+     "data": {
+         "appId": $appId, 
+         "toAccount": $toAccount, 
+         "fromAccount":$fromAccount, 
+         "messages": [
+             {
+                 "sequence": $sequence, 
+                 "payload": $payload, 
+                 "ts": $ts
+             }
+         ], 
+         "row": 1
+     }
+ }
+```
+
+### 拉取群聊消息记录
+
+#### 如下为拉取群聊消息记录
+	
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200, 
+     "message": "success", 
+     "data": {
+         "appId": $appId, 
+         "topicId": $topicId, 
+         "row": 2, 
+         "messages": [
+             {
+                 "sequence": $sequence, 
+                 "fromAccount": $fromAccount, 
+                 "payload": $payload, 
+                 "ts": $ts
+             }, 
+             {
+                 "sequence": $sequence, 
+                 "fromAccount": $fromAccount, 
+                 "payload": $payload, 
+                 "ts": $ts
+             }
+         ]
+     }
+ }
+``
 
 
 [回到顶部](#readme)
