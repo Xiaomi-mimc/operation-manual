@@ -352,7 +352,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicI
 		"topicInfo":{
 			"topicId":$topicId,
 			"ownerUuid":$userUuid2,
-			"ownerAccount":$ownerAccount,
+			"ownerAccount":$userAccount2,
 			"topicName":$newTopicName,
 			"bulletin":$newBulletin
 		},
