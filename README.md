@@ -47,7 +47,7 @@
 |   $appId            |   小米开放平台申请的AppId              |
 |   $appKey           |   小米开放平台申请的AppKey             |
 |   $appSecret        |   小米开放平台申请的AppSecret	      |
-|   $appPackage       |   小米开放平台申请的appPackage         |
+|   $appPackage       |   小米开放平台申请的appPackage         |
 |   $appAccount       |   表示消息发送方成员号account(app账号)  |
 |   $chid             |   表示服务的标识			|
 |   $uuid             |   表示用户的userId			  |
