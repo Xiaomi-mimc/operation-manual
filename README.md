@@ -5,7 +5,7 @@
 * [快速开始](#快速开始)
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-    * [IOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
+    * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 * [获取token](#获取token)
     
@@ -29,13 +29,13 @@
 
 ## 快速开始
 
-#### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk?_blank)
+#### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
 
-#### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk?_blank)
+#### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
 
-#### 3）[IOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk?_blank)
+#### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
 
-#### 4）[PC](https://github.com/Xiaomi-mimc/mimc-java-sdk?_blank)
+#### 4）[PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 
 
 ## 获取Token
