@@ -40,8 +40,6 @@
 
 ## 获取Token
 
-### 序言
-
 ```
 APP客户端获取Token的逻辑如下：
     APP <--> AppProxyService(APP开发者实现) <--> 小米TokenService(MIMC)
