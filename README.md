@@ -40,6 +40,20 @@
 
 ## 获取Token
 
+### 序言
+
+```
+APP应用方在实现获取Token这一点上，需要实现一个AppProxyService服务，该服务需要实现以下功能：
+    1. 存储appId/appKey/appSec（不应当存储在APP客户端）
+    2. 用户在APP系统内的合法鉴权
+    3. 调用小米TokenService服务，并将小米TokenService服务返回结果原样返回
+
+之后APP客户端在获取Token的时候，逻辑应该如下：
+    APP <--> AppProxyService <--> 小米ToeknService
+
+因此，下面所介绍的获取Token的方式，其实是针对于AppProxyService如何通过小米ToeknService获取Token。
+```
+
 ### 参数列表
 
 |   Variable          | Meanings  |
