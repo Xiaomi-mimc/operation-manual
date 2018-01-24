@@ -119,7 +119,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
         msgId: "12345",
         msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
         timestamp: "1516763973000", // 建议精确到毫秒
-        payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/%E6%88%91%E7%B1%B3%E5%8D%B3%E6%97%B6%E6%B6%88%E6%81%AF%E4%BA%91.jpg",
+        payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
     }
 ```
 
@@ -559,14 +559,9 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
 
 ## 联系我们
 
-```
-欢迎了解MIMC，以下是联系我们的途径。
-
-邮箱：mimc-help@xiaomi.com
-
-![微信公众号](https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/%E6%88%91%E7%B1%B3%E5%8D%B3%E6%97%B6%E6%B6%88%E6%81%AF%E4%BA%91.jpg)
-
-![QQ群二维码](https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-%E5%AE%98%E6%96%B9QQ%E7%BE%A4.png)
-```
+#### 欢迎了解MIMC，以下是联系我们的途径。
+#### 邮箱：mimc-help@xiaomi.com
+#### [微信公众号](https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg)
+#### [MIMC官方QQ群](https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-QQGroup.png)
 
 [回到顶部](#readme)
