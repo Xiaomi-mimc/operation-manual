@@ -138,7 +138,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 |   $fromAccount      |   表示消息发送方成员号account(app账号)|
 |   $fromResource     |   表示用户设备的标识                  |
 |   $toAccount        |   表示消息接收方成员号account(app账号)|
-|   $msgType          |   表示发送消息的类型<br />(msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="":msg是原始数据，一般传输String数据时使用)  |
+|   $msgType          |   表示发送消息的类型<br />msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="":msg是原始数据，一般传输String数据时使用 |
 |   $topicId	      |   表示群ID                            |
 |   $packetId         |   表示发送消息包ID                    |
 
