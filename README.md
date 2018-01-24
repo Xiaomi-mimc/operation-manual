@@ -101,7 +101,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 建议格式：
 	{
 	    version: 0, // 建议保留version字段，方便后续协议升级兼容
-	    msgId: "12345",
+	    msgId: "TEXT_12345",
 	    msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
 	    timestamp: "1516763973000", // 建议精确到毫秒
 	    payload: "欢迎使用小米即时消息云(MIMC)",
@@ -116,7 +116,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
-        msgId: "12345",
+        msgId: "PIC_FILE_12345",
         msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
         timestamp: "1516763973000", // 建议精确到毫秒
         payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
@@ -492,6 +492,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 ### PS：
 ```
 utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime)
+消息漫游为用户保存最近半年的历史消息
 ```
 
 ### 拉取单聊消息记录
