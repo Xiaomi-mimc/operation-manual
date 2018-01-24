@@ -10,12 +10,10 @@
 * [获取token](#获取token)
 * [推荐消息格式](#推荐消息格式)
     * [普通类型消息](#普通类型消息)
-    * [图片文件等类型消息](#图片文件等类型消息)
-
+    * [图片文件等类型消息](#图片文件等类型消息)
 * [推送消息](#推送消息)
     * [推送单聊信息](#推送单聊信息)
     * [推送群聊信息](#推送群聊信息)
-
 * [群聊消息](#群聊消息)
     * [创建群](#创建群)
     * [查询指定群信息](#查询指定群信息)
@@ -26,8 +24,8 @@
     * [群主更新群信息](#群主更新群信息)
     * [群主销毁群](#群主销毁群)
 * [消息漫游](#消息漫游)
-     * [拉取单聊消息记录](#拉取单聊消息记录)
-     * [拉取群聊消息记录](#拉取群聊消息记录)
+    * [拉取单聊消息记录](#拉取单聊消息记录)
+    * [拉取群聊消息记录](#拉取群聊消息记录)
 * [联系我们](#联系我们)
 
 ## 快速开始
@@ -96,7 +94,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 #### MIMC的消息数据APP开发者100%自定义
 
 #### 普通类型消息
-    
+
 ```
 1.将消息体通过MIMC发送给对端
 2.对端接收并展现
@@ -216,14 +214,14 @@ uuid的获取使用User.getUuid()方法，uuid由MIMC根据($appId, $appAccount)
 ### 创建群
 
 #### 如下为$ownerAccount创建群
-	
+
 + HTTPS请求
 ```
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}' -H "Content-Type: application/json" -H "token:$ownerToken"
 
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
 ```
-	
+
 + JSON结果
 ```
 {
@@ -317,7 +315,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -H "Content-Type: a
 ### 邀请用户加入群
 
 #### 如下为$userAccount1邀请$userAccount4,$userAccount5加入群
-	
+
 + HTTPS请求
 ```
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d '{"accounts":"$userAccount4,$userAccount5"}' -H "Content-Type: application/json" -H "token:$userToken1"
@@ -359,7 +357,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -
 
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
 ```
-	
+
 + JSON结果
 ```
 {
@@ -398,7 +396,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$
 
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
 ```
-	
+
 + JSON结果
 ```
 {
@@ -419,18 +417,18 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$
 	}
 }
 ```
-	
+
 ### 群主更新群信息
 
 #### 如下为$ownerAccount更新群信息：群主为$userAccount2，群名称为$newTopicName，群公告为$newBulletin
-	
+
 + HTTPS请求
 ```
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "token:$ownerToken"
 
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
 ```
-	
+
 + JSON结果
 ```
 {
@@ -455,7 +453,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicI
 ### 群主销毁群
 
 #### 如下为群主销毁群
-	
+
 + HTTPS请求
 ```
 curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Content-Type: application/json" -H "token:$ownerToken"
@@ -496,7 +494,7 @@ utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utc
 ### 拉取单聊消息记录
 
 #### 如下为拉取单聊消息记录
-	
+
 + HTTPS请求(POST)
 ```
 curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
@@ -505,19 +503,19 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,
 + JSON结果示例
 ```
 {
-     "code": 200, 
-     "message": "success", 
+     "code": 200,
+     "message": "success",
      "data": {
-         "appId": $appId, 
-         "toAccount": $toAccount, 
-         "fromAccount":$fromAccount, 
+         "appId": $appId,
+         "toAccount": $toAccount,
+         "fromAccount":$fromAccount,
          "messages": [
              {
-                 "sequence": $sequence, 
-                 "payload": $payload, 
+                 "sequence": $sequence,
+                 "payload": $payload,
                  "ts": $ts
              }
-         ], 
+         ],
          "row": 1
      }
  }
