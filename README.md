@@ -1,6 +1,5 @@
 # operation-manual
 
-
 ## 目录
 * [快速开始](#快速开始)
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
@@ -11,6 +10,7 @@
 * [推荐消息格式](#推荐消息格式)
     * [普通类型消息](#普通类型消息)
     * [图片文件等类型消息](#图片文件等类型消息)
+* [跨应用聊天](#跨应用聊天)
 * [推送消息](#推送消息)
     * [推送单聊信息](#推送单聊信息)
     * [推送群聊信息](#推送群聊信息)
@@ -122,6 +122,9 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
         payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
     }
 ```
+## 跨应用聊天
+
+#### 实现两个不同的APP之间聊天，使用同一个appId/appKey/appSec即可。
 
 ## 推送消息
 
