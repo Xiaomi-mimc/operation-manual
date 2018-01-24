@@ -559,9 +559,10 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
 
 ## 联系我们
 
-#### 欢迎了解MIMC，以下是联系我们的途径。
-#### 邮箱：mimc-help@xiaomi.com
-#### [微信公众号](https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg)
-#### [MIMC官方QQ群](https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-QQGroup.png)
+|平台 |具体信息|
+|:----|:------:|
+|邮箱|发邮件到 mimc-help@xiaomi.com|
+|微信公众号|![MIMC-Official-Accounts](/img-folder/MIMC-Official-Accounts.jpg)|
+|MIMC官方QQ群|![MIMC-QQGroup](/img-folder/MIMC-QQGroup.png)|
 
 [回到顶部](#readme)
