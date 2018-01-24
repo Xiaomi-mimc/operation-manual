@@ -96,9 +96,24 @@ MIMC的消息数据APP开发者100%自定义
 
 普通类型消息：
     直接通过MIMC发送给对端。
-
+    建议格式：
+        {
+            version: 0, // 建议保留version字段，方便后续协议升级兼容
+            msgId: "12345",
+            msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
+            timestamp: "1516763973000", // 建议精确到毫秒
+            payload: "欢迎使用小米即时消息云(MIMC)",
+        }
+    
 图片/语音/视频等类型消息：
     首先将图片/语音/视频等上传到服务器，获得一个URL；然后通过MIMC将URL发送给对端，对端通过URL下载图片/语音/视频等。
+    {
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "12345",
+        msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
+        timestamp: "1516763973000", // 建议精确到毫秒
+        payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/%E6%88%91%E7%B1%B3%E5%8D%B3%E6%97%B6%E6%B6%88%E6%81%AF%E4%BA%91.jpg",
+    }
 ```
 
 ## 推送消息
