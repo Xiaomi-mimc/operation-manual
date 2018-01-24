@@ -8,11 +8,11 @@
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 * [获取token](#获取token)
-    
+* [消息传递](#消息传递)
 * [推送消息](#推送消息)
     * [推送单聊信息](#推送单聊信息)
     * [推送群聊信息](#推送群聊信息)
-    
+
 * [群聊消息](#群聊消息)
     * [创建群](#创建群)
     * [查询指定群信息](#查询指定群信息)
@@ -25,7 +25,7 @@
 * [消息漫游](#消息漫游)
      * [拉取单聊消息记录](#拉取单聊消息记录)
      * [拉取群聊消息记录](#拉取群聊消息记录)
-
+* [联系我们](#联系我们)
 
 ## 快速开始
 
@@ -43,7 +43,7 @@
 ```
 APP客户端获取Token的逻辑如下：
     APP <--> AppProxyService(APP开发者实现) <--> 小米TokenService(MIMC)
-    
+
 APP应用方实现AppProxyService服务获取Token，该服务需实现以下功能：
     1. 存储appId/appKey/appSec（不应存储在客户端，防止泄露）
     2. 用户在APP系统内的合法鉴权
@@ -86,6 +86,19 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 		"token": $token
 	}
 }
+```
+
+## 消息传递
+
+
+```
+MIMC的消息数据APP开发者100%自定义
+
+普通类型消息：
+    直接通过MIMC发送给对端。
+
+图片/语音/视频等类型消息：
+    首先将图片/语音/视频等上传到服务器，获得一个URL；然后通过MIMC将URL发送给对端，对端通过URL下载图片/语音/视频等。
 ```
 
 ## 推送消息
@@ -489,7 +502,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,
 ### 拉取群聊消息记录
 
 #### 如下为拉取群聊消息记录
-	
+
 + HTTPS请求(POST)
 ```
 curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
@@ -498,23 +511,23 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
 + JSON结果示例
 ```
 {
-     "code": 200, 
-     "message": "success", 
+     "code": 200,
+     "message": "success",
      "data": {
-         "appId": $appId, 
-         "topicId": $topicId, 
-         "row": 2, 
+         "appId": $appId,
+         "topicId": $topicId,
+         "row": 2,
          "messages": [
              {
-                 "sequence": $sequence, 
-                 "fromAccount": $fromAccount, 
-                 "payload": $payload, 
+                 "sequence": $sequence,
+                 "fromAccount": $fromAccount,
+                 "payload": $payload,
                  "ts": $ts
-             }, 
+             },
              {
-                 "sequence": $sequence, 
-                 "fromAccount": $fromAccount, 
-                 "payload": $payload, 
+                 "sequence": $sequence,
+                 "fromAccount": $fromAccount,
+                 "payload": $payload,
                  "ts": $ts
              }
          ]
@@ -522,5 +535,18 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
  }
 ```
 
+## 联系我们
+
+```
+欢迎了解MIMC，以下是联系我们的途径。
+
+邮箱📮：mimc-help@xiaomi.com
+
+微信公众号：
+
+QQ群二维码：
+
+微信群二维码：
+```
 
 [回到顶部](#readme)
