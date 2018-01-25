@@ -6,7 +6,7 @@
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
-* [获取token](#获取token)
+* [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
     * [文本消息](#文本消息)
     * [多媒体消息](#多媒体消息)
@@ -47,7 +47,7 @@
 #### 4）[PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 
 
-## 获取Token
+## 安全认证
 
 ```
 APP客户端获取Token的逻辑如下：
