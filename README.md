@@ -529,7 +529,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 |  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒       		    |
 |  $row              |  表示返回的消息条数                       		  |
 |  $messages         |  表示返回的消息集合                       		  |
-|  $sequence         |  表示消息sequence	                      		      |
+|  $sequence         |  表示消息sequence<br />sequence全局唯一<br/>sequence与消息一对一<br />sequence主要用来做消息的排序和去重|	 
 |  $payload	     |  表示经过Base64编码的消息体，app端需要进行Base64解码          |
 |  $ts               |  表示消息时间戳                          		    |
 
