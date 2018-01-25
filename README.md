@@ -134,6 +134,10 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 ```
 
 #### 撤回消息
++ 用户A发送消息`(msgId="TEXT_12345")`给用户B
++ 用户B接收消息`(msgId="TEXT_12345")`
++ 用户A发送消息`(msgId="TEXT_RECALL_12345")`给用户B
++ 用户B接收消息`(msgId="TEXT_RECALL_12345")`并删除消息`(msgId="TEXT_12345")`
 ```
 建议格式：
     {
@@ -146,6 +150,11 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 ```
 
 #### 已读消息
++ 用户A发送消息`(msgId="TEXT_12345")`给用户B
++ 用户B接收消息`(msgId="TEXT_12345")`
++ 用户B发送消息`(msgId="TEXT_READ_12345")`给用户A
++ 用户A接收消息`(msgId="TEXT_READ_12345")`并标记消息`(msgId="TEXT_12345")`已读
+
 ```
 建议格式：
     {
