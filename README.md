@@ -99,13 +99,30 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 1.将消息体通过MIMC发送给对端
 2.对端接收并展现
 建议格式：
-	{
-	    version: 0, // 建议保留version字段，方便后续协议升级兼容
-	    msgId: "TEXT_12345",
-	    msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
-	    timestamp: "1516763973000", // 建议精确到毫秒
-	    payload: "欢迎使用小米即时消息云(MIMC)",
-	}
+    // 发送消息格式
+    {
+    	version: 0, // 建议保留version字段，方便后续协议升级兼容
+    	msgId: "TEXT_12345",
+    	msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
+    	timestamp: "1516763973000", // 建议精确到毫秒
+    	payload: "欢迎使用小米即时消息云(MIMC)",
+    }
+    // 撤回消息格式
+    {
+    	version: 0,
+    	msgId: "TEXT_RECALL_12345",
+    	msgType: "TEXT_RECALL",
+    	timestamp: "1516763973090",
+     	payload: "撤回msgId为TEXT_12345的消息"
+    }
+    // 已读消息格式
+    {
+    	version: 0,
+	msgId: "TEXT_READ_12345",
+	msgType: "TEXT_READ",
+	timestamp: "1516763973134",
+	payload: "msgId为TEXT_12345的消息已读",
+    }
 ```
     
 #### 图片文件等类型消息
@@ -114,12 +131,29 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 2.通过MIMC将URL发送给对端
 3.对端通过URL下载图片文件/语音文件/视频文件等进行展示
 建议格式：
+    // 发送消息格式
     {
-        version: 0, // 建议保留version字段，方便后续协议升级兼容
-        msgId: "PIC_FILE_12345",
-        msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
-        timestamp: "1516763973000", // 建议精确到毫秒
-        payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
+	version: 0, // 建议保留version字段，方便后续协议升级兼容
+	msgId: "PIC_FILE_12345",
+	msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
+	timestamp: "1516763973000", // 建议精确到毫秒
+	payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
+    }
+    // 撤回消息格式
+    {
+	version: 0,
+	msgId: "PIC_FILE_RECALL_12345",
+	msgType: "PIC_FILE_RECALL",
+	timestamp: "1516763973090",
+	payload: "撤回msgId为PIC_FILE_12345的消息",
+    }
+    // 已读消息格式
+    {
+	version: 0,
+	msgId: "PIC_FILE_READ_12345",
+	msgType: "PIC_FILE_READ",
+	timestamp: "1516763973134",
+	payload: "msgId为PIC_FILE_12345的消息已读",
     }
 ```
 ## 跨应用聊天
@@ -564,7 +598,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
 ## 联系我们
 
 #### 邮箱
-    mimc-help@xiaomi.com
+mimc-help@xiaomi.com
 
 #### 微信公众号
 <div align="center"><img width="200" height="200" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg"/></div>
