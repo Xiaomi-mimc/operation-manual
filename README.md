@@ -139,7 +139,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
     	msgId: "TEXT_RECALL_12345",
     	msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL
 	timestamp: "1516763973090", // 建议精确到毫秒
-     	payload: "{recall_msgId: TEXT_12345}", // 撤回msgId为TEXT_12345的消息
+     	payload: {recall_msgId: "TEXT_12345"}, // 撤回msgId为TEXT_12345的消息
     }
 ```
 
@@ -151,7 +151,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 	msgId: "TEXT_READ_12345",
 	msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ
 	timestamp: "1516763973134", // 建议精确到毫秒
-	payload: "{read_msgId: TEXT_12345}", // 已读msgId为TEXT_12345的消息
+	payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
 ```
 
