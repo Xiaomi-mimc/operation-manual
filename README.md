@@ -103,8 +103,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 
 #### 普通类型消息
 
-+ 1.用户A`通过MIMC`发送消息`(msgId="TEXT_12345")`给用户B
-+ 2.用户B接收消息`(msgId="TEXT_12345")`
++ 用户A`通过MIMC`发送消息`(msgId="TEXT_12345")`给用户B
++ 用户B接收消息`(msgId="TEXT_12345")`
 
 ```
 建议格式：
@@ -119,9 +119,9 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
     
 #### 图片文件等类型消息
 
-+ 1.用户A将图片文件/语音文件/视频文件`(非实时语音视频聊天)`等上传到服务器,获得一个URL
-+ 2.用户A`通过MIMC`发送消息`(msgId="PIC_FILE_12345",payload=URL)`给用户B
-+ 3.用户B接收消息`(msgId="PIC_FILE_12345")`,通过URL下载图片文件/语音文件/视频文件等
++ 用户A将图片文件/语音文件/视频文件`(非实时语音视频聊天)`等上传到服务器,获得一个URL
++ 用户A`通过MIMC`发送消息`(msgId="PIC_FILE_12345",payload=URL)`给用户B
++ 用户B接收消息`(msgId="PIC_FILE_12345")`,通过URL下载图片文件/语音文件/视频文件等
 ```
 建议格式：
     {
