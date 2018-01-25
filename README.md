@@ -139,7 +139,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
     	msgId: "TEXT_RECALL_12345",
     	msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL
 	timestamp: "1516763973090", // 建议精确到毫秒
-     	payload: "撤回msgId为TEXT_12345的消息",
+     	payload: "{recall_msgId: TEXT_12345}", // 撤回msgId为TEXT_12345的消息
     }
 ```
 
@@ -151,8 +151,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 	msgId: "TEXT_READ_12345",
 	msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ
 	timestamp: "1516763973134", // 建议精确到毫秒
-	payload: "已读msgId为TEXT_12345的消息",
-    }
+	payload: "{read_msgId: TEXT_12345}", // 已读msgId为TEXT_12345的消息
+    }
 ```
 
 ## 跨应用聊天
@@ -164,17 +164,16 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 ### 参数列表
 
 |   Variable          | Meanings  |
-| :------------------ | :-------------------------------------|
+| :------------------ | :-----------------------------------|
 |   $appId            |   小米开放平台申请的AppId             |
 |   $appKey           |   小米开放平台申请的AppKey            |
-|   $appSecret        |   小米开放平台申请的AppSecret	      |
+|   $appSecret        |   小米开放平台申请的AppSecret	     |
 |   $fromAccount      |   表示消息发送方成员号account(app账号)|
 |   $fromResource     |   表示用户设备的标识                  |
 |   $toAccount        |   表示消息接收方成员号account(app账号)|
-|   $msgType          |   表示发送消息的类型<br />msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="":msg是原始数据，一般传输String数据时使用 |
-|   $topicId	      |   表示群ID                            |
+|   $msgType          |   表示发送消息的类型<br />msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="": msg是原始数据，一般传输String数据时使用 |
+|   $topicId	      |   表示群ID                           |
 |   $packetId         |   表示发送消息包ID                    |
-
 
 ### 推送单聊信息
 
@@ -216,7 +215,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 | :------------------ | :--------------------------------------------------------|
 |   $appId            |   小米开放平台申请的AppId                                  |
 |   $appKey           |   小米开放平台申请的AppKey                                 |
-|   $appSecret        |   小米开放平台申请的AppSecret	                            |
+|   $appSecret        |   小米开放平台申请的AppSecret	                          |
 |   $topicId          |   表示群ID                                                |
 |   $topicName        |   表示创建群的时候所指定的群名称                            |
 |   $topicId1         |   表示查询所属群信息时用户所加入群的群ID	                   |
