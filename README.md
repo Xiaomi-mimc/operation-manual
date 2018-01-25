@@ -30,6 +30,11 @@
 
 ## 快速开始
 
+|应用平台 |描述 |
+|:------:|:----:|
+|Web|同一个用户只允许同时登录一台设备|
+|Android/iOS|同一个用户允许同时登录多个设备|
+
 #### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
 
 #### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
