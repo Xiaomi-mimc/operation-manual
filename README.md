@@ -116,7 +116,6 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
     	payload: "欢迎使用小米即时消息云(MIMC)",
     }
 ```
-    
 #### 多媒体类型消息
 
 + 用户A将图片文件/语音文件/视频文件`(非实时语音视频聊天)`上传到文件存储服务器，获得一个URL
