@@ -8,8 +8,8 @@
     * [PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 * [获取token](#获取token)
 * [推荐消息格式](#推荐消息格式)
-    * [文本类型消息](#文本类型消息)
-    * [多媒体类型消息](#多媒体类型消息)
+    * [文本消息](#文本消息)
+    * [多媒体消息](#多媒体消息)
     * [撤回消息](#撤回消息)
     * [已读消息](#已读消息)
 * [跨应用聊天](#跨应用聊天)
@@ -101,13 +101,13 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 
 #### MIMC的消息格式APP开发者100%自定义自解析
 
-#### 文本类型消息
+#### 文本消息
 
 + 用户A`通过MIMC`发送文本消息`(msgId="TEXT_12345")`给用户B
 + 用户B接收文本消息`(msgId="TEXT_12345")`
 
 ```
-建议格式：
+文本消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
     	msgId: "TEXT_12345",
@@ -116,13 +116,13 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
     	payload: "欢迎使用小米即时消息云(MIMC)",
     }
 ```
-#### 多媒体类型消息
+#### 多媒体消息
 
 + 用户A将图片文件/语音文件/视频文件`(非实时语音视频聊天)`上传到文件存储服务器，获得一个URL
 + 用户A`通过MIMC`发送多媒体消息`(msgId="PIC_FILE_12345", payload=URL)`给用户B
 + 用户B接收多媒体消息`(msgId="PIC_FILE_12345", payload=URL)`，通过URL下载图片文件/语音文件/视频文件
 ```
-建议格式：
+多媒体消息建议格式：
     {
 	version: 0, // 建议保留version字段，方便后续协议升级兼容
 	msgId: "PIC_FILE_12345",
@@ -138,7 +138,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 + 用户A发送撤回消息`(msgId="TEXT_RECALL_12345")`给用户B
 + 用户B接收撤回消息`(msgId="TEXT_RECALL_12345")`并删除文本消息`(msgId="TEXT_12345")`
 ```
-建议格式：
+撤回消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
     	msgId: "TEXT_RECALL_12345",
@@ -155,7 +155,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 + 用户A接收已读消息`(msgId="TEXT_READ_12345")`并标记文本消息`(msgId="TEXT_12345")`已读
 
 ```
-建议格式：
+已读消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
 	msgId: "TEXT_READ_12345",
@@ -164,6 +164,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 	payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
 ```
+#### 其他自定义消息功能
++ 参考以上，设置对应的msgType/payload
 
 ## 跨应用聊天
 
