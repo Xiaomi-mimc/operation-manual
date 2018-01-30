@@ -6,6 +6,7 @@
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+* [如何接入](#如何接入)
 * [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
     * [文本消息](#文本消息)
@@ -46,6 +47,14 @@
 
 #### 4）[PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 
+## 如何接入
+
+APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
+ 
+步骤如下：登录小米开放平台网页 -> ”管理控制台” -> ”小米应用商店” -> ”创建应用” ->  填入应用名和包名 -> ”创建” -> 记下看到的AppId/AppKey/AppSec 。
+ 
+#### 备注1：建议MIMC与小米推送使用的APP信息一致
+#### 备注2：安卓/iOS/Web用一个APP即可，不需要申请多个
 
 ## 安全认证
 
