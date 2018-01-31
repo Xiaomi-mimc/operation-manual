@@ -44,8 +44,6 @@
 
 #### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
 
-#### 4）[PC](https://github.com/Xiaomi-mimc/mimc-java-sdk)
-
 ## 如何接入
 
 APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
