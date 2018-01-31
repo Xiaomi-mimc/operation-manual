@@ -57,11 +57,22 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
 
 ## 安全认证
 
+#### APP客户端获取Token的逻辑如下：
 ```
-APP客户端获取Token的逻辑如下：
     APP <--> AppProxyService(APP开发者实现) <--> 小米TokenService(MIMC)
-
-APP应用方实现AppProxyService服务获取Token，该服务需实现以下功能：
+```
+#### APP <--> AppProxyService(APP开发者实现)
+```
+    安卓APP：
+        实现MIMCTokenFetcher，访问AppProxyService，从返回结果中解析Token(小米TokenService下发)
+    iOS APP：
+        初始化NSMutableURLRequest，用于访问AppProxyService
+        实现delegate parseTokenDelegate，从返回结果中解析Token(小米TokenService下发)
+    Web：
+        实现function fetchMIMCToken()，访问AppProxyService，从返回结果中解析Token(小米TokenService下发)
+```
+#### AppProxyService(APP开发者实现)需实现以下功能：
+```
     1. 存储appId/appKey/appSec（不应存储在客户端，防止泄露）
     2. 用户在APP系统内的合法鉴权
     3. 调用小米TokenService服务，并将小米TokenService服务返回结果返回客户端
