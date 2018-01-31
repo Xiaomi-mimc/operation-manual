@@ -8,6 +8,7 @@
 * [如何接入](#如何接入)
 * [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
+    * [检查用户在线](#检查用户在线)
     * [文本消息](#文本消息)
     * [多媒体消息](#多媒体消息)
     * [撤回消息](#撤回消息)
@@ -117,8 +118,33 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 
 #### MIMC的消息格式APP开发者100%自定义自解析
 
-#### 文本消息
+#### 检查用户在线
++ 用户A发送ping给用户B
++ 用户B接收到ping后，发送pong给用户A
+```
+服务器上存储的用户状态会有延迟，所以要获取最精确的用户在线状态，一般用ping-pong方式
+```
+###### 检查用户在线ping
+Ping消息建议格式：
+    {
+    	version: 0, // 建议保留version字段，方便后续协议升级兼容
+    	msgId: "PING_12345", // APP业务层面自维护消息ID
+    	msgType: "PING", // PING|PONG|...
+    	timestamp: "1516763973000", // 建议精确到毫秒
+    	payload: "A_account",
+    }
 
+###### 检查用户在线pong
+Pong消息建议格式：
+    {
+    	version: 0, // 建议保留version字段，方便后续协议升级兼容
+    	msgId: "PONG_12345", // APP业务层面自维护消息ID
+    	msgType: "PONG", // PING|PONG|...
+    	timestamp: "1516763973000", // 建议精确到毫秒
+    	payload: "B_account",
+    }
+
+#### 文本消息
 + 用户A`通过MIMC`发送文本消息`(msgId="TEXT_12345")`给用户B
 + 用户B接收文本消息`(msgId="TEXT_12345")`
 
@@ -126,8 +152,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 文本消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
-    	msgId: "TEXT_12345",
-    	msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
+    	msgId: "TEXT_12345", // APP业务层面自维护消息ID
+    	msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
     	timestamp: "1516763973000", // 建议精确到毫秒
     	payload: "欢迎使用小米即时消息云(MIMC)",
     }
@@ -141,8 +167,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 多媒体消息建议格式：
     {
 	version: 0, // 建议保留version字段，方便后续协议升级兼容
-	msgId: "PIC_FILE_12345",
-	msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE
+	msgId: "PIC_FILE_12345", // APP业务层面自维护消息ID
+	msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
 	timestamp: "1516763973000", // 建议精确到毫秒
 	payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
     }
@@ -157,8 +183,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 撤回消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
-    	msgId: "TEXT_RECALL_12345",
-    	msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL
+    	msgId: "TEXT_RECALL_12345", // APP业务层面自维护消息ID
+    	msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
 	timestamp: "1516763973090", // 建议精确到毫秒
      	payload: {recall_msgId: "TEXT_12345"}, // 撤回msgId为TEXT_12345的消息
     }
@@ -174,12 +200,13 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 已读消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
-	msgId: "TEXT_READ_12345",
-	msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ
+	msgId: "TEXT_READ_12345", // APP业务层面自维护消息ID
+	msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
 	timestamp: "1516763973134", // 建议精确到毫秒
 	payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
 ```
+
 #### 其他自定义消息功能
 + 参考以上，设置对应的msgType/payload
 
