@@ -122,7 +122,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 + 用户A`通过MIMC`发送ping给用户B
 + 用户B接收到ping后，`通过MIMC`发送pong给用户A
 ```
-服务器上存储的用户状态会有延迟，所以要获取最精确的用户在线状态，一般用ping-pong方式
+服务器上存储的用户状态会有延迟，所以要获取最精确的用户在线状态，一般用端到端ping-pong方式
 ```
 ###### 检查用户在线ping
 ```
