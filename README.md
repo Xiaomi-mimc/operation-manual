@@ -76,11 +76,10 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
     1. 存储appId/appKey/appSec（不应存储在客户端，防止泄露）
     2. 用户在APP系统内的合法鉴权
     3. 调用小米TokenService服务，并将小米TokenService服务返回结果返回客户端
-
-AppProxyService访问小米TokenService的方式如下：
 ```
 
-### 参数列表
+#### AppProxyService访问小米TokenService的方式如下：
+###### 参数列表
 
 |   Variable          | Meanings  |
 | :------------------ | :------------------------------------|
