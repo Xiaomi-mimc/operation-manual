@@ -66,12 +66,12 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
 #### APP <--> AppProxyService(APP开发者实现)
 ```
     安卓APP：
-        实现MIMCTokenFetcher，访问AppProxyService，从返回结果中解析Token(小米TokenService下发)
+        实现MIMCTokenFetcher，访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
     iOS APP：
         初始化NSMutableURLRequest，用于访问AppProxyService
-        实现delegate parseTokenDelegate，从返回结果中解析Token(小米TokenService下发)
+        实现delegate parseTokenDelegate，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
     Web：
-        实现function fetchMIMCToken()，访问AppProxyService，从返回结果中解析Token(小米TokenService下发)
+        实现function fetchMIMCToken()，访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]	
 ```
 #### AppProxyService(APP开发者实现)需实现以下功能：
 ```
@@ -116,6 +116,7 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 	}
 }
 ```
+#### 备注1：对于以上JSON结果，APP不需要理解其格式，通过MIMCTokenFetcher(安卓)/parseTokenDelegate(iOS)原样返回即可
 
 ## 推荐消息格式
 
