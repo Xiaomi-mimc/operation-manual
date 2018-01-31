@@ -119,12 +119,13 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 #### MIMC的消息格式APP开发者100%自定义自解析
 
 #### 检查用户在线
-+ 用户A发送ping给用户B
-+ 用户B接收到ping后，发送pong给用户A
++ 用户A`通过MIMC`发送ping给用户B
++ 用户B接收到ping后，`通过MIMC`发送pong给用户A
 ```
 服务器上存储的用户状态会有延迟，所以要获取最精确的用户在线状态，一般用ping-pong方式
 ```
 ###### 检查用户在线ping
+```
 Ping消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
@@ -133,8 +134,9 @@ Ping消息建议格式：
     	timestamp: "1516763973000", // 建议精确到毫秒
     	payload: "A_account",
     }
-
+```
 ###### 检查用户在线pong
+```
 Pong消息建议格式：
     {
     	version: 0, // 建议保留version字段，方便后续协议升级兼容
@@ -143,7 +145,7 @@ Pong消息建议格式：
     	timestamp: "1516763973000", // 建议精确到毫秒
     	payload: "B_account",
     }
-
+```
 #### 文本消息
 + 用户A`通过MIMC`发送文本消息`(msgId="TEXT_12345")`给用户B
 + 用户B接收文本消息`(msgId="TEXT_12345")`
