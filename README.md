@@ -128,7 +128,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 
 ## 推荐消息格式
 
-#### MIMC的消息格式APP开发者100%自定义自解析
+#### MIMC的消息格式由APP开发者自定义自解析
+#### MIMC系统不对用户消息内容进行理解
 
 #### 检查用户在线
 + 用户A`通过MIMC`发送ping给用户B
