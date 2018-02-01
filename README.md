@@ -97,11 +97,11 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
 |   $appKey           |   小米开放平台申请的AppKey             |
 |   $appSecret        |   小米开放平台申请的AppSecret	      |
 |   $appPackage       |   小米开放平台申请的appPackage         |
-|   $appAccount       |   表示消息发送方成员号account(app账号)  |
-|   $chid             |   表示服务的标识			|
-|   $uuid             |   表示用户的userId			  |
+|   $appAccount       |   表示消息发送方/接收方在app账号体系内账号  |
+|   $chid             |   表示服务的标识，为常量9			|
+|   $uuid             |   表示appAccount在MIMC内对应userId，开发者可忽略  |
 |   $token	      |   表示当前$appAccount的token 	  |
-|   $packetId         |   表示发送消息包ID                     |
+|   $packetId         |   表示发送消息包ID，由随机串+递增ID构成，在appAccount角度看可认为唯一  |
 
 + HTTP 请求
 ```
