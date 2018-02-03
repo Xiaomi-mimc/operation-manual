@@ -102,7 +102,7 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
 |   $appKey           |   小米开放平台申请的AppKey                                      |
 |   $appSecret        |   小米开放平台申请的AppSecret	                               |
 |   $appPackage       |   小米开放平台申请的AppPackage                                  |
-|   $appAccount       |   APP帐号系统内唯一ID                                          |
+|   $appAccount       |   用户在APP帐号系统内唯一ID                                     |
 |   $chid             |   MIMC服务的标识，为常量9			               |
 |   $uuid             |   $appAccount在MIMC内对应userId，开发者可忽略                   |
 |   $token	      |   $appAccount在MIMC系统中的token 	                          |
@@ -246,9 +246,9 @@ Pong消息建议格式：
 |   $appId            |   小米开放平台申请的AppId             |
 |   $appKey           |   小米开放平台申请的AppKey            |
 |   $appSecret        |   小米开放平台申请的AppSecret	     |
-|   $fromAccount      |   表示消息发送方成员号account(app账号)|
-|   $fromResource     |   表示用户设备的标识                  |
-|   $toAccount        |   表示消息接收方成员号account(app账号)|
+|   $fromAccount      |   表示消息发送方在APP帐号系统内唯一ID   |
+|   $fromResource     |   表示消息发送方设备的标识             |
+|   $toAccount        |   表示消息接收方在APP帐号系统内唯一ID   |
 |   $msgType          |   表示发送消息的类型<br />msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="": msg是原始数据，一般传输String数据时使用 |
 |   $topicId	      |   表示群ID                           |
 |   $packetId         |   表示发送消息包ID                    |
@@ -315,18 +315,18 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 |   $topicName2       |   表示查询所属群信息时用户所加入群的群名称	                  |
 |   $topicBulletin1   |	  表示查询所属群信息时用户所加入群的群公告                    |
 |   $topicBulletin2   |   表示查询所属群信息时用户所加入群的群公告                    |
-|   $newBulletin      |	  表示更新群时设置的新群公告                                 |
-|   $newTopicName     |   表示更新群时设置的新群名称                                 |
-|   $ownerUuid	      |	  表示群主uuid                                             |
-|   $ownerAccount     |	  表示群主account(app账号)                                 |
-|   $ownerToken	      |	  表示群主token                                            |
-|   $userAccount1     |	  表示群成员1号account(app账号)                             |
-|   $userAccount2     |	  表示群成员2号account(app账号)                             |
-|   $userAccount3     |   表示群成员3号account(app账号)                             |
-|   $userAccount4     |	  表示群成员4号account(app账号)                             |
-|   $userAccount5     |	  表示群成员5号account(app账号)                             |
-|   $userUuid1	      |	  表示userAccount1的uuid（广义上表示任意一个群成员的uuid）    |
-|   $userToken1	      |	  表示userAccount1的token（广义上表示任意一个群成员的token）  |
+|   $newBulletin      |	  表示更新群时设置的新群公告                                |
+|   $newTopicName     |   表示更新群时设置的新群名称                                |
+|   $ownerUuid	      |	  表示群主在MIMC帐号系统内uuid(使用user.getUuid()获取)      |
+|   $ownerAccount     |	  表示群主在APP帐号系统内唯一ID                             |
+|   $ownerToken	      |	  表示群主token（使用user.getToken()获取）                 |
+|   $userAccount1     |	  表示群成员1号在APP帐号系统内唯一ID                        |
+|   $userAccount2     |	  表示群成员2号在APP帐号系统内唯一ID                        |
+|   $userAccount3     |   表示群成员3号在APP帐号系统内唯一ID                        |
+|   $userAccount4     |	  表示群成员4号在APP帐号系统内唯一ID                        |
+|   $userAccount5     |	  表示群成员5号在APP帐号系统内唯一ID                        |
+|   $userUuid1	      |	  表示userAccount1在MIMC帐号系统内uuid(使用user.getUuid()获取)|
+|   $userToken1	      |	  表示userAccount1的token（使用user.getToken()获取）      |
 
 
 #### 备注：
@@ -600,10 +600,10 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 |   Variable   | Meanings  |
 | :----------------- | :---------------------------------------------------------|
 |  $appId            |  小米开放平台申请的AppId                  		  |
-|  $token            |  通过token服务器获得到的token            		          |
-|  $account          |  接入方app账号 		             		     |
-|  $fromAccount      |  接入方app账号                           		     |
-|  $toAccount        |  接入方app账号	                     		     |
+|  $token            |  查询方的token（使用user.getToken()获取）                    |
+|  $account          |  查询方在APP系统内唯一ID                                    |
+|  $fromAccount      |  消息发送方在APP系统内唯一ID                                 |
+|  $toAccount        |  消息接收方在APP系统内唯一ID                                 |
 |  $topicId          |  表示群ID                                		      |
 |  $utcFromTime      |  表示查询开始时间，UTC时间，单位毫秒       		    |
 |  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒       		    |
