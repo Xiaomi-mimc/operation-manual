@@ -1,6 +1,7 @@
 # operation-manual
 
 ## 目录
+* [免费使用](#免费使用)
 * [快速开始](#快速开始)
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
@@ -34,6 +35,10 @@
     * [拉取群聊消息记录](#拉取群聊消息记录)
 * [联系我们](#联系我们)
 
+## 免费使用
+```
+雷军：小米想赚钱不难 但永生永世不以利润为中心
+```
 ## 快速开始
 
 |应用平台 |描述 |备注 |
