@@ -230,6 +230,7 @@ Pong消息建议格式：
 
 #### 其他自定义消息功能
 + 参考以上，设置对应的msgType/payload
+[回到顶部](#readme)
 
 ## 跨应用聊天
 
@@ -282,6 +283,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 	"message":"success"
 }
 ```
+[回到顶部](#readme)
 
 ## 消息回调
 
@@ -293,6 +295,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 ```
 2018.02上线
 ```
+[回到顶部](#readme)
 
 ## 群聊消息
 
@@ -325,7 +328,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 |   $userToken1	      |	  表示userAccount1的token（广义上表示任意一个群成员的token）  |
 
 
-### PS：
+#### 备注：
 ```
 token的获取使用User.getToken()方法。
 uuid的获取使用User.getUuid()方法，uuid由MIMC根据($appId, $appAccount)生成，全局唯一。
@@ -587,6 +590,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 ```
 {"code":200,"message":"success！","data":null}
 ```
+[回到顶部](#readme)
 
 ## 消息漫游
 
@@ -608,7 +612,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 |  $payload	     |  表示经过Base64编码的消息体，app端需要进行Base64解码          |
 |  $ts               |  表示消息时间戳                          		    |
 
-### PS：
+#### 备注：
 ```
 utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime)
 消息漫游为用户保存最近半年的历史消息
@@ -679,6 +683,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
      }
  }
 ```
+[回到顶部](#readme)
 
 ## 联系我们
 
