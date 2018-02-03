@@ -602,8 +602,8 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 |  $appId            |  小米开放平台申请的AppId                  		  |
 |  $token            |  查询方的token（使用user.getToken()获取）                    |
 |  $account          |  查询方在APP系统内唯一ID                                    |
-|  $fromAccount      |  消息发送方在APP系统内唯一ID                                 |
-|  $toAccount        |  消息接收方在APP系统内唯一ID                                 |
+|  $fromAccount      |  消息发送方在APP帐号系统内唯一ID                             |
+|  $toAccount        |  消息接收方在APP帐号系统内唯一ID                             |
 |  $topicId          |  表示群ID                                		      |
 |  $utcFromTime      |  表示查询开始时间，UTC时间，单位毫秒       		    |
 |  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒       		    |
