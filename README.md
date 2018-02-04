@@ -13,7 +13,7 @@
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
 * [如何接入](#如何接入)
-* [获取Token](#安全认证)
+* [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
     * [检查用户在线](#检查用户在线)
     * [文本消息](#文本消息)
