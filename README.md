@@ -8,7 +8,7 @@
     * [开发者需要维护帐号映射吗](#开发者需要维护帐号映射吗)
     * [如何接入安全认证](#如何接入安全认证)
     * [如何实现高级消息功能](#如何实现高级消息功能)
-* [快速开始](#快速开始)
+* [收发消息](#收发消息)
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
@@ -134,7 +134,7 @@ MIMC传递的消息格式，由APP开发者定义和解析，MIMC不理解消息
     * [撤回消息](#撤回消息)
     * [已读消息](#已读消息)
 
-## 快速开始
+## 收发消息
 
 |应用平台 |描述 |备注 |
 |:------:|:----:|:----:|
