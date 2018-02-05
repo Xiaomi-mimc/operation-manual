@@ -173,9 +173,9 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
 ###### iOS APP：
 ```
 初始化NSMutableURLRequest：
-    用于访问AppProxyService
+    SDK调用NSMutableURLRequest，异步访问AppProxyService
 实现delegate parseTokenDelegate：
-    从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
+    解析NSMutableURLRequest返回结果，获取[小米TokenService下发的原始数据]
 ```
 ###### Web：
 ```
