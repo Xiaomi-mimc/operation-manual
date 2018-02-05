@@ -227,7 +227,6 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSec。
 |   $chid             |   MIMC服务的标识，为常量9			               |
 |   $uuid             |   $appAccount在MIMC内对应userId，开发者可忽略                   |
 |   $token	      |   $appAccount在MIMC系统中的token 	                          |
-|   $packetId         |   发送消息包ID，由随机串+递增ID构成，在$appAccount角度看可认为唯一 |
 
 + HTTP 请求
 ```
@@ -372,7 +371,7 @@ Pong消息建议格式：
 |   $toAccount        |   表示消息接收方在APP帐号系统内唯一ID   |
 |   $msgType          |   表示发送消息的类型<br />msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="": msg是原始数据，一般传输String数据时使用 |
 |   $topicId	      |   表示群ID                           |
-|   $packetId         |   表示发送消息包ID                    |
+|   $packetId         |   表示发送消息包ID，由随机串+递增ID构成，在单个appAccount角度看可认为唯一 |
 
 ### 推送单聊信息
 
