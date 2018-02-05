@@ -763,7 +763,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,
                  "ts": $ts
              }
          ],
-         "row": 1
+         "row": $row
      }
  }
 ```
@@ -785,7 +785,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
      "data": {
          "appId": $appId,
          "topicId": $topicId,
-         "row": 2,
+         "row": $row,
          "messages": [
              {
                  "sequence": $sequence,
