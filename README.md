@@ -254,9 +254,8 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 
 ## 推荐消息格式
 
-#### MIMC的消息格式由APP开发者自定义自解析
-#### MIMC系统不对用户消息内容进行理解
-
+#### MIMC系统不对传输的消息格式/内容进行理解，在MIMC看来传输的都是二进制数据，消息格式由APP开发者自定义自解析
+#### 我们建议开发者参考以下样例来定义自己的消息格式
 #### 检查用户在线
 + 用户A`通过MIMC`发送ping给用户B
 + 用户B接收到ping后，`通过MIMC`发送pong给用户A
@@ -271,7 +270,7 @@ Ping消息建议格式：
     	msgId: "PING_12345", // APP业务层面自维护消息ID
     	msgType: "PING", // PING|PONG|...
     	timestamp: "1516763973000", // 建议精确到毫秒
-    	payload: "A_account",
+    	payload: "appAccount_A",
     }
 ```
 ###### 检查用户在线pong
@@ -282,7 +281,7 @@ Pong消息建议格式：
     	msgId: "PONG_12345", // APP业务层面自维护消息ID
     	msgType: "PONG", // PING|PONG|...
     	timestamp: "1516763973000", // 建议精确到毫秒
-    	payload: "B_account",
+    	payload: "appAccount_B",
     }
 ```
 #### 文本消息
