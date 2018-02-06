@@ -210,7 +210,7 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
 ```
 #### AppProxyService(APP开发者实现)需实现以下功能：
 ```
-    1. 存储appId/appKey/appSec（不应存储在客户端，防止泄露）
+    1. 存储appId/appKey/appSecret(appKey/appSecret不应存储在客户端，防止泄露)
     2. 用户在APP系统内的合法鉴权
     3. 调用小米TokenService服务，并将[小米TokenService下发的原始数据]返回客户端
 ```
