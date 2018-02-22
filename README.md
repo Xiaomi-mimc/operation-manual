@@ -164,7 +164,6 @@ APP开发者接入其他IM提供商时，要访问IM提供商服务，主动为�
 
 ## 整体架构
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
-<div align="center"><img width="672" height="1341" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC_features.jpg"/></div>
 
 ## 收发消息
 
