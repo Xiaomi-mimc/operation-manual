@@ -12,6 +12,7 @@
     * [为什么不提供聊天界面](#为什么不提供聊天界面) 
     * [为什么需要开发者自己定义消息格式](#为什么需要开发者自己定义消息格式)     
     * [开发者需要维护帐号映射吗](#开发者需要维护帐号映射吗)    
+* [整体架构](#整体架构)
 * [收发消息](#收发消息)
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
@@ -160,6 +161,9 @@ APP开发者接入其他IM提供商时，要访问IM提供商服务，主动为�
         因为B在MIMC已经有了ID，所以MIMC后台服务不会再为其分配新ID
         MIMC后台服务检测到B登录，下发离线消息"Hello B"给B
 ```
+
+## 整体架构
+<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
 
 ## 收发消息
 
