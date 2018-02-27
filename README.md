@@ -428,7 +428,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 该功能当前为内测阶段，应用方可以将即时消息、离线消息接收的URL线下告知我们(参考 联系我们，建议加QQ群)，系统将根据AppId将应用的消息通过Post方法发到URL，收到Web返回的200状态码则表示接收成功。目前正在开发App应用方的后台管理系统，完成后应用方可以通过管理系统更新URL。
 * [联系我们](#联系我们)
 
-### 即时消息回调
+### 即时消息回调(单聊消息)
 + Post的body中JSON字符串结果
 ```
 {
@@ -441,7 +441,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 	"msgType":"NORMAL_MSG",
 }
 ```
-### 离线消息回调
+### 离线消息回调(单聊消息)
 + Post的body中JSON字符串结果
 ```
 {
