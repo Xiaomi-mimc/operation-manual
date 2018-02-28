@@ -18,6 +18,7 @@
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
+    * [PC-Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
 * [如何接入](#如何接入)
 * [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
