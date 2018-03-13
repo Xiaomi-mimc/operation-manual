@@ -444,26 +444,26 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 + Post的body中JSON字符串结果
 ```
 {
+        "msgType":"NORMAL_MSG",
 	"fromAppId":$fromAppId,
 	"fromAccount":$fromAccount,
 	"toAppId":$toAppId,
 	"toAccount":$toAccount,
 	"payload":$payload,
-	"timestamp":$timestamp,
-	"msgType":"NORMAL_MSG",
+	"timestamp":$timestamp,	
 }
 ```
 ### 单聊离线消息回调
 + Post的body中JSON字符串结果
 ```
 {
+        "msgType":"OFFLINE_MSG",
 	"fromAppId":$fromAppId,
 	"fromAccount":$fromAccount,
 	"toAppId":$toAppId,
 	"toAccount":$toAccount,
 	"payload":$payload,
-	"timestamp":$timestamp,
-	"msgType":"OFFLINE_MSG",
+	"timestamp":$timestamp,	
 }
 ```
 [回到顶部](#readme)
