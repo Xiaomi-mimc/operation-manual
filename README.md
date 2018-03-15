@@ -656,25 +656,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -
 
 + JSON结果
 ```
-{
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName,
-			"bulletin":""
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3},
-			{"uuid":$userUuid4,"account":$userAccount4},
-			{"uuid":$userUuid5,"account":$userAccount5}
-		]
-	}
-}
+{"code":200,"message":"success","data":null}
 ```
 
 + 若是群主退群，则JSON结果如下：
