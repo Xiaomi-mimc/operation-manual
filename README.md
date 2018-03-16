@@ -27,6 +27,7 @@
     * [多媒体消息](#多媒体消息)
     * [撤回消息](#撤回消息)
     * [已读消息](#已读消息)
+    * [添加好友](#添加好友)
 * [跨应用聊天](#跨应用聊天)
 * [推送消息](#推送消息)
     * [推送单聊信息](#推送单聊信息)
@@ -366,6 +367,30 @@ Pong消息建议格式：
 	timestamp: "1516763973134", // 建议精确到毫秒
 	payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
+```
+
+#### 添加好友
++ 用户A发送添加好友请求`(msgId="ADD_FRIEND_REQUEST_12345")`给用户B
++ 用户B接收添加好友请求`(msgId="ADD_FRIEND_REQUEST_12345")`
++ 用户B同意/拒绝好友添加请求，则回复同意/拒绝`(msgId="ADD_FRIEND_RESPONSE_12345")`给用户A，并更新服务器好友数据
+```
+添加好友请求消息建议格式：
+{
+	version: 0, // 建议保留version字段，方便后续协议升级兼容
+	msgId: "ADD_FRIEND_REQUEST_12345", // APP业务层面自维护消息ID
+	msgType: "ADD_FRIEND_REQUEST", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+	timestamp: "1516763973134", // 建议精确到毫秒
+	payload: {add_requester: "accountA"}, 
+}
+
+同意/拒绝消息建议格式：
+{
+	version: 0, // 建议保留version字段，方便后续协议升级兼容
+	msgId: "ADD_FRIEND_RESPONSE_12345", // APP业务层面自维护消息ID
+	msgType: "ADD_FRIEND_RESPONSE", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+	timestamp: "1516763973134", // 建议精确到毫秒
+	payload: {add_responser: "accountB", accepted:true/false},
+}
 ```
 
 #### 其他自定义消息功能
