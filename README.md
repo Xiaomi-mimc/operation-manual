@@ -886,8 +886,8 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 | :------------------ | :-----------------------------------|
 |   $appId            |   小米开放平台申请的AppId             |
 |   $appKey           |   小米开放平台申请的AppKey            |
-|   $appSecret        |   小米开放平台申请的AppSecret	     |
-|   $appAccount       |   表示查询方在APP帐号系统内唯一ID        |
+|   $appSecret        |	  小米开放平台申请的AppSecret	     |
+|   $appAccount       |   表示查询方在APP帐号系统内唯一ID       |
 |   $token            |   查询方的token（使用user.getToken()获取）                    |
 
 ### 获取最近通讯列表
@@ -902,7 +902,9 @@ curl https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Ty
 {
 	"code":200,
 	"data":[
-		{"userType":"TOPIC","id":"$topicId1","name":"$topicName1","timestamp":"$ts1"},						{"userType":"TOPIC","id":"$topicId2","name":"$topicName2","timestamp":"$ts2"},						{"userType":"USER","id":"$uuid1","name":"$appAccount1","timestamp":"$ts3"}
+		{"userType":"TOPIC","id":"$topicId1","name":"$topicName1","timestamp":"$ts1"}，
+		{"userType":"TOPIC","id":"$topicId2","name":"$topicName2","timestamp":"$ts2"}，
+		{"userType":"USER","id":"$uuid1","name":"$appAccount1","timestamp":"$ts3"}
 	],
 	"message":"success"
 }
