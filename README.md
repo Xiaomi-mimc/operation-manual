@@ -887,7 +887,7 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 |   $appId            |   小米开放平台申请的AppId             |
 |   $appKey           |   小米开放平台申请的AppKey            |
 |   $appSecret        |	  小米开放平台申请的AppSecret	     |
-|   $appAccount       |   表示查询方在APP帐号系统内唯一ID       |
+|   $appAccount       |   表示查询方在APP帐号系统内唯一ID       |
 |   $token            |   查询方的token（使用user.getToken()获取）                    |
 
 ### 获取最近通讯列表
