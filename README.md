@@ -473,12 +473,12 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 ```
 {
     "msgType":"NORMAL_MSG",
-	"fromAppId":$fromAppId,
-	"fromAccount":$fromAccount,
-	"toAppId":$toAppId,
-	"toAccount":$toAccount,
-	"payload":$payload,
-	"timestamp":$timestamp
+    "fromAppId":$fromAppId,
+    "fromAccount":$fromAccount,
+    "toAppId":$toAppId,
+    "toAccount":$toAccount,
+    "payload":$payload,
+    "timestamp":$timestamp
 }
 ```
 ### 单聊离线消息回调
@@ -486,12 +486,12 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 ```
 {
     "msgType":"OFFLINE_MSG",
-	"fromAppId":$fromAppId,
-	"fromAccount":$fromAccount,
-	"toAppId":$toAppId,
-	"toAccount":$toAccount,
-	"payload":$payload,
-	"timestamp":$timestamp
+    "fromAppId":$fromAppId,
+    "fromAccount":$fromAccount,
+    "toAppId":$toAppId,
+    "toAccount":$toAccount,
+    "payload":$payload,
+    "timestamp":$timestamp
 }
 ```
 ### 群聊即时消息回调
@@ -499,12 +499,12 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 ```
 {
     "msgType":"NORMAL_TOPIC_MSG",
-	"appId":$appId, //发送目的群组的所属AppId
-	"topicId":$topicId, //发送目的群组id
-	"fromAccount":$fromAccount, //发送者用户名
+    "appId":$appId, //发送目的群组的所属AppId
+    "topicId":$topicId, //发送目的群组id
+    "fromAccount":$fromAccount, //发送者用户名
     "toAccounts":[$toAccount1,$toAccount2,...,$toAccountN], //群组内所有用户
-	"payload":$payload,
-	"timestamp":$timestamp
+    "payload":$payload,
+    "timestamp":$timestamp
 }
 ```
 ### 群聊离线消息回调
@@ -512,12 +512,12 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 ```
 {
     "msgType":"OFFLINE_TOPIC_MSG",
-	"appId":$appId, //发送目的群组的所属AppId
-	"topicId":$topicId, //发送目的群组id
-	"fromAccount":$fromAccount, //发送者用户名
+    "appId":$appId, //发送目的群组的所属AppId
+    "topicId":$topicId, //发送目的群组id
+    "fromAccount":$fromAccount, //发送者用户名
     "toAccounts":[$toAccount1,$toAccount3,...,$toAccountK], //群组内未收到消息的用户
-	"payload":$payload,
-	"timestamp":$timestamp
+    "payload":$payload,
+    "timestamp":$timestamp
 }
 ```
 [回到顶部](#readme)
