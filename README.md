@@ -35,6 +35,8 @@
 * [消息回调](#消息回调)
     * [单聊即时消息回调](#单聊即时消息回调)
     * [单聊离线消息回调](#单聊离线消息回调)
+    * [群聊即时消息回调](#群聊即时消息回调)
+    * [群聊离线消息回调](#群聊离线消息回调)
 * [群聊消息](#群聊消息)
     * [创建群](#创建群)
     * [查询指定群信息](#查询指定群信息)
@@ -470,26 +472,52 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 + Post的body中JSON字符串结果
 ```
 {
-        "msgType":"NORMAL_MSG",
+    "msgType":"NORMAL_MSG",
 	"fromAppId":$fromAppId,
 	"fromAccount":$fromAccount,
 	"toAppId":$toAppId,
 	"toAccount":$toAccount,
 	"payload":$payload,
-	"timestamp":$timestamp,	
+	"timestamp":$timestamp
 }
 ```
 ### 单聊离线消息回调
 + Post的body中JSON字符串结果
 ```
 {
-        "msgType":"OFFLINE_MSG",
+    "msgType":"OFFLINE_MSG",
 	"fromAppId":$fromAppId,
 	"fromAccount":$fromAccount,
 	"toAppId":$toAppId,
 	"toAccount":$toAccount,
 	"payload":$payload,
-	"timestamp":$timestamp,	
+	"timestamp":$timestamp
+}
+```
+### 群聊即时消息回调
++ Post的body中JSON字符串结果
+```
+{
+    "msgType":"NORMAL_TOPIC_MSG",
+	"appId":$appId, //发送目的群组的所属AppId
+	"topicId":$topicId, //发送目的群组id
+	"fromAccount":$fromAccount, //发送者用户名
+    "toAccounts":[$toAccount1,$toAccount2,...,$toAccountN], //群组内所有用户
+	"payload":$payload,
+	"timestamp":$timestamp
+}
+```
+### 群聊离线消息回调
++ Post的body中JSON字符串结果
+```
+{
+    "msgType":"OFFLINE_TOPIC_MSG",
+	"appId":$appId, //发送目的群组的所属AppId
+	"topicId":$topicId, //发送目的群组id
+	"fromAccount":$fromAccount, //发送者用户名
+    "toAccounts":[$toAccount1,$toAccount3,...,$toAccountK], //群组内未收到消息的用户
+	"payload":$payload,
+	"timestamp":$timestamp
 }
 ```
 [回到顶部](#readme)
