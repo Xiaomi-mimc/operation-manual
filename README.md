@@ -927,12 +927,42 @@ curl https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Ty
 
 + JSON结果
 ```
+注：由于该接口最初返回结果中没有最后一条聊天记录，因此，字段"lastMessage"可能为null。
 {
 	"code":200,
 	"data":[
-		{"userType":"TOPIC","id":"$topicId1","name":"$topicName1","timestamp":"$ts1"}，
-		{"userType":"TOPIC","id":"$topicId2","name":"$topicName2","timestamp":"$ts2"}，
-		{"userType":"USER","id":"$uuid1","name":"$appAccount1","timestamp":"$ts3"}
+		{	"userType":"TOPIC",
+			"id":"$topicId1",
+			"name":"$topicName1",
+			"timestamp":"$ts1",
+			"lastMessage":{
+				"fromUuid":"$fromUuid1",
+				"fromAccount":"$fromAccount1",
+				"payload":"$payload1"
+			}
+		}，
+		{
+			"userType":"TOPIC",
+			"id":"$topicId2",
+			"name":"$topicName2",
+			"timestamp":"$ts2",
+			"lastMessage":{
+				"fromUuid":"$fromUuid2",
+				"fromAccount":"$fromAccount2",
+				"payload":"$payload2"
+			}
+		}，
+		{
+			"userType":"USER",
+			"id":"$uuid1",
+			"name":"$appAccount1",
+			"timestamp":"$ts3",
+			"lastMessage":{
+				"fromUuid":"$fromUuid3",
+				"fromAccount":"$fromAccount3",
+				"payload":"$payload3"
+			}
+		}
 	],
 	"message":"success"
 }
