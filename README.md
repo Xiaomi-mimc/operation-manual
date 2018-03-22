@@ -927,7 +927,6 @@ curl https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Ty
 
 + JSON结果
 ```
-注：由于该接口最初返回结果中没有最后一条聊天记录，因此，字段"lastMessage"可能为null。
 {
 	"code":200,
 	"data":[
