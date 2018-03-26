@@ -842,14 +842,14 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,
      "message": "success",
      "data": {
          "appId": $appId,
-         "toAccount": $toAccount,
-         "fromAccount":$fromAccount,
          "messages": [
              {
                  "sequence": $sequence,
                  "payload": $payload,
-                 "ts": $ts
-             }
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+		 "toAccount": $toAccount,
+             }
          ],
          "row": $row
      }
