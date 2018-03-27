@@ -464,8 +464,10 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 ```
 回调服务将App用户的即时消息和离线消息以JSON格式POST发给应用方，回调服务收到Web返回的200状态码则表示接收成功。
 当消息回调失败（返回状态码非200、返回超时、发送失败等）时，系统会一段时间后重试发送最多3次（5s后，30s后，5min后）。
-未来会上线App应用方的后台管理系统，应用方可以通过管理系统更新URL。
 ```
+#### 如何接入
+<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/msgcallback.png"/></div>
+
 * [联系我们](#联系我们)
 
 ### 单聊即时消息回调
