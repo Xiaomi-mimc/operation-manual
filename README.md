@@ -899,7 +899,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
 APP开启临时账号功能后，所申请账号会在一段时间后被删除，且不能创建群组。
 
 #### 如何接入
-当前为内测阶段，应用方可以将APP帐号有效期ttl（秒）线下告知我们(参考 联系我们，建议加QQ群)，我们会在线下直接对接内测开发者
+生存时间(TTL) 单位为秒，若设置为0表示用户永久有效不删除
+<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/userttl.png"/></div>
 
 * [联系我们](#联系我们)
 
