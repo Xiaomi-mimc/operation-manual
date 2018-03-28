@@ -466,6 +466,10 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 当消息回调失败（返回状态码非200、返回超时、发送失败等）时，系统会一段时间后重试发送最多3次（5s后，30s后，5min后）。
 ```
 #### 如何接入
+```
+管理平台：https://admin.mimc.chat.xiaomi.net
+```
+
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/msgcallback.png"/></div>
 
 * [联系我们](#联系我们)
@@ -901,6 +905,10 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
 APP开启临时账号功能后，所申请账号会在一段时间后被删除，且不能创建群组。
 
 #### 如何接入
+```
+管理平台：https://admin.mimc.chat.xiaomi.net
+```
+
 生存时间(TTL) 单位为秒，若设置为0表示用户永久有效不删除
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/userttl.png"/></div>
 
