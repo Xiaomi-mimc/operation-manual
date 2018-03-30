@@ -51,6 +51,7 @@
     * [拉取群聊消息记录](#拉取群聊消息记录)
 * [临时帐号](#临时帐号)
 * [获取最近通讯列表](#获取最近通讯列表)
+* [单聊黑名单](#单聊黑名单)
 * [联系我们](#联系我们)
 
 ## 常见问题
@@ -975,6 +976,69 @@ curl https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Ty
 		}
 	],
 	"message":"success"
+}
+```
+[回到顶部](#readme)
+
+## 单聊黑名单
+该功能限于单聊的黑名单功能。目前主要包括：一用户A将另一用户B拉黑;A取消拉黑B;A查询是否拉黑B。如果A拉黑B，则A收不到B发送的消息。将有两种身份验证方式，一种是客户端使用的token验证，一种是第三方app的服务器端使用的app信息+帐号名称验证，如果两个参数都传入，将以token验证。
+
+### 参数列表
+
+| Variable | Meanings |
+| :------------------ | :-----------------------------------|
+| $appId | 小米开放平台申请的AppId |
+| $appKey | 小米开放平台申请的AppKey |
+| $appSecret | 小米开放平台申请的AppSecret |
+| $appAccount       | 表示查询方在APP帐号系统内唯一ID       |
+| $token           | 查询方的token（使用user.getToken()获取）                   |
+| $blackAccount     | 表示被拉黑方在APP帐号系统内唯一ID       |
+
+### 拉黑
++ HTTP 请求
+```
+curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$blackAccount"}' -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$blackAccount"}' -H "token:$token" -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"message":"success",
+	"data":null,
+}
+```
+### 取消拉黑
++ HTTP 请求
+```
+curl https://mimc.chat.xiaomi.net/api/blacklist?blackAccount=$blackAccount -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist?blackAccount=$blackAccount -XDELETE -H "token:$token" -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"message":"success",
+	"data":null,
+}
+```
+### 是否拉黑
++ HTTP 请求
+```
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET -H "token:$token" -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"message":"success",
+	"data":{
+		"isBlack":true/false 
+	},
 }
 ```
 [回到顶部](#readme)
