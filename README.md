@@ -48,8 +48,8 @@
     * [群主销毁群](#群主销毁群)
 * [消息漫游](#消息漫游)
     * [拉取单聊消息记录](#拉取单聊消息记录)
-    * [拉取群聊消息记录](#拉取群聊消息记录)
     * [拉取N条单聊消息记录](#拉取N条单聊消息记录)
+    * [拉取群聊消息记录](#拉取群聊消息记录)
     * [拉取N条群聊消息记录](#拉取N条群聊消息记录)
 * [临时帐号](#临时帐号)
 * [获取最近通讯列表](#获取最近通讯列表)
@@ -898,8 +898,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST -d '{"appId":
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		         "fromAccount":$fromAccount,
-        		 "toAccount": $toAccount,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -979,8 +979,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		         "fromAccount":$fromAccount,
-        		 "toAccount": $toAccount,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
              }
          ],
          "row": $row,
