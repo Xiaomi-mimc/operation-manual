@@ -914,7 +914,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST -d '{"appId":
 timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
 ```
 
-### 拉取指定sequence单聊消息记录
+### 拉取指定sequence单聊消息记录 (待上线)
 ```
 指的是拉取从startSeq到stopSeq之间的A与B之间的聊天记录。
 ```
@@ -1032,7 +1032,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":
 timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
 ```
 
-### 拉取指定sequence群聊消息记录
+### 拉取指定sequence群聊消息记录 (待上线)
 ```
 指的是拉取从startSeq到stopSeq之间的指定的topicId的群聊天记录。
 ```
