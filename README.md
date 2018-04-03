@@ -49,8 +49,10 @@
 * [消息漫游](#消息漫游)
     * [拉取单聊消息记录](#拉取单聊消息记录)
     * [拉取指定数目单聊消息记录](#拉取指定数目单聊消息记录)
+    * [拉取指定sequence单聊消息记录](#拉取指定sequence单聊消息记录)
     * [拉取群聊消息记录](#拉取群聊消息记录)
     * [拉取指定数目群聊消息记录](#拉取指定数目群聊消息记录)
+    * [拉取指定sequence群聊消息记录](#拉取指定sequence群聊消息记录)
 * [临时帐号](#临时帐号)
 * [获取最近通讯列表](#获取最近通讯列表)
 * [单聊黑名单](#单聊黑名单)
@@ -910,6 +912,45 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST -d '{"appId":
 #### 备注
 ```
 timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
+
+### 拉取指定sequence单聊消息记录
+```
+指的是拉取从startSeq到stopSeq之间的A与B之间的聊天记录。
+```
+
+#### 如下为拉取指定sequence单聊消息记录
+
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"startSeq":$startSeq,"stopSeq":$stopSeq}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200,
+     "message": "success",
+     "data": {
+         "appId": $appId,
+         "messages": [
+             {
+                 "sequence": $sequence,
+                 "payload": $payload,
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
+             }
+         ],
+         "row": $row,
+         "timestamp":$timestamp
+     }
+ }
+```
+#### 备注
+```
+timestamp字段表示当前的聊天记录最早的时间戳(单位：毫秒)。
+```
+
 ```
 
 ### 拉取群聊消息记录
@@ -980,7 +1021,6 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":
                  "payload": $payload,
                  "ts": $ts,
 		 "fromAccount":$fromAccount,
-        	 "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -991,6 +1031,45 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":
 #### 备注
 ```
 timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
+```
+
+### 拉取指定sequence群聊消息记录
+```
+指的是拉取从startSeq到stopSeq之间的指定的topicId的群聊天记录。
+```
+
+#### 如下为拉取指定sequence群聊消息记录
+
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnSequence/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"startSeq":$startSeq,"stopSeq":$stopSeq}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200,
+     "message": "success",
+     "data": {
+         "appId": $appId,
+         "messages": [
+             {
+                 "sequence": $sequence,
+                 "payload": $payload,
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
+             }
+         ],
+         "row": $row,
+         "timestamp":$timestamp
+     }
+ }
+```
+#### 备注
+```
+timestamp字段表示当前的聊天记录最早的时间戳(单位：毫秒);
+fromAccount字段表示当前消息所在群的topicId。
 ```
 
 [回到顶部](#readme)
