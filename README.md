@@ -842,7 +842,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 ### 拉取单聊消息记录
 ```指的是拉取从utcFromTime到utcToTime的时间范围内的A与B之间的聊天记录，单聊是相对于群聊而言的一对一聊天。```
 
-#### 如下为拉取单聊消息记录
+#### 如下为拉取[utcFromTime, utcToTime)的单聊消息记录
 
 + HTTPS请求(POST)
 ```
@@ -883,7 +883,7 @@ timestamp字段在这个请求的响应中没有意义。
 指的是拉取从指定的时间戳utcToTime(不包含utcToTime)向前count条的A与B之间的聊天记录。
 ```
 
-#### 如下为拉取指定数目单聊消息记录
+#### 如下为拉取utcToTime向前count条的单聊消息记录
 
 + HTTPS请求(POST)
 ```
@@ -921,7 +921,7 @@ timestamp字段在这个请求的响应中表示当前的聊天记录最早的�
 指的是拉取从startSeq到stopSeq之间的A与B之间的聊天记录。
 ```
 
-#### 如下为拉取指定sequence单聊消息记录
+#### 如下为拉取[startSeq, stopSeq)的单聊消息记录
 
 + HTTPS请求(POST)
 ```
@@ -1002,7 +1002,7 @@ timestamp字段在这个请求的响应中没有意义。
 指的是拉取从指定的时间戳utcToTime(不包含utcToTime)向前count条的指定的topicId的群聊天记录。
 ```
 
-#### 如下为拉取指定数目群聊消息记录
+#### 如下为拉取utcToTime向前count条的群聊消息记录
 
 + HTTPS请求(POST)
 ```
@@ -1039,7 +1039,7 @@ timestamp字段在这个请求的响应中表示当前的聊天记录最早的�
 指的是拉取从startSeq到stopSeq之间的指定的topicId的群聊天记录。
 ```
 
-#### 如下为拉取指定序列号群聊消息记录
+#### 如下为拉取[startSeq, stopSeq)的群聊消息记录
 
 + HTTPS请求(POST)
 ```
