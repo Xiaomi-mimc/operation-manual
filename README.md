@@ -824,6 +824,8 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 |  $topicId          |  表示群ID                                		      |
 |  $utcFromTime      |  表示查询开始时间，UTC时间，单位毫秒       		    |
 |  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒       		    |
+|  $startSeq         |  表示查询开始序列号       		    |
+|  $stopSeq          |  表示查询结束序列号       		    |
 |  $count            |  表示查询的消息条数                     		    |
 |  $row              |  表示返回的消息条数                       		  |
 |  $timestamp        |  表示返回的消息中最早的时间戳               		  |
