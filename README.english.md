@@ -2,14 +2,14 @@
 
 ## Contents
 
-* [Frequently Asked Questions](#Frequently Asked Questions)
-    * [Are there any charges?](#Are there any charges?)
-    * [What scenarios does this apply to?](#What scenarios does this apply to?)
-    * [Which platforms are supported?](#Which platforms are supported?)
-    * [What development work is required?](#What development work is required?)
-        * \[developers need to implement their own chat interface\] (#developers need to implement their own chat interface)
-        * \[developers need to access the message cloud security authentication\] (#developers need to access the message cloud security authentication)
-        * \[developers need to define their own message formats\] (#developers need to define their own message formats)
+* [Frequently Asked Questions](#frequently-asked-questions)
+    * [Are there any charges?](#are-there-any-charges)
+    * [What scenarios does this apply to?](#what-scenarios-does-this-apply-to)
+    * [Which platforms are supported?](#which-platforms-are-supported)
+    * [What development work is required?](#what-development-work-is-required)
+        * \[developers need to implement their own chat interface\] (#developers-need-to-implement-their-own-chat-interface)
+        * \[developers need to access the message cloud security authentication\] (#developers-need-to-access-the-message-cloud-security-authentication)
+        * \[developers need to define their own message formats\] (#developers-need-to-define-their-own-message-formats)
     * [Why don't you provide a chat interface?](#Why don't you provide a chat interface?)
     * \[why developers need to define their own message formats\] (#why developers need to define their own message formats)
     * \[do developers need to maintain account mapping?\] (#do developers need to maintain account mapping?)
