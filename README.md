@@ -18,7 +18,8 @@
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-    * [PC-Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+    * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+    * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
 * [如何接入](#如何接入)
 * [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
@@ -463,7 +464,6 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 [回到顶部](#readme)
 
 ## 消息回调
-消息回调功能，是将用户发送的消息转发一份给应用方后台的服务。应用方提供Web URL，回调服务将App用户的即时消息、离线消息以JSON格式POST发给应用方(URL的提供参考 联系我们，建议加QQ群)。
 #### 应用场景
 ```
 消息回调功能可以帮助应用方完全掌控App使用情况，回调消息数据可用于数据挖掘、统计、监控、App保活等。
