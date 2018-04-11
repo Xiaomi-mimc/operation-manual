@@ -10,7 +10,7 @@
         * [developers need to implement their own chat interface](#developers-need-to-implement-their-own-chat-interface)
         * [developers need to access the message cloud security authentication](#developers-need-to-access-the-message-cloud-security-authentication)
         * [developers need to define their own message formats](#developers-need-to-define-their-own-message-formats)
-    * [Why don't you provide a chat interface?](#why-dont-you-provide-a-chat-interface)
+    * [Why don't we provide a chat interface?](#why-dont-we-provide-a-chat-interface)
     * [why developers need to define their own message formats](#why-do-developers-need-to-define-their-own-message-formats)
     * [do developers need to maintain account mapping?](#do-developers-need-to-maintain-account-mapping)
     * [How to do if app does not receive messages in the background](#how-to-do-if-app-does-not-receive-messages-in-the-background)
@@ -24,30 +24,30 @@
 
 * [Security Authentication](#security-authentication)
 * [Recommended Message Format](#recommended-message-format)
-    * [Check online users](#Check online users)
-    * [Text messages](#Text messages)
-    * [Multimedia messages](#Multimedia messages)
-    * [Recall messages](#Recall messages)
-    * [Read messages](#Read messages)
-* [Chat Across Applications](#Chat Across Applications)
-* [Push Messages](#Push Messages)
-    * [Push one-on-one chat information](#Push one-one-one chat information)
-    * [Push group chat information](#Push group chat information)
-* [Message Callback](#Message Callback)
-    * [Instant message callback](#Instant message callback)
-    * [Offline message callback](#Offline message callback)
-* [Group Chat Information](#Group Chat Information)
-    * [Create a topic](#Create a topic)
-    * [Query information on specified topic](#Query information on specified topic)
-    * [Query all topic attributes](#Query all topic attributes)
-    * \[invite users to join topic\] (#invite users to join topic)
-    * [Non-topic owners leave topic](#Non-topic owners leave topic)
-    * [Topic owners leave topic](#Topic owners leave topic)
-    * [Topic owner updates topic information](#Topic owner updates topic information)
-    * [Topic owner destroys topic](#Topic owner destroys topic)
-* [Message Roaming](#Message Roaming)
-    * [Pull one-on-one chat record](#Pull one-on-one chat record)
-    * [Pull group chat record](#Pull group chat record)
+    * [Check online users](#check-online-users)
+    * [Text messages](#text-messages)
+    * [Multimedia messages](#multimedia-messages)
+    * [Recall messages](#recall-messages)
+    * [Read messages](#read-messages)
+* [Chat Across Applications](#chat-across-applications)
+* [Push Messages](#push-messages)
+    * [Push one-on-one chat information](#push-one-one-one-chat-information)
+    * [Push group chat information](#push-group-chat-information)
+* [Message Callback](#message-callback)
+    * [Instant message callback](#instant-message-callback)
+    * [Offline message callback](#offline-message-callback)
+* [Group Chat Information](#group-chat-information)
+    * [Create a topic](#create-a-topic)
+    * [Query information on specified topic](#query-information-on-specified-topic)
+    * [Query all topic attributes](#query-all-topic-attributes)
+    * [invite users to join topic](#invite-user-to-join-a-topic)
+    * [Topic member leave topic](#topic-member-leave-topic)
+    * [Topic owner kicks member](#topic-owner-kicks-member)
+    * [Topic owner updates topic information](#topic-owner-updates-topic-information)
+    * [Topic owner destroys topic](#topic-owner-destroys-topic)
+* [Message Roaming](#message-roaming)
+    * [Pull one-on-one chat record](#pull-one-on-one-chat-record)
+    * [Pull group chat record](#pull-group-chat-record)
 * [Contact Us](#Contact Us)
 
 ## Frequently Asked Questions
@@ -96,7 +96,7 @@
     * [Recall messages](#Recall messages)
     * [Read messages](#Read messages)
 
-#### Why don't you provide a chat interface?
+#### Why don't we provide a chat interface?
 
     We do not provide a unified chat UI for the following reasons:  1. Each app has its own style. Due to this diversity, it is impossible for a single UI to meet everyone's needs  2.  For developers, the costs of developing a UI are not high  3. When developers develop their own UI, they are able to 100% customize the interface and functions
     So, we think it is appropriate for developers to customize their own UI based on the style of their app
@@ -117,7 +117,7 @@
     No. MIMC user login/messaging etc. use the account ID in the app's own account system. The MIMC account system is transparent to app developers
 
 
-###### Why did you do it like this?
+###### Why did we do it like this?
 
     When app developers connect to other IM providers, they need to access the IM provider service and register a new ID for each appAccount,
     and developers need to store the following information in their own backend system:
@@ -649,7 +649,7 @@ This function is currently in the closed beta phase. The application side may co
     }
 
 
-### Non-topic owners leave topic
+### Topic member leave topic
 
 #### $userAccount1 leaves topic is shown below
 
@@ -688,7 +688,7 @@ This function is currently in the closed beta phase. The application side may co
     {"code":500,"message":"quit topic fail","data":null}
 
 
-### Topic owners leave topic
+### Topic owner kicks member
 
 #### $ownerAccount removes $userAccount4, $userAccount5 from the topic is shown below
 
