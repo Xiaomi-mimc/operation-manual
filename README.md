@@ -18,7 +18,8 @@
     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-    * [PC-Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+    * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+    * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
 * [如何接入](#如何接入)
 * [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
@@ -27,6 +28,7 @@
     * [多媒体消息](#多媒体消息)
     * [撤回消息](#撤回消息)
     * [已读消息](#已读消息)
+    * [添加好友](#添加好友)
 * [跨应用聊天](#跨应用聊天)
 * [推送消息](#推送消息)
     * [推送单聊信息](#推送单聊信息)
@@ -34,6 +36,8 @@
 * [消息回调](#消息回调)
     * [单聊即时消息回调](#单聊即时消息回调)
     * [单聊离线消息回调](#单聊离线消息回调)
+    * [群聊即时消息回调](#群聊即时消息回调)
+    * [群聊离线消息回调](#群聊离线消息回调)
 * [群聊消息](#群聊消息)
     * [创建群](#创建群)
     * [查询指定群信息](#查询指定群信息)
@@ -45,8 +49,17 @@
     * [群主销毁群](#群主销毁群)
 * [消息漫游](#消息漫游)
     * [拉取单聊消息记录](#拉取单聊消息记录)
+    * [拉取指定数目单聊消息记录](#拉取指定数目单聊消息记录)
+    * [拉取指定序列号单聊消息记录](#拉取指定序列号单聊消息记录)
     * [拉取群聊消息记录](#拉取群聊消息记录)
+    * [拉取指定数目群聊消息记录](#拉取指定数目群聊消息记录)
+    * [拉取指定序列号群聊消息记录](#拉取指定序列号群聊消息记录)
 * [临时帐号](#临时帐号)
+* [最近通讯列表](#最近通讯列表)
+    * [获取最近通讯列表](#获取最近通讯列表)
+    * [删除指定单聊会话](#删除指定单聊会话)
+    * [删除指定群聊会话](#删除指定群聊会话)
+* [单聊黑名单](#单聊黑名单)
 * [联系我们](#联系我们)
 
 ## 常见问题
@@ -168,12 +181,12 @@ APP开发者接入其他IM提供商时，要访问IM提供商服务，主动为�
 #### APP在后台收不到消息如何处理
 
 ```
-iOS平台下，APP进入后台时，进程代码执行会暂停，连接过一段时间后也会被关闭，当前Android也慢慢趋同于iOS。
+iOS平台下，APP进入后台时，进程代码执行会暂停，连接过一段时间后也会被关闭(当前Android也慢慢趋同于iOS)
 在APP后台运行被限制越来越严格的大背景下，如何让APP在后台运行时仍然可以"收到"消息呢？我们提供以下建议方案：
 1. 开发者开发线上服务OfflineMessageService，接收MIMC服务回调的离线消息（参见<消息回调-离线消息回调>）
 2. OfflineMessageService将接收到的离线消息，通过小米推送(覆盖小米/华为/OPPO/iOS等主流手机厂商的系统级推送通道)，
    将离线消息提醒下发到用户手机通知栏
-3. 用户点击手机通知栏提醒，APP被启动进入前台，自动接收离线消息
+3. 用户点击手机通知栏提醒，APP被启动进入前台，自动接收离线消息(不需要额外开发工作)
 
 备注: 建议开发者在APP切换入前台时，主动触发一下login操作（若用户当前长连接完好，则无任何影响；若用户当前处于离线状态，会触发登录操作）
 ```
@@ -368,6 +381,30 @@ Pong消息建议格式：
     }
 ```
 
+#### 添加好友
++ 用户A发送添加好友请求`(msgId="ADD_FRIEND_REQUEST_12345")`给用户B
++ 用户B接收添加好友请求`(msgId="ADD_FRIEND_REQUEST_12345")`
++ 用户B同意/拒绝好友添加请求，则回复同意/拒绝`(msgId="ADD_FRIEND_RESPONSE_12345")`给用户A，并更新服务器好友数据
+```
+添加好友请求消息建议格式：
+{
+	version: 0, // 建议保留version字段，方便后续协议升级兼容
+	msgId: "ADD_FRIEND_REQUEST_12345", // APP业务层面自维护消息ID
+	msgType: "ADD_FRIEND_REQUEST", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+	timestamp: "1516763973134", // 建议精确到毫秒
+	payload: {add_requester: "accountA"}, 
+}
+
+同意/拒绝消息建议格式：
+{
+	version: 0, // 建议保留version字段，方便后续协议升级兼容
+	msgId: "ADD_FRIEND_RESPONSE_12345", // APP业务层面自维护消息ID
+	msgType: "ADD_FRIEND_RESPONSE", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+	timestamp: "1516763973134", // 建议精确到毫秒
+	payload: {add_responser: "accountB", accepted:true/false},
+}
+```
+
 #### 其他自定义消息功能
 + 参考以上，设置对应的msgType/payload
 
@@ -427,33 +464,74 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 [回到顶部](#readme)
 
 ## 消息回调
-该功能当前为内测阶段，应用方可以将即时消息、离线消息接收的URL线下告知我们(参考 联系我们，建议加QQ群)，系统将根据AppId将应用的消息通过Post方法发到URL，收到Web返回的200状态码则表示接收成功。目前正在开发App应用方的后台管理系统，完成后应用方可以通过管理系统更新URL。
+#### 应用场景
+```
+消息回调功能可以帮助应用方完全掌控App使用情况，回调消息数据可用于数据挖掘、统计、监控、App保活等。
+```
+#### 回调发送与失败重试
+```
+回调服务将App用户的即时消息和离线消息以JSON格式POST发给应用方，回调服务收到Web返回的200状态码则表示接收成功。
+当消息回调失败（返回状态码非200、返回超时、发送失败等）时，系统会一段时间后重试发送最多3次（5s后，30s后，5min后）。
+```
+#### 如何接入
+```
+管理平台：https://admin.mimc.chat.xiaomi.net
+```
+
+<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/msgcallback.png"/></div>
+
 * [联系我们](#联系我们)
 
 ### 单聊即时消息回调
 + Post的body中JSON字符串结果
 ```
 {
-	"fromAppId":$fromAppId,
-	"fromAccount":$fromAccount,
-	"toAppId":$toAppId,
-	"toAccount":$toAccount,
-	"payload":$payload,
-	"timestamp":$timestamp,
-	"msgType":"NORMAL_MSG",
+    "msgType":"NORMAL_MSG",
+    "fromAppId":$fromAppId,
+    "fromAccount":$fromAccount,
+    "toAppId":$toAppId,
+    "toAccount":$toAccount,
+    "payload":$payload,
+    "timestamp":$timestamp
 }
 ```
 ### 单聊离线消息回调
 + Post的body中JSON字符串结果
 ```
 {
-	"fromAppId":$fromAppId,
-	"fromAccount":$fromAccount,
-	"toAppId":$toAppId,
-	"toAccount":$toAccount,
-	"payload":$payload,
-	"timestamp":$timestamp,
-	"msgType":"OFFLINE_MSG",
+    "msgType":"OFFLINE_MSG",
+    "fromAppId":$fromAppId,
+    "fromAccount":$fromAccount,
+    "toAppId":$toAppId,
+    "toAccount":$toAccount,
+    "payload":$payload,
+    "timestamp":$timestamp
+}
+```
+### 群聊即时消息回调
++ Post的body中JSON字符串结果
+```
+{
+    "msgType":"NORMAL_TOPIC_MSG",
+    "appId":$appId, //发送目的群组的所属AppId
+    "topicId":$topicId, //发送目的群组id
+    "fromAccount":$fromAccount, //发送者用户名
+    "toAccounts":[$toAccount1,$toAccount2,...,$toAccountN], //群组内所有用户
+    "payload":$payload,
+    "timestamp":$timestamp
+}
+```
+### 群聊离线消息回调
++ Post的body中JSON字符串结果
+```
+{
+    "msgType":"OFFLINE_TOPIC_MSG",
+    "appId":$appId, //发送目的群组的所属AppId
+    "topicId":$topicId, //发送目的群组id
+    "fromAccount":$fromAccount, //发送者用户名
+    "toAccounts":[$toAccount1,$toAccount3,...,$toAccountK], //群组内未收到消息的用户
+    "payload":$payload,
+    "timestamp":$timestamp
 }
 ```
 [回到顶部](#readme)
@@ -646,25 +724,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -
 
 + JSON结果
 ```
-{
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName,
-			"bulletin":""
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3},
-			{"uuid":$userUuid4,"account":$userAccount4},
-			{"uuid":$userUuid5,"account":$userAccount5}
-		]
-	}
-}
+{"code":200,"message":"success","data":null}
 ```
 
 + 若是群主退群，则JSON结果如下：
@@ -710,13 +770,9 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "token:$ownerToken"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "token:$ownerToken"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "topicName":$newTopicName}' -H "Content-Type: application/json" -H "token:$ownerToken"
-
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
-
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "topicName":$newTopicName}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
 ```
 
 + JSON结果
@@ -771,7 +827,11 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 |  $topicId          |  表示群ID                                		      |
 |  $utcFromTime      |  表示查询开始时间，UTC时间，单位毫秒       		    |
 |  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒       		    |
+|  $startSeq         |  表示查询开始序列号       		    |
+|  $stopSeq          |  表示查询结束序列号       		    |
+|  $count            |  表示查询的消息条数                     		    |
 |  $row              |  表示返回的消息条数                       		  |
+|  $timestamp        |  表示返回的消息中最早的时间戳               		  |
 |  $messages         |  表示返回的消息集合                       		  |
 |  $sequence         |  sequence主要用来做消息的排序和去重，全局唯一		   |	 
 |  $payload	     |  表示经过Base64编码的消息体，app端需要进行Base64解码          |
@@ -779,18 +839,20 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 
 #### 备注：
 ```
-utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime)
 消息漫游为用户保存最近半年的历史消息
 ```
 
 ### 拉取单聊消息记录
-```指的是拉取A与B之间的聊天记录，单聊是相对于群聊而言的一对一聊天。```
+```指的是拉取从utcFromTime到utcToTime的时间范围内的A与B之间的聊天记录，单聊是相对于群聊而言的一对一聊天。```
 
-#### 如下为拉取单聊消息记录
+#### 如下为拉取[utcFromTime, utcToTime)的单聊消息记录
 
 + HTTPS请求(POST)
 ```
 curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnTime -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
 ```
 
 + JSON结果示例
@@ -800,18 +862,99 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,
      "message": "success",
      "data": {
          "appId": $appId,
-         "toAccount": $toAccount,
-         "fromAccount":$fromAccount,
          "messages": [
              {
                  "sequence": $sequence,
                  "payload": $payload,
-                 "ts": $ts
-             }
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+		 "toAccount": $toAccount,
+             }
          ],
          "row": $row
      }
  }
+```
+#### 备注
+
+```
+utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime);
+timestamp字段在这个请求的响应中没有意义。
+```
+### 拉取指定数目单聊消息记录
+```
+指的是拉取从指定的时间戳utcToTime(不包含utcToTime)向前count条的A与B之间的聊天记录。
+```
+
+#### 如下为拉取utcToTime向前count条的单聊消息记录
+
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcToTime":$utcToTime,"count":$count}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200,
+     "message": "success",
+     "data": {
+         "appId": $appId,
+         "messages": [
+             {
+                 "sequence": $sequence,
+                 "payload": $payload,
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
+             }
+         ],
+         "row": $row,
+         "timestamp":$timestamp
+     }
+ }
+```
+#### 备注
+```
+timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
+```
+
+### 拉取指定序列号单聊消息记录
+```
+指的是拉取从startSeq到stopSeq之间的A与B之间的聊天记录。
+```
+
+#### 如下为拉取[startSeq, stopSeq)的单聊消息记录
+
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"startSeq":$startSeq,"stopSeq":$stopSeq}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200,
+     "message": "success",
+     "data": {
+         "appId": $appId,
+         "messages": [
+             {
+                 "sequence": $sequence,
+                 "payload": $payload,
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
+             }
+         ],
+         "row": $row,
+         "timestamp":$timestamp
+     }
+ }
+```
+#### 备注
+```
+timestamp字段表示当前的聊天记录最早的时间戳(单位：毫秒)。
 ```
 
 ### 拉取群聊消息记录
@@ -821,6 +964,9 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,
 + HTTPS请求(POST)
 ```
 curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnTime/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
 ```
 
 + JSON结果示例
@@ -849,12 +995,253 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,
      }
  }
 ```
+#### 备注
+```
+timestamp字段在这个请求的响应中没有意义。
+```
+
+### 拉取指定数目群聊消息记录
+```
+指的是拉取从指定的时间戳utcToTime(不包含utcToTime)向前count条的指定的topicId的群聊天记录。
+```
+
+#### 如下为拉取utcToTime向前count条的群聊消息记录
+
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcToTime":$utcToTime,"count":$count}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200,
+     "message": "success",
+     "data": {
+         "appId": $appId,
+         "messages": [
+             {
+                 "sequence": $sequence,
+                 "payload": $payload,
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+             }
+         ],
+         "row": $row,
+         "timestamp":$timestamp
+     }
+ }
+```
+#### 备注
+```
+timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
+```
+
+### 拉取指定序列号群聊消息记录
+```
+指的是拉取从startSeq到stopSeq之间的指定的topicId的群聊天记录。
+```
+
+#### 如下为拉取[startSeq, stopSeq)的群聊消息记录
+
++ HTTPS请求(POST)
+```
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnSequence/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"startSeq":$startSeq,"stopSeq":$stopSeq}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+```
+
++ JSON结果示例
+```
+{
+     "code": 200,
+     "message": "success",
+     "data": {
+         "appId": $appId,
+         "messages": [
+             {
+                 "sequence": $sequence,
+                 "payload": $payload,
+                 "ts": $ts,
+		 "fromAccount":$fromAccount,
+        	 "toAccount": $toAccount,
+             }
+         ],
+         "row": $row,
+         "timestamp":$timestamp
+     }
+ }
+```
+#### 备注
+```
+timestamp字段表示当前的聊天记录最早的时间戳(单位：毫秒);
+fromAccount字段表示当前消息所在群的topicId。
+```
+
 [回到顶部](#readme)
 
 ## 临时帐号
-该功能主要应用于匿名聊天，临时用户等场景。当前为内测阶段，应用方可以将帐号有效期ttl（秒）线下告知我们(参考 联系我们，建议加QQ群)，设置后，系统认为此AppId下的用户为临时用户。该AppId除不能创建群组外，其它功能正常使用。目前正在开发App应用方的后台管理系统，完成后应用方可以通过管理系统更新ttl。
+#### 应用场景
+主要应用于匿名聊天，临时用户，匿名客服等场景。
+APP开启临时账号功能后，所申请账号会在一段时间后被删除，且不能创建群组。
+
+#### 如何接入
+```
+管理平台：https://admin.mimc.chat.xiaomi.net
+```
+
+生存时间(TTL) 单位为秒，若设置为0表示用户永久有效不删除
+<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/userttl.png"/></div>
+
 * [联系我们](#联系我们)
 
+[回到顶部](#readme)
+
+## 最近通讯列表
+该功能应用于新设备登录后获取最近一个月的通讯列表，返回结果中包括最近联系的用户和群组信息，按时间降序排列。身份验证方式即客户端使用的token验证。
+
+### 参数列表
+
+|   Variable          | Meanings  |
+| :------------------ | :-----------------------------------|
+|   $appId            |   小米开放平台申请的AppId             |
+|   $appKey           |   小米开放平台申请的AppKey            |
+|   $appSecret        |   小米开放平台申请的AppSecret         |
+|   $appAccount       |   表示查询方在APP帐号系统内唯一ID      |
+|   $token            |   查询方的token（使用user.getToken()获取）       |
+|   $member           |   表示所要删除会话的会话者在APP帐号系统内唯一ID    |
+|   $topicId          |   表示所要删除会话的群聊会话在APP帐号系统内唯一ID   |
+
+### 获取最近通讯列表
++ HTTP 请求
+``` 
+curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"data":[
+		{	"userType":"TOPIC",
+			"id":"$topicId1",
+			"name":"$topicName1",
+			"timestamp":"$ts1",
+			"lastMessage":{
+				"fromUuid":"$fromUuid1",
+				"fromAccount":"$fromAccount1",
+				"payload":"$payload1"
+			}
+		}，
+		{
+			"userType":"TOPIC",
+			"id":"$topicId2",
+			"name":"$topicName2",
+			"timestamp":"$ts2",
+			"lastMessage":{
+				"fromUuid":"$fromUuid2",
+				"fromAccount":"$fromAccount2",
+				"payload":"$payload2"
+			}
+		}，
+		{
+			"userType":"USER",
+			"id":"$uuid1",
+			"name":"$appAccount1",
+			"timestamp":"$ts3",
+			"lastMessage":{
+				"fromUuid":"$fromUuid3",
+				"fromAccount":"$fromAccount3",
+				"payload":"$payload3"
+			}
+		}
+	],
+	"message":"success"
+}
+```
+
+### 删除指定单聊会话
++ HTTP 请求
+```
+curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
+```
++ JSON结果
+```
+同上，即与获取最近通讯列表的JSON结果一致。
+```
+
+### 删除指定群聊会话
++ HTTP 请求
+```
+
+curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
+```
++ JSON结果
+```
+同上，即与获取最近通讯列表的JSON结果一致。
+```
+
+[回到顶部](#readme)
+
+## 单聊黑名单
+该功能限于单聊的黑名单功能。目前主要包括：一用户A将另一用户B拉黑;A取消拉黑B;A查询是否拉黑B。如果A拉黑B，则A收不到B发送的消息。将有两种身份验证方式，一种是客户端使用的token验证，一种是第三方app的服务器端使用的app信息+帐号名称验证，如果两个参数都传入，将以token验证。
+
+### 参数列表
+
+| Variable | Meanings |
+| :------------------ | :-----------------------------------|
+| $appId | 小米开放平台申请的AppId |
+| $appKey | 小米开放平台申请的AppKey |
+| $appSecret | 小米开放平台申请的AppSecret |
+| $appAccount       | 表示查询方在APP帐号系统内唯一ID       |
+| $token           | 查询方的token（使用user.getToken()获取）                   |
+| $blackAccount     | 表示被拉黑方在APP帐号系统内唯一ID       |
+
+### 拉黑
++ HTTP 请求
+```
+curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$blackAccount"}' -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$blackAccount"}' -H "token:$token" -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"message":"success",
+	"data":null,
+}
+```
+### 取消拉黑
++ HTTP 请求
+```
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDELETE -H "token:$token" -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"message":"success",
+	"data":null,
+}
+```
+### 是否拉黑
++ HTTP 请求
+```
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET -H "token:$token" -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+	"code":200,
+	"message":"success",
+	"data":{
+		"isBlack":true/false 
+	},
+}
+```
 [回到顶部](#readme)
 
 ## 联系我们
