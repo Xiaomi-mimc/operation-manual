@@ -1113,7 +1113,8 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 ### 获取最近通讯列表
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/" -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json" 
+curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Type: application/json"
 ```
 
 + JSON结果
@@ -1161,7 +1162,8 @@ curl https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Ty
 ### 删除指定单聊会话（待上线）
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
 ```
 + JSON结果
 ```
@@ -1171,7 +1173,8 @@ curl https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELE
 ### 删除指定群聊会话（待上线）
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
 ```
 + JSON结果
 ```
