@@ -57,8 +57,8 @@
 * [临时帐号](#临时帐号)
 * [最近通讯列表](#最近通讯列表)
     * [获取最近通讯列表](#获取最近通讯列表)
-    * [删除指定单聊会话](#删除指定单聊会话（待上线）)
-    * [删除指定群聊会话](#删除指定群聊会话（待上线）)
+    * [删除指定单聊会话](#删除指定单聊会话)
+    * [删除指定群聊会话](#删除指定群聊会话)
 * [单聊黑名单](#单聊黑名单)
 * [联系我们](#联系我们)
 
@@ -1096,7 +1096,7 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 [回到顶部](#readme)
 
 ## 最近通讯列表
-该功能应用于新设备登录后获取最近一个月的通讯列表，返回结果中包括最近联系的用户和群组信息，按时间降序排列。有两种身份验证方式，一种是客户端使用的token验证，一种是第三方app的服务器端使用的app信息+帐号名称验证，如果两个参数都传入，将以token验证。
+该功能应用于新设备登录后获取最近一个月的通讯列表，返回结果中包括最近联系的用户和群组信息，按时间降序排列。身份验证方式即客户端使用的token验证。
 
 ### 参数列表
 
@@ -1112,8 +1112,7 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 
 ### 获取最近通讯列表
 + HTTP 请求
-```
-curl "https://mimc.chat.xiaomi.net/api/contact/" -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json" 
+``` 
 curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Type: application/json"
 ```
 
@@ -1159,10 +1158,9 @@ curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-T
 }
 ```
 
-### 删除指定单聊会话（待上线）
+### 删除指定单聊会话
 + HTTP 请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
 curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
 ```
 + JSON结果
@@ -1170,10 +1168,10 @@ curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDEL
 同上，即与获取最近通讯列表的JSON结果一致。
 ```
 
-### 删除指定群聊会话（待上线）
+### 删除指定群聊会话
 + HTTP 请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
+
 curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
 ```
 + JSON结果
