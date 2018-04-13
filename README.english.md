@@ -560,7 +560,7 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 
 #### Remarks:
 
-    To obtain tokens, use User.getToken().
+    To obtain token, use User.getToken().
     To obtain uuid, use User.getUuid(). uuid are created by MIMC based on ($appId, $appAccount), unique.
     There are two methods of IS verification 1. token ($ownerToken/$userToken1); 2. app information, app account ($appKey, $appSecret, $ownerAccount/$userAccount1).
     When both types of verification information exist, the former is verified first. The former is generally used for the app client, and the latter is generally used for the app server. The use of these two methods is shown below.
@@ -571,14 +571,22 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 #### $ownerAccount Create Topic is Shown Below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST
+      -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}'
+      -H "Content-Type: application/json"
+      -H "token:$ownerToken"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}' -H "Content-Type: application/json" -H "token:$ownerToken"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
-
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST
+      -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}'
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$ownerAccount"
+```
 
 * JSON Results
-
+```
     {
          "code":200,"message":"success",
          "data":{
@@ -597,21 +605,27 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             ]
         }
     }
-
+```
 
 ### Query information on specified topic
 
 #### $userAccount1 Topic Information is Shown Below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+      -H "Content-Type: application/json"
+      -H "token:$userToken1"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -H "Content-Type: application/json" -H "token:$userToken1"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
-
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$userAccount1"
+```
 
 * JSON Results
-
+```
     {
          "code":200,"message":"success",
          "data":{
@@ -630,21 +644,27 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             ]
          }
     }
-
+```
 
 ### Query all topic attributes
 
 #### Information for $userAccount1 Topic Query is Shown Below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+      -H "Content-Type: application/json"
+      -H "token:$userToken1"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -H "Content-Type: application/json" -H "token:$userToken1"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
-
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$userAccount1"
+```
 
 * JSON Results
-
+```
     {
         "code":200,
         "message":"success",
@@ -665,21 +685,29 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             }
         ]
     }
-
+```
 
 ### Invite User to Join a Topic
 
 #### Inviting $userAccount4, $userAccount5 to join a topic is shown below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST
+      -d '{"accounts":"$userAccount4,$userAccount5"}'
+      -H "Content-Type: application/json"
+      -H "token:$userToken1"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d '{"accounts":"$userAccount4,$userAccount5"}' -H "Content-Type: application/json" -H "token:$userToken1"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d '{"accounts":"$userAccount4,$userAccount5"}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST
+      -d '{"accounts":"$userAccount4,$userAccount5"}'
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$userAccount1"
 
 
 * JSON Results
-
+```
     {
          "code":200,"message":"success",
          "data":{
@@ -700,21 +728,27 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             ]
         }
     }
-
+```
 
 ### Topic member leave topic
 
 #### $userAccount1 leaves topic is shown below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE
+      -H "Content-Type: application/json"
+      -H "token:$userToken1"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -H "Content-Type: application/json" -H "token:$userToken1"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
-
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$userAccount1"
+```
 
 * JSON Results
-
+```
     {
          "code":200,"message":"success",
          "data":{
@@ -734,26 +768,32 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             ]
         }
     }
-
+```
 
 * If the topic owner leaves the topic, the JSON results are shown below
-
+```
     {"code":500,"message":"quit topic fail","data":null}
-
+```
 
 ### Topic owner kicks member
 
 #### $ownerAccount removes $userAccount4, $userAccount5 from the topic is shown below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE
+      -H "Content-Type: application/json"
+      -H "token:$ownerToken"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE -H "Content-Type: application/json" -H "token:$ownerToken"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
-
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$ownerAccount"
+```
 
 * JSON Results
-
+```
     {
          "code":200,"message":"success",
          "data":{
@@ -771,7 +811,7 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             ]
         }
     }
-
+```
 
 ### Topic owner updates topic information
 
