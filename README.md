@@ -436,7 +436,9 @@ Pong消息建议格式：
 
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/push/p2p/ -XPOST -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "toAccount":$toAccount, "msg":$msg, "msgType":$msgType}' -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/push/p2p/ -XPOST
+  -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "toAccount":$toAccount, "msg":$msg, "msgType":$msgType}'
+  -H "Content-Type: application/json"
 ```
 
 + JSON结果
@@ -452,7 +454,9 @@ curl https://mimc.chat.xiaomi.net/api/push/p2p/ -XPOST -d '{"appId":$appId, "app
 
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "msg":$msg, "topicId":$topicId, "msgType":$msgType}' -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST
+  -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "msg":$msg, "topicId":$topicId, "msgType":$msgType}'
+  -H "Content-Type: application/json"
 ```
 
 + JSON结果
