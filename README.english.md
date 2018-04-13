@@ -287,7 +287,7 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
     }
 ```
 
-#### Note 1: The app does not need to understand the format of the above JSON results. They can be returned via MIMCTokenFetcher (Android) / parseTokenDelegate (iOS) in their original format
+#### Note: The app does not need to understand the format of the above JSON results. They can be returned via MIMCTokenFetcher (Android) / parseTokenDelegate (iOS) in their original format
 
 [Back to Top](#readme)
 
@@ -302,32 +302,34 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 * User A sends a ping to User B `through MIMC`
 * When User B receives a ping, User B sends a pong to User A `through MIMC`
 
-    There is a delay in the user status stored on the server, so to get the most accurate online status for users, the end-to-end ping-pong method is generally used
-
+```
+There is a delay in the user status stored on the server,
+so to get the most accurate online status for users, the end-to-end ping-pong method is generally used
+```
 
 ###### Check online users ping
-
+```
     Recommended Ping format is as follows
-        {
-            version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
-            msgId: "PING_12345", // APP business level message ID
-            msgType: "PING", // PING|PONG|...
-            timestamp: "1516763973000", // Recommend this is accurate to the millisecond
-            payload: "appAccount_A",
-        }
-
+    {
+        version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
+        msgId: "PING_12345", // APP business level message ID
+        msgType: "PING", // PING|PONG|...
+        timestamp: "1516763973000", // Recommend this is accurate to the millisecond
+        payload: "appAccount_A",
+    }
+```
 
 ###### Check online users pong
-
+```
     Recommended Pong format is as follows
-        {
-            version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
-           msgId: "PONG_12345", // APP business level message ID
-           msgType: "PONG", // PING|PONG|...
-            timestamp: "1516763973000", // Recommend this is accurate to the millisecond
-           payload: "appAccount_B",
-        }
-
+    {
+        version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
+        msgId: "PONG_12345", // APP business level message ID
+        msgType: "PONG", // PING|PONG|...
+        timestamp: "1516763973000", // Recommend this is accurate to the millisecond
+        payload: "appAccount_B",
+    }
+```
 
 #### Text messages
 
