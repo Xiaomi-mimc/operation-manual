@@ -587,9 +587,17 @@ uuid的获取使用User.getUuid()方法，uuid由MIMC根据($appId, $appAccount)
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}' -H "Content-Type: application/json" -H "token:$ownerToken"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST
+  -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}'
+  -H "Content-Type: application/json"
+  -H "token:$ownerToken"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST
+  -d '{"topicName":$topicName,"accounts":"$userAccount1,$userAccount2,$userAccount3"}'
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$ownerAccount"
 ```
 
 + JSON结果
@@ -620,9 +628,15 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$to
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -H "Content-Type: application/json" -H "token:$userToken1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+  -H "Content-Type: application/json"
+  -H "token:$userToken1"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$userAccount1"
 ```
 
 + JSON结果
@@ -653,9 +667,15 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -H "Content-Type: 
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -H "Content-Type: application/json" -H "token:$userToken1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+  -H "Content-Type: application/json"
+  -H "token:$userToken1"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$userAccount1"
 ```
 
 + JSON结果
