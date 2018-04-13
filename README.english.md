@@ -613,11 +613,11 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 
 * HTTP Request
 ```
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XGET
       -H "Content-Type: application/json"
       -H "token:$userToken1"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XGET
       -H "Content-Type: application/json"
       -H "appKey:$appKey"
       -H "appSecret:$appSecret"
@@ -652,11 +652,11 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 
 * HTTP Request
 ```
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -XGET
       -H "Content-Type: application/json"
       -H "token:$userToken1"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -XGET
       -H "Content-Type: application/json"
       -H "appKey:$appKey"
       -H "appSecret:$appSecret"
@@ -910,9 +910,13 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 #### How to pull one-on-one chat record
 
 * HTTP Request (POST)
-
-    curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
-
+```
+    curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST
+      -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}'
+      -H "Content-Type: application/json;charset=UTF-8"
+      -H "Accept:application/json;charset=UTF-8"
+      -H "token:$token"
+```
 
 * Example of JSON Results
 
