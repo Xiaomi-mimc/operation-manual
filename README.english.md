@@ -422,7 +422,7 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 msgType="base64": msg is base64 encoded data, generally used when transmitting binary data;
 msgType="": msg is the raw data, generally used when string data is transmitted |
 | $topicId            | Topic ID                                                                                                                                                                                                  |
-|   $packetId         |  Represents the ID of the sent message packet, consists of random string plus increment ID that can be considered unique in a single appAccount                                                           |
+| $packetId           | Represents the ID of the sent message packet, consists of random string plus increment ID that can be considered unique in a single appAccount                                                           |
 
 ### Push one-one-one chat information
 
