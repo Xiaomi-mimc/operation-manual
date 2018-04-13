@@ -823,7 +823,7 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
       -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}'
       -H "Content-Type: application/json"
       -H "token:$ownerToken"
-```
+
     curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT
       -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}'
       -H "Content-Type: application/json"
