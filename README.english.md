@@ -34,8 +34,8 @@
     * [Push one-on-one chat information](#push-one-one-one-chat-information)
     * [Push group chat information](#push-group-chat-information)
 * [Message Callback](#message-callback)
-    * [Instant message callback](#instant-message-callback)
-    * [Offline message callback](#offline-message-callback)
+    * [P2P instant message callback](#p2p-instant-message-callback)
+    * [P2P offline message callback](#p2p-offline-message-callback)
 * [Group Chat Information](#group-chat-information)
     * [Create a topic](#create-a-topic)
     * [Query information on specified topic](#query-information-on-specified-topic)
@@ -464,7 +464,7 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 
 App developers can access https://admin.mimc.chat.xiaomi.net to set callback urls
 
-### Instant message callback
+### p2p instant message callback
 
 * JSON string result in the body of post
 ```
@@ -479,7 +479,7 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
     }
 ```
 
-### Offline message callback
+### p2p offline message callback
 
 * JSON string result in the body of post
 ```
