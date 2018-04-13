@@ -1204,7 +1204,9 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 ### 获取最近通讯列表
 + HTTP 请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/
+  -H "token:$token"
+  -H "Content-Type: application/json"
 ```
 
 + JSON结果
@@ -1252,7 +1254,9 @@ curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-T
 ### 删除指定单聊会话
 + HTTP 请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDELETE
+  -H "token:$token"
+  -H "Content-Type: application/json"
 ```
 + JSON结果
 ```
@@ -1263,7 +1267,9 @@ curl "https://mimc.chat.xiaomi.net/api/contact/p2p/session?member=$member" -XDEL
 + HTTP 请求
 ```
 
-curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE -H "token:$token"  -H "Content-Type: application/json"
+curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XDELETE
+  -H "token:$token"
+  -H "Content-Type: application/json"
 ```
 + JSON结果
 ```
@@ -1289,8 +1295,18 @@ curl "https://mimc.chat.xiaomi.net/api/contact/p2t/session?topicId=$topicId" -XD
 ### 拉黑
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$blackAccount"}' -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
-curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$blackAccount"}' -H "token:$token" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST
+  -d '{"blackAccount":"$blackAccount"}'
+  -H "appId:$appId"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$appAccount"
+  -H "Content-Type: application/json"
+
+curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST
+  -d '{"blackAccount":"$blackAccount"}'
+  -H "token:$token"
+  -H "Content-Type: application/json"
 ```
 
 + JSON结果
@@ -1304,8 +1320,16 @@ curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$bl
 ### 取消拉黑
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDELETE -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
-curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDELETE -H "token:$token" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDELETE
+  -H "appId:$appId"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$appAccount"
+  -H "Content-Type: application/json"
+
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDELETE
+  -H "token:$token"
+  -H "Content-Type: application/json"
 ```
 
 + JSON结果
@@ -1319,8 +1343,16 @@ curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDE
 ### 是否拉黑
 + HTTP 请求
 ```
-curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET -H "appId:$appId" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$appAccount" -H "Content-Type: application/json"
-curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET -H "token:$token" -H "Content-Type: application/json"
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET
+  -H "appId:$appId"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$appAccount"
+  -H "Content-Type: application/json"
+
+curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGET
+  -H "token:$token"
+  -H "Content-Type: application/json"
 ```
 
 + JSON结果
