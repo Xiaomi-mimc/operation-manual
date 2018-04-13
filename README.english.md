@@ -89,12 +89,12 @@
     See:
 
 
-* [Recommended Message Format](#Recommended Message Format)
-    * [Check online users](#Check online users)
-    * [Text messages](#Text messages)
-    * [Multimedia messages](#Multimedia messages)
-    * [Recall messages](#Recall messages)
-    * [Read messages](#Read messages)
+* [Recommended Message Format](#recommended-message-format)
+    * [Check online users](#check-online-users)
+    * [Text messages](#text-messages)
+    * [Multimedia messages](#multimedia-messages)
+    * [Recall messages](#recall-messages)
+    * [Read messages](#read-messages)
 
 #### Why don't we provide a chat interface?
 
