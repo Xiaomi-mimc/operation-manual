@@ -628,11 +628,11 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XGET
   -H "Content-Type: application/json"
   -H "token:$userToken1"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XGET
   -H "Content-Type: application/json"
   -H "appKey:$appKey"
   -H "appSecret:$appSecret"
@@ -667,11 +667,11 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId"
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -XGET
   -H "Content-Type: application/json"
   -H "token:$userToken1"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -XGET
   -H "Content-Type: application/json"
   -H "appKey:$appKey"
   -H "appSecret:$appSecret"
@@ -1204,7 +1204,7 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 ### 获取最近通讯列表
 + HTTP 请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/contact/
+curl "https://mimc.chat.xiaomi.net/api/contact/ -XGET
   -H "token:$token"
   -H "Content-Type: application/json"
 ```
