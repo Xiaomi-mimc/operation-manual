@@ -704,7 +704,7 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
       -H "appKey:$appKey"
       -H "appSecret:$appSecret"
       -H "appAccount:$userAccount1"
-
+```
 
 * JSON Results
 ```
