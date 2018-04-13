@@ -3,15 +3,15 @@
 ## 目录
 * [常见问题](#常见问题)
     * [是否收费](#是否收费)
-    * [适用于哪些应用场景](#适用于哪些应用场景) 
-    * [支持哪些平台](#支持哪些平台) 
+    * [适用于哪些应用场景](#适用于哪些应用场景)
+    * [支持哪些平台](#支持哪些平台)
     * [需要做哪些开发工作](#需要做哪些开发工作)
         * [开发者需要自己实现聊天界面](#开发者需要自己实现聊天界面)
         * [开发者需要接入消息云安全认证](#开发者需要接入消息云安全认证)
         * [开发者需要自己定义消息体格式](#开发者需要自己定义消息体格式)
-    * [为什么不提供聊天界面](#为什么不提供聊天界面) 
-    * [为什么需要开发者自己定义消息格式](#为什么需要开发者自己定义消息格式)     
-    * [开发者需要维护帐号映射吗](#开发者需要维护帐号映射吗)    
+    * [为什么不提供聊天界面](#为什么不提供聊天界面)
+    * [为什么需要开发者自己定义消息格式](#为什么需要开发者自己定义消息格式)
+    * [开发者需要维护帐号映射吗](#开发者需要维护帐号映射吗)
     * [APP在后台收不到消息如何处理](#app在后台收不到消息如何处理)
 * [整体架构](#整体架构)
 * [收发消息](#收发消息)
@@ -158,19 +158,19 @@ APP开发者接入其他IM提供商时，要访问IM提供商服务，主动为�
     某用户A登录"言士文学"所用帐号名为手机号"13800000001"
     某用户B登录"言士文学"所用帐号名为手机号"13800000002"
 
-    当用户A首次登录"言士文学": 
+    当用户A首次登录"言士文学":
         userA = new User("580012345678", "13800000001");
         userA.login();
-	MIMC后台服务会为A创建MIMC ID("8049600000000001")，并维护以下映射：
+    MIMC后台服务会为A创建MIMC ID("8049600000000001")，并维护以下映射：
             "580012345678" + "13800000001" --> "8049600000000001"
-	    
-    然后，用户A给用户B发消息: 
+
+    然后，用户A给用户B发消息:
         userA.sendMessage("13800000002", "Hello B");
         由于B还未登录过"言士文学"，所以MIMC会自动为B创建创建MIMC ID("8049600000000002")
-	并维护以下映射：
+    并维护以下映射：
             "580012345678" + "13800000002" --> "8049600000000002"
-	并将消息"Hello B"暂存在服务器(七天后过期)
-	
+    并将消息"Hello B"暂存在服务器(七天后过期)
+
     用户B登录"言士文学"时：
         userB = new User("580012345678", "13800000002");
         userB.login();
@@ -211,9 +211,9 @@ iOS平台下，APP进入后台时，进程代码执行会暂停，连接过一�
 ## 如何接入
 
 APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret。
- 
+
 步骤如下：登录小米开放平台网页 -> ”管理控制台” -> ”小米应用商店” -> ”创建应用” ->  填入应用名和包名 -> ”创建” -> 记下看到的AppId/AppKey/AppSecret 。
- 
+
 #### 备注1：建议MIMC与小米推送使用的APP信息一致
 #### 备注2：安卓/iOS/Web用一个APP即可，不需要申请多个
 
@@ -239,7 +239,7 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
 ###### Web：
 ```
 实现function fetchMIMCToken()：
-   访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]	
+   访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
 ```
 #### AppProxyService(APP开发者实现)需实现以下功能：
 ```
@@ -255,32 +255,34 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
 | :------------------ | :--------------------------------------------------------------|
 |   $appId            |   小米开放平台申请的AppId                                       |
 |   $appKey           |   小米开放平台申请的AppKey                                      |
-|   $appSecret        |   小米开放平台申请的AppSecret	                               |
+|   $appSecret        |   小米开放平台申请的AppSecret                                   |
 |   $appPackage       |   小米开放平台申请的AppPackage                                  |
 |   $appAccount       |   用户在APP帐号系统内唯一ID                                     |
-|   $chid             |   MIMC服务的标识，为常量9			               |
+|   $chid             |   MIMC服务的标识，为常量9                           |
 |   $uuid             |   $appAccount在MIMC内对应userId，开发者可忽略                   |
-|   $token	      |   $appAccount在MIMC系统中的token 	                          |
+|   $token          |   $appAccount在MIMC系统中的token                               |
 
 + HTTP 请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}' -H "Content-Type: application/json"
+    curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST
+      -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}'
+      -H "Content-Type: application/json"
 ```
 
 + JSON结果
 ```
 {
-	"code": 200,
-	"message": "success",
-	"data": {
-		"appId": $appId,
-		"appPackage": $appPackage,
-		"appAccount": $appAccount,
-		"miChid": $chid,
-		"miUserId": $uuid,
-		"miUserSecurityKey": $appSecret,
-		"token": $token
-	}
+    "code": 200,
+    "message": "success",
+    "data": {
+        "appId": $appId,
+        "appPackage": $appPackage,
+        "appAccount": $appAccount,
+        "miChid": $chid,
+        "miUserId": $uuid,
+        "miUserSecurityKey": $appSecret,
+        "token": $token
+    }
 }
 ```
 #### 备注1：对于以上JSON结果，APP不需要理解其格式，通过MIMCTokenFetcher(安卓)/parseTokenDelegate(iOS)原样返回即可
@@ -300,22 +302,22 @@ curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId
 ```
 Ping消息建议格式：
     {
-    	version: 0, // 建议保留version字段，方便后续协议升级兼容
-    	msgId: "PING_12345", // APP业务层面自维护消息ID
-    	msgType: "PING", // PING|PONG|...
-    	timestamp: "1516763973000", // 建议精确到毫秒
-    	payload: "appAccount_A",
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "PING_12345", // APP业务层面自维护消息ID
+        msgType: "PING", // PING|PONG|...
+        timestamp: "1516763973000", // 建议精确到毫秒
+        payload: "appAccount_A",
     }
 ```
 ###### 检查用户在线pong
 ```
 Pong消息建议格式：
     {
-    	version: 0, // 建议保留version字段，方便后续协议升级兼容
-    	msgId: "PONG_12345", // APP业务层面自维护消息ID
-    	msgType: "PONG", // PING|PONG|...
-    	timestamp: "1516763973000", // 建议精确到毫秒
-    	payload: "appAccount_B",
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "PONG_12345", // APP业务层面自维护消息ID
+        msgType: "PONG", // PING|PONG|...
+        timestamp: "1516763973000", // 建议精确到毫秒
+        payload: "appAccount_B",
     }
 ```
 #### 文本消息
@@ -325,11 +327,11 @@ Pong消息建议格式：
 ```
 文本消息建议格式：
     {
-    	version: 0, // 建议保留version字段，方便后续协议升级兼容
-    	msgId: "TEXT_12345", // APP业务层面自维护消息ID
-    	msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
-    	timestamp: "1516763973000", // 建议精确到毫秒
-    	payload: "欢迎使用小米即时消息云(MIMC)",
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "TEXT_12345", // APP业务层面自维护消息ID
+        msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
+        timestamp: "1516763973000", // 建议精确到毫秒
+        payload: "欢迎使用小米即时消息云(MIMC)",
     }
 ```
 #### 多媒体消息
@@ -340,11 +342,11 @@ Pong消息建议格式：
 ```
 多媒体消息建议格式：
     {
-	version: 0, // 建议保留version字段，方便后续协议升级兼容
-	msgId: "PIC_FILE_12345", // APP业务层面自维护消息ID
-	msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
-	timestamp: "1516763973000", // 建议精确到毫秒
-	payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "PIC_FILE_12345", // APP业务层面自维护消息ID
+        msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
+        timestamp: "1516763973000", // 建议精确到毫秒
+        payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
     }
 ```
 
@@ -356,11 +358,11 @@ Pong消息建议格式：
 ```
 撤回消息建议格式：
     {
-    	version: 0, // 建议保留version字段，方便后续协议升级兼容
-    	msgId: "TEXT_RECALL_12345", // APP业务层面自维护消息ID
-    	msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
-	timestamp: "1516763973090", // 建议精确到毫秒
-     	payload: {recall_msgId: "TEXT_12345"}, // 撤回msgId为TEXT_12345的消息
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "TEXT_RECALL_12345", // APP业务层面自维护消息ID
+        msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
+        timestamp: "1516763973090", // 建议精确到毫秒
+        payload: {recall_msgId: "TEXT_12345"}, // 撤回msgId为TEXT_12345的消息
     }
 ```
 
@@ -373,11 +375,11 @@ Pong消息建议格式：
 ```
 已读消息建议格式：
     {
-    	version: 0, // 建议保留version字段，方便后续协议升级兼容
-	msgId: "TEXT_READ_12345", // APP业务层面自维护消息ID
-	msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
-	timestamp: "1516763973134", // 建议精确到毫秒
-	payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
+        version: 0, // 建议保留version字段，方便后续协议升级兼容
+        msgId: "TEXT_READ_12345", // APP业务层面自维护消息ID
+        msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+        timestamp: "1516763973134", // 建议精确到毫秒
+        payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
 ```
 
@@ -388,20 +390,20 @@ Pong消息建议格式：
 ```
 添加好友请求消息建议格式：
 {
-	version: 0, // 建议保留version字段，方便后续协议升级兼容
-	msgId: "ADD_FRIEND_REQUEST_12345", // APP业务层面自维护消息ID
-	msgType: "ADD_FRIEND_REQUEST", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
-	timestamp: "1516763973134", // 建议精确到毫秒
-	payload: {add_requester: "accountA"}, 
+    version: 0, // 建议保留version字段，方便后续协议升级兼容
+    msgId: "ADD_FRIEND_REQUEST_12345", // APP业务层面自维护消息ID
+    msgType: "ADD_FRIEND_REQUEST", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+    timestamp: "1516763973134", // 建议精确到毫秒
+    payload: {add_requester: "accountA"},
 }
 
 同意/拒绝消息建议格式：
 {
-	version: 0, // 建议保留version字段，方便后续协议升级兼容
-	msgId: "ADD_FRIEND_RESPONSE_12345", // APP业务层面自维护消息ID
-	msgType: "ADD_FRIEND_RESPONSE", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
-	timestamp: "1516763973134", // 建议精确到毫秒
-	payload: {add_responser: "accountB", accepted:true/false},
+    version: 0, // 建议保留version字段，方便后续协议升级兼容
+    msgId: "ADD_FRIEND_RESPONSE_12345", // APP业务层面自维护消息ID
+    msgType: "ADD_FRIEND_RESPONSE", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+    timestamp: "1516763973134", // 建议精确到毫秒
+    payload: {add_responser: "accountB", accepted:true/false},
 }
 ```
 
@@ -422,12 +424,12 @@ Pong消息建议格式：
 | :------------------ | :-----------------------------------|
 |   $appId            |   小米开放平台申请的AppId             |
 |   $appKey           |   小米开放平台申请的AppKey            |
-|   $appSecret        |   小米开放平台申请的AppSecret	     |
+|   $appSecret        |   小米开放平台申请的AppSecret         |
 |   $fromAccount      |   表示消息发送方在APP帐号系统内唯一ID   |
 |   $fromResource     |   表示消息发送方设备的标识             |
 |   $toAccount        |   表示消息接收方在APP帐号系统内唯一ID   |
 |   $msgType          |   表示发送消息的类型<br />msgType="base64": msg是base64编码后的数据，一般传输二进制数据时使用;<br />msgType="": msg是原始数据，一般传输String数据时使用 |
-|   $topicId	      |   表示群ID                           |
+|   $topicId          |   表示群ID                           |
 |   $packetId         |   表示发送消息包ID，由随机串+递增ID构成，在单个appAccount角度看可认为唯一 |
 
 ### 推送单聊信息
@@ -440,9 +442,9 @@ curl https://mimc.chat.xiaomi.net/api/push/p2p/ -XPOST -d '{"appId":$appId, "app
 + JSON结果
 ```
 {
-	"code":200,
-	"data":{"packetId":$packetId},
-	"message":"success"
+    "code":200,
+    "data":{"packetId":$packetId},
+    "message":"success"
 }
 ```
 
@@ -456,9 +458,9 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 + JSON结果
 ```
 {
-	"code":200,
-	"data":{"packetId":$packetId},
-	"message":"success"
+    "code":200,
+    "data":{"packetId":$packetId},
+    "message":"success"
 }
 ```
 [回到顶部](#readme)
@@ -544,27 +546,27 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "app
 | :------------------ | :--------------------------------------------------------|
 |   $appId            |   小米开放平台申请的AppId                                  |
 |   $appKey           |   小米开放平台申请的AppKey                                 |
-|   $appSecret        |   小米开放平台申请的AppSecret	                          |
+|   $appSecret        |   小米开放平台申请的AppSecret                              |
 |   $topicId          |   表示群ID                                                |
 |   $topicName        |   表示创建群的时候所指定的群名称                            |
-|   $topicId1         |   表示查询所属群信息时用户所加入群的群ID	                   |
+|   $topicId1         |   表示查询所属群信息时用户所加入群的群ID                       |
 |   $topicId2         |   表示查询所属群信息时用户所加入群的群ID                     |
 |   $topicName1       |   表示查询所属群信息时用户所加入群的群名称                    |
-|   $topicName2       |   表示查询所属群信息时用户所加入群的群名称	                  |
-|   $topicBulletin1   |	  表示查询所属群信息时用户所加入群的群公告                    |
+|   $topicName2       |   表示查询所属群信息时用户所加入群的群名称                      |
+|   $topicBulletin1   |      表示查询所属群信息时用户所加入群的群公告                    |
 |   $topicBulletin2   |   表示查询所属群信息时用户所加入群的群公告                    |
-|   $newBulletin      |	  表示更新群时设置的新群公告                                |
+|   $newBulletin      |      表示更新群时设置的新群公告                                |
 |   $newTopicName     |   表示更新群时设置的新群名称                                |
-|   $ownerUuid	      |	  表示群主在MIMC帐号系统内uuid(使用user.getUuid()获取)      |
-|   $ownerAccount     |	  表示群主在APP帐号系统内唯一ID                             |
-|   $ownerToken	      |	  表示群主token（使用user.getToken()获取）                 |
-|   $userAccount1     |	  表示群成员1号在APP帐号系统内唯一ID                        |
-|   $userAccount2     |	  表示群成员2号在APP帐号系统内唯一ID                        |
+|   $ownerUuid          |      表示群主在MIMC帐号系统内uuid(使用user.getUuid()获取)      |
+|   $ownerAccount     |      表示群主在APP帐号系统内唯一ID                             |
+|   $ownerToken          |      表示群主token（使用user.getToken()获取）                 |
+|   $userAccount1     |      表示群成员1号在APP帐号系统内唯一ID                        |
+|   $userAccount2     |      表示群成员2号在APP帐号系统内唯一ID                        |
 |   $userAccount3     |   表示群成员3号在APP帐号系统内唯一ID                        |
-|   $userAccount4     |	  表示群成员4号在APP帐号系统内唯一ID                        |
-|   $userAccount5     |	  表示群成员5号在APP帐号系统内唯一ID                        |
-|   $userUuid1	      |	  表示userAccount1在MIMC帐号系统内uuid(使用user.getUuid()获取)|
-|   $userToken1	      |	  表示userAccount1的token（使用user.getToken()获取）      |
+|   $userAccount4     |      表示群成员4号在APP帐号系统内唯一ID                        |
+|   $userAccount5     |      表示群成员5号在APP帐号系统内唯一ID                        |
+|   $userUuid1          |      表示userAccount1在MIMC帐号系统内uuid(使用user.getUuid()获取)|
+|   $userToken1          |      表示userAccount1的token（使用user.getToken()获取）      |
 
 
 #### 备注：
@@ -589,22 +591,22 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST -d '{"topicName":$to
 + JSON结果
 ```
 {
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName,
-			"bulletin":""
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid1,"account":$userAccount1},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3}
-		]
-	}
+     "code":200,"message":"success",
+     "data":{
+        "topicInfo":{
+            "topicId":$topicId,
+            "ownerUuid":$ownerUuid,
+            "ownerAccount":$ownerAccount,
+            "topicName":$topicName,
+            "bulletin":""
+        },
+        "members":[
+            {"uuid":$ownerUuid,"account":$ownerAccount},
+            {"uuid":$userUuid1,"account":$userAccount1},
+            {"uuid":$userUuid2,"account":$userAccount2},
+            {"uuid":$userUuid3,"account":$userAccount3}
+        ]
+    }
 }
 ```
 
@@ -622,22 +624,22 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -H "Content-Type: 
 + JSON结果
 ```
 {
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName,
-			"bulletin":""
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid1,"account":$userAccount1},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3}
-		]
-	 }
+     "code":200,"message":"success",
+     "data":{
+        "topicInfo":{
+            "topicId":$topicId,
+            "ownerUuid":$ownerUuid,
+            "ownerAccount":$ownerAccount,
+            "topicName":$topicName,
+            "bulletin":""
+        },
+        "members":[
+            {"uuid":$ownerUuid,"account":$ownerAccount},
+            {"uuid":$userUuid1,"account":$userAccount1},
+            {"uuid":$userUuid2,"account":$userAccount2},
+            {"uuid":$userUuid3,"account":$userAccount3}
+        ]
+     }
 }
 ```
 
@@ -655,24 +657,24 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -H "Content-Type: a
 + JSON结果
 ```
 {
-	"code":200,
-	"message":"success",
-	"data":[
-		{
-			"topicId":$topicId1,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName1,
-			"bulletin":$topicBulletin1
-		},
-		{
-			"topicId":$topicId2,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName2,
-			"bulletin":$topicBulletin2
-		}
-	]
+    "code":200,
+    "message":"success",
+    "data":[
+        {
+            "topicId":$topicId1,
+            "ownerUuid":$ownerUuid,
+            "ownerAccount":$ownerAccount,
+            "topicName":$topicName1,
+            "bulletin":$topicBulletin1
+        },
+        {
+            "topicId":$topicId2,
+            "ownerUuid":$ownerUuid,
+            "ownerAccount":$ownerAccount,
+            "topicName":$topicName2,
+            "bulletin":$topicBulletin2
+        }
+    ]
 }
 ```
 
@@ -690,24 +692,24 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d
 + JSON结果
 ```
 {
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName,
-			"bulletin":""
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid1,"account":$userAccount1},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3},
-			{"uuid":$userUuid4,"account":$userAccount4},
-			{"uuid":$userUuid5,"account":$userAccount5}
-		]
-	}
+     "code":200,"message":"success",
+     "data":{
+        "topicInfo":{
+            "topicId":$topicId,
+            "ownerUuid":$ownerUuid,
+            "ownerAccount":$ownerAccount,
+            "topicName":$topicName,
+            "bulletin":""
+        },
+        "members":[
+            {"uuid":$ownerUuid,"account":$ownerAccount},
+            {"uuid":$userUuid1,"account":$userAccount1},
+            {"uuid":$userUuid2,"account":$userAccount2},
+            {"uuid":$userUuid3,"account":$userAccount3},
+            {"uuid":$userUuid4,"account":$userAccount4},
+            {"uuid":$userUuid5,"account":$userAccount5}
+        ]
+    }
 }
 ```
 
@@ -731,7 +733,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -
 ```
 {"code":500,"message":"quit topic fail","data":null}
 ```
- 
+
 ### 群主踢用户退群
 
 #### 如下为$ownerAccount踢$userAccount4,$userAccount5退出群
@@ -746,21 +748,21 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$
 + JSON结果
 ```
 {
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$ownerUuid,
-			"ownerAccount":$ownerAccount,
-			"topicName":$topicName,
-			"bulletin":""
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3}
-		]
-	}
+     "code":200,"message":"success",
+     "data":{
+        "topicInfo":{
+            "topicId":$topicId,
+            "ownerUuid":$ownerUuid,
+            "ownerAccount":$ownerAccount,
+            "topicName":$topicName,
+            "bulletin":""
+        },
+        "members":[
+            {"uuid":$ownerUuid,"account":$ownerAccount},
+            {"uuid":$userUuid2,"account":$userAccount2},
+            {"uuid":$userUuid3,"account":$userAccount3}
+        ]
+    }
 }
 ```
 
@@ -778,21 +780,21 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"ownerA
 + JSON结果
 ```
 {
-	 "code":200,"message":"success",
-	 "data":{
-		"topicInfo":{
-			"topicId":$topicId,
-			"ownerUuid":$userUuid2,
-			"ownerAccount":$userAccount2,
-			"topicName":$newTopicName,
-			"bulletin":$newBulletin
-		},
-		"members":[
-			{"uuid":$ownerUuid,"account":$ownerAccount},
-			{"uuid":$userUuid2,"account":$userAccount2},
-			{"uuid":$userUuid3,"account":$userAccount3}
-		]
-	}
+     "code":200,"message":"success",
+     "data":{
+        "topicInfo":{
+            "topicId":$topicId,
+            "ownerUuid":$userUuid2,
+            "ownerAccount":$userAccount2,
+            "topicName":$newTopicName,
+            "bulletin":$newBulletin
+        },
+        "members":[
+            {"uuid":$ownerUuid,"account":$ownerAccount},
+            {"uuid":$userUuid2,"account":$userAccount2},
+            {"uuid":$userUuid3,"account":$userAccount3}
+        ]
+    }
 }
 ```
 
@@ -819,23 +821,23 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 
 |   Variable   | Meanings  |
 | :----------------- | :---------------------------------------------------------|
-|  $appId            |  小米开放平台申请的AppId                  		  |
+|  $appId            |  小米开放平台申请的AppId                            |
 |  $token            |  查询方的token（使用user.getToken()获取）                    |
 |  $account          |  查询方在APP系统内唯一ID                                    |
 |  $fromAccount      |  消息发送方在APP帐号系统内唯一ID                             |
 |  $toAccount        |  消息接收方在APP帐号系统内唯一ID                             |
-|  $topicId          |  表示群ID                                		      |
-|  $utcFromTime      |  表示查询开始时间，UTC时间，单位毫秒       		    |
-|  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒       		    |
-|  $startSeq         |  表示查询开始序列号       		    |
-|  $stopSeq          |  表示查询结束序列号       		    |
-|  $count            |  表示查询的消息条数                     		    |
-|  $row              |  表示返回的消息条数                       		  |
-|  $timestamp        |  表示返回的消息中最早的时间戳               		  |
-|  $messages         |  表示返回的消息集合                       		  |
-|  $sequence         |  sequence主要用来做消息的排序和去重，全局唯一		   |	 
-|  $payload	     |  表示经过Base64编码的消息体，app端需要进行Base64解码          |
-|  $ts               |  表示消息时间戳                          		    |
+|  $topicId          |  表示群ID                                              |
+|  $utcFromTime      |  表示查询开始时间，UTC时间，单位毫秒                   |
+|  $utcToTime        |  表示查询结束时间，UTC时间，单位毫秒                   |
+|  $startSeq         |  表示查询开始序列号                   |
+|  $stopSeq          |  表示查询结束序列号                   |
+|  $count            |  表示查询的消息条数                                 |
+|  $row              |  表示返回的消息条数                                 |
+|  $timestamp        |  表示返回的消息中最早的时间戳                         |
+|  $messages         |  表示返回的消息集合                                 |
+|  $sequence         |  sequence主要用来做消息的排序和去重，全局唯一           |
+|  $payload         |  表示经过Base64编码的消息体，app端需要进行Base64解码          |
+|  $ts               |  表示消息时间戳                                      |
 
 #### 备注：
 ```
@@ -867,8 +869,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnTime -XPOST -d '{"appId":$a
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		 "fromAccount":$fromAccount,
-		 "toAccount": $toAccount,
+         "fromAccount":$fromAccount,
+         "toAccount": $toAccount,
              }
          ],
          "row": $row
@@ -905,8 +907,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST -d '{"appId":
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		 "fromAccount":$fromAccount,
-        	 "toAccount": $toAccount,
+         "fromAccount":$fromAccount,
+             "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -943,8 +945,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST -d '{"appI
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		 "fromAccount":$fromAccount,
-        	 "toAccount": $toAccount,
+         "fromAccount":$fromAccount,
+             "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -1024,7 +1026,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		 "fromAccount":$fromAccount,
+         "fromAccount":$fromAccount,
              }
          ],
          "row": $row,
@@ -1061,8 +1063,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnSequence/ -XPOST -d '{"appI
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-		 "fromAccount":$fromAccount,
-        	 "toAccount": $toAccount,
+         "fromAccount":$fromAccount,
+             "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -1112,49 +1114,49 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 
 ### 获取最近通讯列表
 + HTTP 请求
-``` 
+```
 curl "https://mimc.chat.xiaomi.net/api/contact/ -H "token:$token"  -H "Content-Type: application/json"
 ```
 
 + JSON结果
 ```
 {
-	"code":200,
-	"data":[
-		{	"userType":"TOPIC",
-			"id":"$topicId1",
-			"name":"$topicName1",
-			"timestamp":"$ts1",
-			"lastMessage":{
-				"fromUuid":"$fromUuid1",
-				"fromAccount":"$fromAccount1",
-				"payload":"$payload1"
-			}
-		}，
-		{
-			"userType":"TOPIC",
-			"id":"$topicId2",
-			"name":"$topicName2",
-			"timestamp":"$ts2",
-			"lastMessage":{
-				"fromUuid":"$fromUuid2",
-				"fromAccount":"$fromAccount2",
-				"payload":"$payload2"
-			}
-		}，
-		{
-			"userType":"USER",
-			"id":"$uuid1",
-			"name":"$appAccount1",
-			"timestamp":"$ts3",
-			"lastMessage":{
-				"fromUuid":"$fromUuid3",
-				"fromAccount":"$fromAccount3",
-				"payload":"$payload3"
-			}
-		}
-	],
-	"message":"success"
+    "code":200,
+    "data":[
+        {    "userType":"TOPIC",
+            "id":"$topicId1",
+            "name":"$topicName1",
+            "timestamp":"$ts1",
+            "lastMessage":{
+                "fromUuid":"$fromUuid1",
+                "fromAccount":"$fromAccount1",
+                "payload":"$payload1"
+            }
+        }，
+        {
+            "userType":"TOPIC",
+            "id":"$topicId2",
+            "name":"$topicName2",
+            "timestamp":"$ts2",
+            "lastMessage":{
+                "fromUuid":"$fromUuid2",
+                "fromAccount":"$fromAccount2",
+                "payload":"$payload2"
+            }
+        }，
+        {
+            "userType":"USER",
+            "id":"$uuid1",
+            "name":"$appAccount1",
+            "timestamp":"$ts3",
+            "lastMessage":{
+                "fromUuid":"$fromUuid3",
+                "fromAccount":"$fromAccount3",
+                "payload":"$payload3"
+            }
+        }
+    ],
+    "message":"success"
 }
 ```
 
@@ -1205,9 +1207,9 @@ curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST -d '{"blackAccount":"$bl
 + JSON结果
 ```
 {
-	"code":200,
-	"message":"success",
-	"data":null,
+    "code":200,
+    "message":"success",
+    "data":null,
 }
 ```
 ### 取消拉黑
@@ -1220,9 +1222,9 @@ curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XDE
 + JSON结果
 ```
 {
-	"code":200,
-	"message":"success",
-	"data":null,
+    "code":200,
+    "message":"success",
+    "data":null,
 }
 ```
 ### 是否拉黑
@@ -1235,11 +1237,11 @@ curl https://mimc.chat.xiaomi.net/api/blacklist/?blackAccount=$blackAccount -XGE
 + JSON结果
 ```
 {
-	"code":200,
-	"message":"success",
-	"data":{
-		"isBlack":true/false 
-	},
+    "code":200,
+    "message":"success",
+    "data":{
+        "isBlack":true/false
+    },
 }
 ```
 [回到顶部](#readme)
