@@ -309,7 +309,7 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 
 ###### Check online users ping
 ```
-    Recommended Ping format is as follows
+    Recommended Ping format is as follows:
     {
         version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
         msgId: "PING_12345", // APP business level message ID
@@ -321,7 +321,7 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 
 ###### Check online users pong
 ```
-    Recommended Pong format is as follows
+    Recommended Pong format is as follows:
     {
         version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
         msgId: "PONG_12345", // APP business level message ID
@@ -335,32 +335,32 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 
 * User A sends a text message `(msgId="TEXT_12345")` to User B `through MIMC`
 * User B receives the text message `(msgId="TEXT_12345")`
-
+```
     Recommended text message format is as follows
-        {
-            version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
-           msgId: "TEXT_12345", // APP business level message ID
-           msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
-            timestamp: "1516763973000", // Recommend this is accurate to the millisecond
-           payload: "Welcome to the Xiaomi instant message cloud (MIMC)",
-        }
-
+    {
+       version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
+       msgId: "TEXT_12345", // APP business level message ID
+       msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
+       timestamp: "1516763973000", // Recommend this is accurate to the millisecond
+       payload: "Welcome to the Xiaomi instant message cloud (MIMC)",
+    }
+```
 
 #### Multimedia messages
 
 * User A uploads an image file/voice file/video file `(recorded voice/video chat)` to the file storage server and gets a URL
 * User A sends a multimedia message `msgId="PIC_FILE_12345", payload=URL` to User B `through MIMC`
 * User B receives the multimedia message`(msgId="PIC_FILE_12345", payload=URL)`, and downloads the image file/voice file/video file via the URL
-
+```
     Recommended multimedia message format is as follows
-        {
-            version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
-           msgId: "PIC_FILE_12345", // APP business level message ID
-           msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
+    {
+        version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
+        msgId: "PIC_FILE_12345", // APP business level message ID
+        msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
         timestamp: "1516763973000", // recommend this is accurate to the millisecond
         payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
-        }
-
+    }
+```
 
 #### Recall messages
 
@@ -368,16 +368,16 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 * User B receives the text message `(msgId="TEXT_12345")`
 * User A sends a text recall `(msgId="TEXT_RECALL_12345")` to User B
 * User B receives the recall message `(msgid="text_recall_12345")` and deletes the text message `(msgid="text_12345")`
-
+```
     Recommended recall message format is as follows
-        {
-            version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
-           msgId:  "TEXT_RECALL_12345", // APP business level message ID
-           msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
-        timestamp: "1516763973090", // Recommend this is accurate to the millisecond
-            payload: {recall_msgId: "TEXT_12345"}, // Recalled msgId is TEXT_12345
-        }
-
+    {
+       version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
+       msgId:  "TEXT_RECALL_12345", // APP business level message ID
+       msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
+       timestamp: "1516763973090", // Recommend this is accurate to the millisecond
+       payload: {recall_msgId: "TEXT_12345"}, // Recalled msgId is TEXT_12345
+    }
+```
 
 #### Read messages
 
@@ -385,16 +385,16 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 * User B receives the text message `(msgId="TEXT_12345")`
 * User B has sent a text read message `(msgId="TEXT_READ_12345")` to User A
 * User B receives the text read message `(msgId="TEXT_READ_12345")` and marks the text message`(msgId="text_12345")` as read
-
+```
     Recommended read message format is as follows
-        {
-            version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
-           msgId:  "TEXT_READ_12345", // APP business level message ID
-           msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+    {
+        version: 0, // Recommend the version field is retained for subsequent upgrade compatiblity
+        msgId:  "TEXT_READ_12345", // APP business level message ID
+        msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
         timestamp: "1516763973134", // Recommend this is accurate to the millisecond
-           payload: {read_msgId: "TEXT_12345"}, // Read msgId is TEXT_12345
-     }
-
+        payload: {read_msgId: "TEXT_12345"}, // Read msgId is TEXT_12345
+    }
+```
 
 #### Other custom message functions
 
