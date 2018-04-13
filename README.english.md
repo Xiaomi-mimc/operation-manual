@@ -245,7 +245,7 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 
        1. Store appid/appKey/appSecret (appKey/appSecret should not be stored on the client side to prevent leaks)
        2. Verification of users within the app system
-       3. Call Xiaomi TokenService, and return the [Xiaomi TokenService raw data] to the client
+       3. Call Xiaomi TokenService, and return the [raw result from Xiaomi TokenService] to the client
 
 
 #### The AppProxyService access to the Xiaomi TokenService is as follows:
@@ -265,8 +265,9 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 
 * HTTP Request
 
-    curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}' -H "Content-Type: application/json"
-
+    curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST
+      -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}'
+      -H "Content-Type: application/json"
 
 * JSON Results
 
