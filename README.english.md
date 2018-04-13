@@ -118,7 +118,9 @@
 
 #### Do developers need to maintain account mapping?
 
-    No. MIMC user login/messaging etc. use the account ID in the app's own account system. The MIMC account system is transparent to app developers
+    No.
+    MIMC user login/messaging etc. use the account ID in the app's own account system.
+    The MIMC account system is transparent to app developers
 
 
 ###### Why did we do it like this?
@@ -126,49 +128,60 @@
     When app developers connect to other IM providers, they need to access the IM provider service and register a new ID for each appAccount,
     and developers need to store the following information in their own backend system:
       1. appAccount --> The IM provider system ID
-        2. The IM provider system ID + the IM provider login password (plain text)
+      2. The IM provider system ID + the IM provider login password (plain text)
     This has the following drawbacks:
       1. The account mapping maintenance costs for the developer are high, and when errors appear, they are hard to correct
       2. Storing login password in plain text, security is very poor and developers take a very high security risk
-
-    Therefore, MIMC (Xiaomi instant message cloud) does not adopt the above method. MIMC maintains its own account mapping to ensure that the MIMC ID is transparent to developers.
-    This not only reduces the burden on developers and increases account security, it also allows developers to feel than the MIMC is their "own" message system.
+    Therefore, MIMC (Xiaomi instant message cloud) does not adopt the above method.
+    MIMC maintains its own account mapping to ensure that the MIMC ID is transparent to developers.
+    This not only reduces the burden on developers and increases account security,
+    it also allows developers to feel than the MIMC is their "own" message system.
 
 
 ###### For example:
 
-        Assume the developer has an APP called "Yantu Wenxue" which is Integrated into the MIMC (Xiaomi instant message cloud) service
-       Assume that the appId of "Yantu Wenxue" on the Xiaomi open platform is "580012345678"
-        User A logs on to "Yantu Wenxu" using the account name mobile phone number "13800000001"
-        User B logs on to "Yantu Wenxu" using the account name mobile phone number "13800000002"
+       Assume the developer has an APP called "Yantu Wenxue" which is Integrated into the MIMC (Xiaomi instant message cloud) service
+       Assume that the appId of "Yantu Wenxue" on the Xiaomi open platform is "580012345678"
+         User A logs on to "Yantu Wenxu" using the account name mobile phone number "13800000001"
+         User B logs on to "Yantu Wenxu" using the account name mobile phone number "13800000002"
 
-        The first time User A logs on to "Yantu Wenxu"
-            userA = new User("580012345678", "13800000001");
-            userA.login();
-        The MIMC backend service will generate MIMC ID("8049600000000001") for User A, and maintains the following map:：
-                "580012345678" + "13800000001" --> "8049600000000001"
+       The first time User A logs on to "Yantu Wenxu"
+         userA = new User("580012345678", "13800000001");
+         userA.login();
+       The MIMC backend service will generate MIMC ID("8049600000000001") for User A, and maintains the following map:：
+         "580012345678" + "13800000001" --> "8049600000000001"
 
-        Then User A sends a message to User B
-            userA.sendMessage("13800000002", "Hello B");
-            Because User B has not yet logged on to "Yantu Wenxue", MIMC will automatically create a MIMC ID("8049600000000002") for User B
-        and maintains the following map:
-                "580012345678" + "13800000002" --> "8049600000000002"
-        and the message "Hello B" is temporarily stored on the server
+       Then User A sends a message to User B
+         userA.sendMessage("13800000002", "Hello B");
+       Because User B has not yet logged on to "Yantu Wenxue",
+       MIMC will automatically create a MIMC ID("8049600000000002") for User B
+       and maintains the following map:
+         "580012345678" + "13800000002" --> "8049600000000002"
+       and the message "Hello B" is temporarily stored on the server
 
-       When User B logs on to "Yantu Wenxue"
-            userB = new User("580012345678", "13800000002");
-            userB.login();
-           As User B already has an ID on MIMC,  the MIMC backend service will not allocate a new ID for User B
-            When the MIMC backend service detects User B's long in, it will issue the offline message "Hello B" to User B
+       When User B logs on to "Yantu Wenxue"
+         userB = new User("580012345678", "13800000002");
+         userB.login();
+       As User B already has an ID on MIMC,  the MIMC backend service will not allocate a new ID for User B
+       When the MIMC backend service detects User B's log in, it will issue the offline message "Hello B" to User B
 
 
 #### How to do if app does not receive messages in the background
 
-    On the IOS platform, when the app enters the background, the process code execution is paused, and us closed after a period of time. Currently, Android is slowly converging with iOS.
-    In the context of increasingly strict restrictions on app background operations. how can we allow the app to "receive" messages when it is running in the background. We provide the following recommendations: Developers develop an offline message service OfflineMessageService, receiving offline messages for MIMC service callbacks (see <offline message callback>) The OfflineMessageService will receive offline messages, using system-level push services such as Xiaomi push/APNS to send the offline message alert to the user's mobile phone notification bar
-    3.  When the user clicks on the alert in the notification bar, the app is launched in the foreground, and the offline message is automatically received
+    On the IOS platform, when the app enters the background, the process code execution is paused,
+    and tcp connection will closed after a period of time. Currently, Android is slowly converging with iOS.
+    In the context of increasingly strict restrictions on app background operations,
+    how can we allow the app to "receive" messages when it is running in the background.
+    We provide the following recommendations:
+        1. Developers develop an offline message service OfflineMessageService, receiving offline messages for MIMC service callbacks(see <offline message callback>).
+        2. The OfflineMessageService will receive offline messages, using system-level push services such as Xiaomi push/APNS,
+           then send the offline message alert to the user's mobile phone notification bar
+        3. When the user clicks on the alert in the notification bar, the app is launched in the foreground,
+           and the offline message is automatically received without any more work.
 
-    Note: It is recommended that developers automatically trigger the log in operation after the app enters the foreground (if the user is currently logged in, then their is no effect; if the user is not logged in, this will trigger the log in operation)
+    Note:
+        It is recommended that developers automatically trigger the login operation after the app enters the foreground
+        (if the user is currently logged in, then their is no effect; if the user is not logged in, this will trigger the log in operation)
 
 
 ## Overall Architecture
