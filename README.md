@@ -708,9 +708,17 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account"
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d '{"accounts":"$userAccount4,$userAccount5"}' -H "Content-Type: application/json" -H "token:$userToken1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST
+  -d '{"accounts":"$userAccount4,$userAccount5"}'
+  -H "Content-Type: application/json"
+  -H "token:$userToken1"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d '{"accounts":"$userAccount4,$userAccount5"}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST
+  -d '{"accounts":"$userAccount4,$userAccount5"}'
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$userAccount1"
 ```
 
 + JSON结果
@@ -743,9 +751,15 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST -d
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -H "Content-Type: application/json" -H "token:$userToken1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE
+  -H "Content-Type: application/json"
+  -H "token:$userToken1"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$userAccount1"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$userAccount1"
 ```
 
 + JSON结果
@@ -764,9 +778,15 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE -
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE -H "Content-Type: application/json" -H "token:$ownerToken"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE
+  -H "Content-Type: application/json"
+  -H "token:$ownerToken"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$userAccount4,$userAccount5" -XDELETE
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$ownerAccount"
 ```
 
 + JSON结果
@@ -796,9 +816,17 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "token:$ownerToken"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT
+  -d '{"ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}'
+  -H "Content-Type: application/json"
+  -H "token:$ownerToken"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT
+  -d '{"ownerAccount":$userAccount2,"topicName":$newTopicName,"bulletin":$newBulletin}'
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$ownerAccount"
 ```
 
 + JSON结果
@@ -828,9 +856,15 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"ownerA
 
 + HTTPS请求
 ```
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Content-Type: application/json" -H "token:$ownerToken"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE
+  -H "Content-Type: application/json"
+  -H "token:$ownerToken"
 
-curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
+curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE
+  -H "Content-Type: application/json"
+  -H "appKey:$appKey"
+  -H "appSecret:$appSecret"
+  -H "appAccount:$ownerAccount"
 ```
 
 + JSON结果
@@ -875,10 +909,18 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Conte
 
 + HTTPS请求(POST)
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/query/ -XPOST
+  -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnTime -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnTime -XPOST
+  -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 
 + JSON结果示例
@@ -916,7 +958,11 @@ timestamp字段在这个请求的响应中没有意义。
 
 + HTTPS请求(POST)
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcToTime":$utcToTime,"count":$count}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST
+  -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"utcToTime":$utcToTime,"count":$count}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 
 + JSON结果示例
@@ -954,7 +1000,11 @@ timestamp字段在这个请求的响应中表示当前的聊天记录最早的�
 
 + HTTPS请求(POST)
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"startSeq":$startSeq,"stopSeq":$stopSeq}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST
+  -d '{"appId":$appId,"toAccount":$toAccount,"fromAccount":$fromAccount,"startSeq":$startSeq,"stopSeq":$stopSeq}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 
 + JSON结果示例
@@ -989,10 +1039,17 @@ timestamp字段表示当前的聊天记录最早的时间戳(单位：毫秒)。
 
 + HTTPS请求(POST)
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
-```
-```
-curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnTime/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST
+  -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
+
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnTime/ -XPOST
+  -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 
 + JSON结果示例
@@ -1035,7 +1092,11 @@ timestamp字段在这个请求的响应中没有意义。
 
 + HTTPS请求(POST)
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcToTime":$utcToTime,"count":$count}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST
+  -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcToTime":$utcToTime,"count":$count}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 
 + JSON结果示例
@@ -1072,7 +1133,11 @@ timestamp字段在这个请求的响应中表示当前的聊天记录最早的�
 
 + HTTPS请求(POST)
 ```
-curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnSequence/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"startSeq":$startSeq,"stopSeq":$stopSeq}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
+curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnSequence/ -XPOST
+  -d '{"appId":$appId,"account":$account,"topicId":$topicId,"startSeq":$startSeq,"stopSeq":$stopSeq}'
+  -H "Content-Type: application/json;charset=UTF-8"
+  -H "Accept:application/json;charset=UTF-8"
+  -H "token:$token"
 ```
 
 + JSON结果示例
