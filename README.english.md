@@ -36,6 +36,8 @@
 * [Message Callback](#message-callback)
     * [P2P instant message callback](#p2p-instant-message-callback)
     * [P2P offline message callback](#p2p-offline-message-callback)
+    * [Topic instant message callback](#topic-instant-message-callback)
+    * [topic offline message callback](#topic-offline-message-callback)
 * [Group Chat Information](#group-chat-information)
     * [Create a topic](#create-a-topic)
     * [Query information on specified topic](#query-information-on-specified-topic)
@@ -469,13 +471,13 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 * JSON string result in the body of post
 ```
     {
+        "msgType":"NORMAL_MSG",
         "fromAppId":$fromAppId,
         "fromAccount":$fromAccount,
         "toAppId":$toAppId,
         "toAccount":$toAccount,
         "payload":$payload,
         "timestamp":$timestamp,
-        "msgType":"NORMAL_MSG",
     }
 ```
 
@@ -484,13 +486,43 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 * JSON string result in the body of post
 ```
     {
+        "msgType":"OFFLINE_MSG",
         "fromAppId":$fromAppId,
         "fromAccount":$fromAccount,
         "toAppId":$toAppId,
         "toAccount":$toAccount,
         "payload":$payload,
         "timestamp":$timestamp,
-        "msgType":"OFFLINE_MSG",
+    }
+```
+
+### topic instant message callback
+
+* JSON string result in the body of post
+```
+    {
+        "msgType":"NORMAL_TOPIC_MSG",
+        "appId":$appId,
+        "topicId":$topicId,
+        "fromAccount":$fromAccount,
+        "toAccounts":[$toAccount1,$toAccount2,...,$toAccountN], // members of topic
+        "payload":$payload,
+        "timestamp":$timestamp
+    }
+```
+
+### topic offline message callback
+
+* JSON string result in the body of post
+```
+    {
+        "msgType":"OFFLINE_TOPIC_MSG",
+        "appId":$appId,
+        "topicId":$topicId,
+        "fromAccount":$fromAccount,
+        "toAccounts":[$toAccount1,$toAccount2,...,$toAccountN], // members of topic
+        "payload":$payload,
+        "timestamp":$timestamp
     }
 ```
 
