@@ -192,7 +192,7 @@
 
 | Application Platform |                               Description                               |                           Notes                           |
 |:--------------------:|:-----------------------------------------------------------------------:|:---------------------------------------------------------:|
-|         Web          |                 Default single user single device login                 | Multi-platform and multi-terminal message synchronization |
+|         Web          | The same user is allowed to log in to multiple UA at the same time      | Multi-platform and multi-terminal message synchronization |
 |         iOS          | The same user is allowed to log in to multiple devices at the same time | Multi-platform and multi-terminal message synchronization |
 |       Android        | The same user is allowed to log in to multiple devices at the same time | Multi-platform and multi-terminal message synchronization |
 
@@ -216,7 +216,7 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 
 #### The app client logic to obtain the token is as follows:
 
-        APP <--> AppProxyService(implemented by app developer) <--> Xiaomi TokenService(MIMC)
+      APP <--> AppProxyService(implemented by app developer) <--> Xiaomi TokenService(MIMC)
 
 
 #### APP <--> AppProxyService(implemented by app developer)
@@ -224,28 +224,28 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 ######  Android app:
 
     Implement MIMCTokenFetcher:
-    Access AppProxyService, obtain the [Xiaomi TokenService raw data] from the results returned by the AppProxyService
+      Access AppProxyService, get [raw result from Xiaomi TokenService] from the result returned by the AppProxyService
 
 
 ###### iOS app:
 
     Initialize NSMutableURLRequest：
-        SDK call NSMutableURLRequest, asynchronous access AppProxyService
+      SDK call NSMutableURLRequest, asynchronous access AppProxyService
     Implement delegate parseTokenDelegate:
-        Resolve NSMutableURLRequest results to ontain [Xiaomi TokenService raw data]
+      Resolve NSMutableURLRequest results to get [raw result from Xiaomi TokenService]
 
 
 ###### Web:
 
     Initialize: function fetchMIMCToken():
-       Access AppProxyService, obtain the [Xiaomi TokenService raw data] from the results returned by the AppProxyService
+      Access AppProxyService, get [raw result from Xiaomi TokenService] from the result returned by the AppProxyService
 
 
 #### AppProxyService (implemented by app developer) needs to perform the following functions:
 
-        1. Store appid/appKey/appSecret (appKey/appSecret should not be stored on the client side to prevent leaks)
-        2. Verification of users within the app system
-        3. Call Xiaomi TokenService, and return the [Xiaomi TokenService raw data] to the client
+       1. Store appid/appKey/appSecret (appKey/appSecret should not be stored on the client side to prevent leaks)
+       2. Verification of users within the app system
+       3. Call Xiaomi TokenService, and return the [Xiaomi TokenService raw data] to the client
 
 
 #### The AppProxyService access to the Xiaomi TokenService is as follows:
@@ -257,11 +257,11 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 | $appId              | AppID on the Xiaomi open platform                                             |
 | $appKey             | AppKey on the Xiaomi open platform                                            |
 | $appSecret          | AppSecret on the Xiaomi open platform                                         |
-| $appPackage         | AppPackage on the Xiaomi open platform                                        |
-|   $appAccount       | Unique user ID on the app account system                                      |
-|   $chid             | MIMC service identification, fixed at 9                                       |
-|   $uuid             | Corresponding userID of $appAccount within MIMC, can be skipped by developers |
-|   $token            | Token of $appAccount within MIMC system                                       |
+| $appPackage         | AppPackage on the Xiaomi open platform                                        |
+| $appAccount         | Unique user ID on the app account system                                      |
+| $chid               | MIMC service identification, fixed at 9                                       |
+| $uuid               | Corresponding userID of $appAccount within MIMC, can be skipped by developers |
+| $token              | Token of $appAccount within MIMC system                                       |
 
 * HTTP Request
 
