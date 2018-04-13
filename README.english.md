@@ -818,14 +818,22 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 #### $ownerAccount updates the topic information as shown below. The topic owner is $userAccount2, the topic name is $newTopicName, the topic bulletin is $newBulletin
 
 * HTTP Request
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "token:$ownerToken"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}' -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
-
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT
+      -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}'
+      -H "Content-Type: application/json"
+      -H "token:$ownerToken"
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT
+      -d '{"topicId":$topicId, "ownerUuid":$userUuid2,"topicName":$newTopicName,"bulletin":$newBulletin}'
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$ownerAccount"
+```
 
 * JSON Results
-
+```
     {
          "code":200,"message":"success",
          "data":{
@@ -843,23 +851,29 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
             ]
         }
     }
-
+```
 
 ### Topic owner destroys topic
 
 #### The topic owner destroys topic is shown below
 
 * HTTP Request
+```
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE
+      -H "Content-Type: application/json"
+      -H "token:$ownerToken"
 
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Content-Type: application/json" -H "token:$ownerToken"
-
-    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE -H "Content-Type: application/json" -H "appKey:$appKey" -H "appSecret:$appSecret" -H "appAccount:$ownerAccount"
-
+    curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XDELETE
+      -H "Content-Type: application/json"
+      -H "appKey:$appKey"
+      -H "appSecret:$appSecret"
+      -H "appAccount:$ownerAccount"
+```
 
 * JSON Results
-
+```
     {"code":200,"message":"success！","data":null}
-
+```
 
 [Back to Top](#readme)
 
@@ -926,12 +940,16 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
 #### How to pull group chat record
 
 * HTTP Request (POST)
-
-    curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}' -H "Content-Type: application/json;charset=UTF-8" -H "Accept:application/json;charset=UTF-8" -H "token:$token"
-
+```
+    curl https://mimc.chat.xiaomi.net/api/msg/p2t/query/ -XPOST
+      -d '{"appId":$appId,"account":$account,"topicId":$topicId,"utcFromTime":$utcFromTime,"utcToTime":$utcToTime}'
+      -H "Content-Type: application/json;charset=UTF-8"
+      -H "Accept:application/json;charset=UTF-8"
+      -H "token:$token"
+```
 
 * Example of JSON Results
-
+```
     {
          "code": 200,
          "message": "success",
@@ -955,7 +973,7 @@ App developers can access https://admin.mimc.chat.xiaomi.net to set callback url
              ]
          }
      }
-
+```
 
 [Back to Top](#readme)
 
