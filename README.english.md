@@ -48,7 +48,7 @@
 * [Message Roaming](#message-roaming)
     * [Pull one-on-one chat record](#pull-one-on-one-chat-record)
     * [Pull group chat record](#pull-group-chat-record)
-* [Contact Us](#Contact Us)
+* [Contact Us](#contact-us)
 
 ## Frequently Asked Questions
 
@@ -70,7 +70,7 @@
     Currently MIMC supports Android/IOS/web platforms. If developers have other platform development requirements, please contact us in advance
 
 
-* [Contact Us](#Contact Us)
+* [Contact Us](#contact-us)
 
 #### What development work is required?
 
@@ -81,8 +81,8 @@
     See:
 
 
-* \[How to Access\] (#how to access)
-* \[Security Authentication\] (#security authentication)
+* [How to Access](#how-to-access)
+* [Security Authentication](#security-authentication)
 
 ###### Developers need to define their own message formats
 
