@@ -264,13 +264,14 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
 | $token              | Token of $appAccount within MIMC system                                       |
 
 * HTTP Request
-
+```
     curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST
       -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}'
       -H "Content-Type: application/json"
+```
 
 * JSON Results
-
+```
     {
         "code": 200,
         "message": "success",
@@ -284,7 +285,7 @@ The steps are as follows: Log on to the Xiaomi open platform web page -> "manage
             "token": $token
         }
     }
-
+```
 
 #### Note 1: The app does not need to understand the format of the above JSON results. They can be returned via MIMCTokenFetcher (Android) / parseTokenDelegate (iOS) in their original format
 
