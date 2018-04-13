@@ -410,62 +410,64 @@ so to get the most accurate online status for users, the end-to-end ping-pong me
 
 ### Parameter list
 
-| Variable            | Meanings                                                                                                                                                                                                  |
-|:------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| $appId              | AppID on the Xiaomi open platform                                                                                                                                                                         |
-| $appKey             | AppKey on the Xiaomi open platform                                                                                                                                                                        |
-| $appSecret          | AppSecret on the Xiaomi open platform                                                                                                                                                                     |
-|   $fromAccount      | The unique ID of the message sender in the app account system                                                                                                                                             |
-|   $fromResource     | The identity of the message sender's device                                                                                                                                                               |
-|   $toAccount        | The unique ID of the message receiver in the app account system                                                                                                                                           |
+| Variable            | Meanings                    |
+|:------------------- |:----------------------------|
+| $appId              | AppID on the Xiaomi open platform |
+| $appKey             | AppKey on the Xiaomi open platform |
+| $appSecret          | AppSecret on the Xiaomi open platform |
+| $fromAccount      | The unique ID of the message sender in the app account system |
+| $fromResource     | The identity of the message sender's device |
+| $toAccount        | The unique ID of the message receiver in the app account system |
 | $msgType            | msgType="base64": msg is base64 encoded data, generally used when transmitting binary data; msgType="": msg is the raw data, generally used when string data is transmitted |
-| $topicId            | Topic ID                                                                                                                                                                                                  |
-| $packetId           | Represents the ID of the sent message packet, consists of random string plus increment ID that can be considered unique in a single appAccount                                                           |
+| $topicId            | Topic ID |
+| $packetId           | Represents the ID of the sent message packet, consists of random string plus increment ID that can be considered unique in a single appAccount |
 
 ### Push one-one-one chat information
 
 * HTTP Request
-
-    curl https://mimc.chat.xiaomi.net/api/push/p2p/ -XPOST -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "toAccount":$toAccount, "msg":$msg, "msgType":$msgType}' -H "Content-Type: application/json"
-
+```
+    curl https://mimc.chat.xiaomi.net/api/push/p2p/ -XPOST
+      -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "toAccount":$toAccount, "msg":$msg, "msgType":$msgType}'
+      -H "Content-Type: application/json"
+```
 
 * JSON Results
-
+```
     {
         "code":200,
         "data":{"packetId":$packetId},
         "message":"success"
     }
-
+```
 
 ### Push group chat information
 
 * HTTP Request
-
-    curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "msg":$msg, "topicId":$topicId, "msgType":$msgType}' -H "Content-Type: application/json"
-
+```
+    curl https://mimc.chat.xiaomi.net/api/push/p2t/ -XPOST
+      -d '{"appId":$appId, "appKey":$appKey，"appSecret":$appSecret, "fromAccount":$fromAccount, "fromResource":$fromResource, "msg":$msg, "topicId":$topicId, "msgType":$msgType}'
+      -H "Content-Type: application/json"
+```
 
 * JSON Results
-
+```
     {
         "code":200,
         "data":{"packetId":$packetId},
         "message":"success"
     }
-
+```
 
 [Back to Top](#readme)
 
 ## Message Callback
 
-This function is currently in the closed beta phase. The application side may contact us to inform us about instant messaging and offline message receiving URLs (Refer to contact us, we suggest using QQ Groups). The system will send the app messages to the URL via the Post method. based on the AppId. A 200 status returned by the web indicates that the message was successfully received. A background management system for the application side is currently under development. After this is completed, the application side can update the URL through the management system.
-
-* [Contact Us](#Contact Us)
+App developers can access https://admin.mimc.chat.xiaomi.net to set callback urls
 
 ### Instant message callback
 
 * JSON string result in the body of post
-
+```
     {
         "fromAppId":$fromAppId,
         "fromAccount":$fromAccount,
@@ -475,12 +477,12 @@ This function is currently in the closed beta phase. The application side may co
         "timestamp":$timestamp,
         "msgType":"NORMAL_MSG",
     }
-
+```
 
 ### Offline message callback
 
 * JSON string result in the body of post
-
+```
     {
         "fromAppId":$fromAppId,
         "fromAccount":$fromAccount,
@@ -490,7 +492,7 @@ This function is currently in the closed beta phase. The application side may co
         "timestamp":$timestamp,
         "msgType":"OFFLINE_MSG",
     }
-
+```
 
 [Back to Top](#readme)
 
