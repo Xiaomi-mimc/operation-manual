@@ -100,17 +100,21 @@
 
     We do not provide a unified chat UI for the following reasons:  
     1. Each app has its own style. Due to this diversity, it is impossible for a single UI to meet everyone's needs  
-    2.  For developers, the costs of developing a UI are not high  
+    2. For developers, the costs of developing a UI are not high  
     3. When developers develop their own UI, they are able to 100% customize the interface and functions
     So, we think it is appropriate for developers to customize their own UI based on the style of their app
 
 #### Why do developers need to define their own message formats?
 
     We do not provide a unified message format, and allow the developers to customize their own message format for the following reasons:
-    1. Apps require different functions
-Some require a "read" function, while others do not. So we provide a recommended message format, and developers can define the most appropriate message format according to their own situation
-    2. MIMC (Xiaomi Instant Message Cloud) has a broad range of application scenarios. IM chat is just one of the MIMC application scenarios, there are also many different messaging scenarios such as IoT signalling.
-    So, we think it is appropriate for developers to customize their own message format based on the style of their app while referring to our recommended message format
+    1. Apps require different functions. Some require a "read" function, while others do not.
+       So we provide a recommended message format,
+       and developers can define the most appropriate message format according to their own situation
+    2. MIMC (Xiaomi Instant Message Cloud) has a broad range of application scenarios.
+       IM chat is just one of the MIMC application scenarios,
+       there are also many different messaging scenarios such as IoT signalling.
+    So, we think it is appropriate for developers to customize their own message format
+       based on the style of their app while referring to our recommended message format
 
 #### Do developers need to maintain account mapping?
 
