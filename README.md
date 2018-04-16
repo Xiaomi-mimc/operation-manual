@@ -1,6 +1,12 @@
 # operation-manual
 
 ## 目录
+* [收发消息](#收发消息)
+    * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
+    * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
+    * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
+    * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+    * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
 * [常见问题](#常见问题)
     * [是否收费](#是否收费)
     * [适用于哪些应用场景](#适用于哪些应用场景)
@@ -14,13 +20,7 @@
     * [开发者需要维护帐号映射吗](#开发者需要维护帐号映射吗)
     * [APP在后台收不到消息如何处理](#app在后台收不到消息如何处理)
 * [整体架构](#整体架构)
-* [收发消息](#收发消息)
-    * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-    * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-    * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-    * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
-    * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
-* [如何接入](#如何接入)
+* [创建应用](#创建应用)
 * [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
     * [检查用户在线](#检查用户在线)
@@ -208,7 +208,7 @@ iOS平台下，APP进入后台时，进程代码执行会暂停，连接过一�
 
 #### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
 
-## 如何接入
+## 创建应用
 
 APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret。
 
