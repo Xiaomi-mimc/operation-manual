@@ -1051,6 +1051,9 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnTime/ -XPOST
   -H "Accept:application/json;charset=UTF-8"
   -H "token:$token"
 ```
+```
+PS：URL中的$account与$token需要相匹配（即$token应该是$account用户的token信息）。
+```
 
 + JSON结果示例
 ```
@@ -1098,6 +1101,9 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnCount/ -XPOST
   -H "Accept:application/json;charset=UTF-8"
   -H "token:$token"
 ```
+```
+PS：URL中的$account与$token需要相匹配（即$token应该是$account用户的token信息）。
+```
 
 + JSON结果示例
 ```
@@ -1138,6 +1144,9 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2t/queryOnSequence/ -XPOST
   -H "Content-Type: application/json;charset=UTF-8"
   -H "Accept:application/json;charset=UTF-8"
   -H "token:$token"
+```
+```
+PS：URL中的$account与$token需要相匹配（即$token应该是$account用户的token信息）。
 ```
 
 + JSON结果示例
