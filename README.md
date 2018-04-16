@@ -7,6 +7,9 @@
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
     * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
+* [整体架构](#整体架构)
+* [创建应用](#创建应用)
+* [安全认证](#安全认证)
 * [常见问题](#常见问题)
     * [是否收费](#是否收费)
     * [适用于哪些应用场景](#适用于哪些应用场景)
@@ -19,9 +22,6 @@
     * [为什么需要开发者自己定义消息格式](#为什么需要开发者自己定义消息格式)
     * [开发者需要维护帐号映射吗](#开发者需要维护帐号映射吗)
     * [APP在后台收不到消息如何处理](#app在后台收不到消息如何处理)
-* [整体架构](#整体架构)
-* [创建应用](#创建应用)
-* [安全认证](#安全认证)
 * [推荐消息格式](#推荐消息格式)
     * [检查用户在线](#检查用户在线)
     * [文本消息](#文本消息)
@@ -61,6 +61,103 @@
     * [删除指定群聊会话](#删除指定群聊会话)
 * [单聊黑名单](#单聊黑名单)
 * [联系我们](#联系我们)
+
+## 收发消息
+
+|应用平台 |描述 |备注 |
+|:------:|:----:|:----:|
+|Web|同一个用户允许同时登录多个UA|消息多平台多终端同步|
+|iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|
+|Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|
+
+#### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
+
+#### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
+
+#### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
+
+## 整体架构
+<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
+
+## 创建应用
+
+APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret。
+
+步骤如下：登录小米开放平台网页 -> ”管理控制台” -> ”小米应用商店” -> ”创建应用” ->  填入应用名和包名 -> ”创建” -> 记下看到的AppId/AppKey/AppSecret 。
+
+#### 备注1：建议MIMC与小米推送使用的APP信息一致
+#### 备注2：安卓/iOS/Web用一个APP即可，不需要申请多个
+
+## 安全认证
+
+#### APP客户端获取Token的逻辑如下：
+```
+    APP <--> AppProxyService(APP开发者实现) <--> 小米TokenService(MIMC)
+```
+#### APP <--> AppProxyService(APP开发者实现)
+######  安卓APP：
+```
+实现MIMCTokenFetcher：
+   访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
+```
+###### iOS APP：
+```
+初始化NSMutableURLRequest：
+    SDK调用NSMutableURLRequest，异步访问AppProxyService
+实现delegate parseTokenDelegate：
+    解析NSMutableURLRequest返回结果，获取[小米TokenService下发的原始数据]
+```
+###### Web：
+```
+实现function fetchMIMCToken()：
+   访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
+```
+#### AppProxyService(APP开发者实现)需实现以下功能：
+```
+    1. 存储appId/appKey/appSecret(appKey/appSecret不应存储在客户端，防止泄露)
+    2. 用户在APP系统内的合法鉴权
+    3. 调用小米TokenService服务，并将[小米TokenService下发的原始数据]返回客户端
+```
+
+#### AppProxyService访问小米TokenService的方式如下：
+###### 参数列表
+
+|   Variable          | Meanings  |
+| :------------------ | :--------------------------------------------------------------|
+|   $appId            |   小米开放平台申请的AppId                                       |
+|   $appKey           |   小米开放平台申请的AppKey                                      |
+|   $appSecret        |   小米开放平台申请的AppSecret                                   |
+|   $appPackage       |   小米开放平台申请的AppPackage                                  |
+|   $appAccount       |   用户在APP帐号系统内唯一ID                                     |
+|   $chid             |   MIMC服务的标识，为常量9                           |
+|   $uuid             |   $appAccount在MIMC内对应userId，开发者可忽略                   |
+|   $token          |   $appAccount在MIMC系统中的token                               |
+
++ HTTP 请求
+```
+    curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST
+      -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}'
+      -H "Content-Type: application/json"
+```
+
++ JSON结果
+```
+{
+    "code": 200,
+    "message": "success",
+    "data": {
+        "appId": $appId,
+        "appPackage": $appPackage,
+        "appAccount": $appAccount,
+        "miChid": $chid,
+        "miUserId": $uuid,
+        "miUserSecurityKey": $appSecret,
+        "token": $token
+    }
+}
+```
+#### 备注1：对于以上JSON结果，APP不需要理解其格式，通过MIMCTokenFetcher(安卓)/parseTokenDelegate(iOS)原样返回即可
+[回到顶部](#readme)
 
 ## 常见问题
 
@@ -190,103 +287,6 @@ iOS平台下，APP进入后台时，进程代码执行会暂停，连接过一�
 
 备注: 建议开发者在APP切换入前台时，主动触发一下login操作（若用户当前长连接完好，则无任何影响；若用户当前处于离线状态，会触发登录操作）
 ```
-
-## 整体架构
-<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
-
-## 收发消息
-
-|应用平台 |描述 |备注 |
-|:------:|:----:|:----:|
-|Web|同一个用户允许同时登录多个UA|消息多平台多终端同步|
-|iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|
-|Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-
-#### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-
-#### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-
-#### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-
-## 创建应用
-
-APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret。
-
-步骤如下：登录小米开放平台网页 -> ”管理控制台” -> ”小米应用商店” -> ”创建应用” ->  填入应用名和包名 -> ”创建” -> 记下看到的AppId/AppKey/AppSecret 。
-
-#### 备注1：建议MIMC与小米推送使用的APP信息一致
-#### 备注2：安卓/iOS/Web用一个APP即可，不需要申请多个
-
-## 安全认证
-
-#### APP客户端获取Token的逻辑如下：
-```
-    APP <--> AppProxyService(APP开发者实现) <--> 小米TokenService(MIMC)
-```
-#### APP <--> AppProxyService(APP开发者实现)
-######  安卓APP：
-```
-实现MIMCTokenFetcher：
-   访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
-```
-###### iOS APP：
-```
-初始化NSMutableURLRequest：
-    SDK调用NSMutableURLRequest，异步访问AppProxyService
-实现delegate parseTokenDelegate：
-    解析NSMutableURLRequest返回结果，获取[小米TokenService下发的原始数据]
-```
-###### Web：
-```
-实现function fetchMIMCToken()：
-   访问AppProxyService，从AppProxyService返回结果中获取[小米TokenService下发的原始数据]
-```
-#### AppProxyService(APP开发者实现)需实现以下功能：
-```
-    1. 存储appId/appKey/appSecret(appKey/appSecret不应存储在客户端，防止泄露)
-    2. 用户在APP系统内的合法鉴权
-    3. 调用小米TokenService服务，并将[小米TokenService下发的原始数据]返回客户端
-```
-
-#### AppProxyService访问小米TokenService的方式如下：
-###### 参数列表
-
-|   Variable          | Meanings  |
-| :------------------ | :--------------------------------------------------------------|
-|   $appId            |   小米开放平台申请的AppId                                       |
-|   $appKey           |   小米开放平台申请的AppKey                                      |
-|   $appSecret        |   小米开放平台申请的AppSecret                                   |
-|   $appPackage       |   小米开放平台申请的AppPackage                                  |
-|   $appAccount       |   用户在APP帐号系统内唯一ID                                     |
-|   $chid             |   MIMC服务的标识，为常量9                           |
-|   $uuid             |   $appAccount在MIMC内对应userId，开发者可忽略                   |
-|   $token          |   $appAccount在MIMC系统中的token                               |
-
-+ HTTP 请求
-```
-    curl "https://mimc.chat.xiaomi.net/api/account/token" -XPOST
-      -d '{"appId":$appId,"appKey":$appKey,"appSecret":$appSecret,"appAccount":$appAccount}'
-      -H "Content-Type: application/json"
-```
-
-+ JSON结果
-```
-{
-    "code": 200,
-    "message": "success",
-    "data": {
-        "appId": $appId,
-        "appPackage": $appPackage,
-        "appAccount": $appAccount,
-        "miChid": $chid,
-        "miUserId": $uuid,
-        "miUserSecurityKey": $appSecret,
-        "token": $token
-    }
-}
-```
-#### 备注1：对于以上JSON结果，APP不需要理解其格式，通过MIMCTokenFetcher(安卓)/parseTokenDelegate(iOS)原样返回即可
-[回到顶部](#readme)
 
 ## 推荐消息格式
 
