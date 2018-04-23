@@ -1260,6 +1260,7 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 |   $token            |   查询方的token（使用user.getToken()获取）       |
 |   $member           |   表示所要删除会话的会话者在APP帐号系统内唯一ID    |
 |   $topicId          |   表示所要删除会话的群聊会话在APP帐号系统内唯一ID   |
+|   $sequence         |  sequence主要用来做消息的排序和去重，全局唯一           |
 
 ### 获取最近通讯列表
 + HTTP 请求
@@ -1281,7 +1282,8 @@ curl "https://mimc.chat.xiaomi.net/api/contact/ -XGET
             "lastMessage":{
                 "fromUuid":"$fromUuid1",
                 "fromAccount":"$fromAccount1",
-                "payload":"$payload1"
+                "payload":"$payload1",
+                "sequence":"$sequence1"
             }
         }，
         {
@@ -1292,7 +1294,8 @@ curl "https://mimc.chat.xiaomi.net/api/contact/ -XGET
             "lastMessage":{
                 "fromUuid":"$fromUuid2",
                 "fromAccount":"$fromAccount2",
-                "payload":"$payload2"
+                "payload":"$payload2",
+                "sequence":"$sequence2"
             }
         }，
         {
@@ -1303,7 +1306,8 @@ curl "https://mimc.chat.xiaomi.net/api/contact/ -XGET
             "lastMessage":{
                 "fromUuid":"$fromUuid3",
                 "fromAccount":"$fromAccount3",
-                "payload":"$payload3"
+                "payload":"$payload3",
+                "sequence":"$sequence3"
             }
         }
     ],
