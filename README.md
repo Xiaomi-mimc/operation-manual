@@ -986,8 +986,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnTime -XPOST
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-         "fromAccount":$fromAccount,
-         "toAccount": $toAccount,
+                 "fromAccount":$fromAccount,
+                 "toAccount": $toAccount,
              }
          ],
          "row": $row
@@ -1028,8 +1028,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-         "fromAccount":$fromAccount,
-             "toAccount": $toAccount,
+                 "fromAccount":$fromAccount,
+                 "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -1070,8 +1070,8 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-         "fromAccount":$fromAccount,
-             "toAccount": $toAccount,
+                 "fromAccount":$fromAccount,
+                 "toAccount": $toAccount,
              }
          ],
          "row": $row,
@@ -1168,7 +1168,7 @@ PS：URL中的$account与$token需要相匹配（即$token应该是$account用�
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-         "fromAccount":$fromAccount,
+                 "fromAccount":$fromAccount,
              }
          ],
          "row": $row,
@@ -1212,8 +1212,8 @@ PS：URL中的$account与$token需要相匹配（即$token应该是$account用�
                  "sequence": $sequence,
                  "payload": $payload,
                  "ts": $ts,
-         "fromAccount":$fromAccount,
-             "toAccount": $toAccount,
+                 "fromAccount":$fromAccount,
+                 "toAccount": $toAccount,
              }
          ],
          "row": $row,
