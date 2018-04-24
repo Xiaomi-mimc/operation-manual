@@ -69,8 +69,8 @@
 
 ## 收发消息
 
-|SDK |描述 |备注 |
-|:------:|:----:|:----:|
+|SDK |描述 |备注 |链接 |
+|:------:|:----:|:----:|:----:|
 |WebJS|同一个用户允许同时登录多个UA|消息多平台多终端同步|[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)|
 |iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)|
 |Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)|
