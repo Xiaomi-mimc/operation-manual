@@ -9,6 +9,7 @@
     * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
     * [C++（即将推出）](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)
     * [go（即将推出）](https://github.com/Xiaomi-mimc/mimc-go-sdk)
+    
 * [整体架构](#整体架构)
 * [创建应用](#创建应用)
 * [安全认证](#安全认证)
@@ -70,22 +71,13 @@
 
 |SDK |描述 |备注 |
 |:------:|:----:|:----:|
-|WebJS|同一个用户允许同时登录多个UA|消息多平台多终端同步|
-|iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|
-|Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-|Java|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-|C#|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-|C++（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-|Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-#### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-
-#### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-
-#### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-#### 4）[Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
-#### 5）[C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
-#### 6）[C++](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)（即将推出）
-#### 7）[go](https://github.com/Xiaomi-mimc/mimc-go-sdk)（即将推出）
+|WebJS|同一个用户允许同时登录多个UA|消息多平台多终端同步|[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)|
+|iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)|
+|Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)|
+|Java|同一个用户允许同时登录多个设备|消息多平台多终端同步|[Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)|
+|C#|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)|
+|C++（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C++](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)|
+|Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[go](https://github.com/Xiaomi-mimc/mimc-go-sdk)|
 
 ## 整体架构
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
