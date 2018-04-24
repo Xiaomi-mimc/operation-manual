@@ -7,13 +7,15 @@
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
     * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
+    * [C++](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)（即将推出）
+    * [go](https://github.com/Xiaomi-mimc/mimc-go-sdk)（即将推出）
 * [整体架构](#整体架构)
 * [创建应用](#创建应用)
 * [安全认证](#安全认证)
 * [常见问题](#常见问题)
     * [是否收费](#是否收费)
     * [适用于哪些应用场景](#适用于哪些应用场景)
-    * [支持哪些平台](#支持哪些平台)
+    * [提供哪些语言的SDK](#提供哪些语言的SDK)
     * [需要做哪些开发工作](#需要做哪些开发工作)
         * [开发者需要自己实现聊天界面](#开发者需要自己实现聊天界面)
         * [开发者需要接入消息云安全认证](#开发者需要接入消息云安全认证)
@@ -66,17 +68,24 @@
 
 ## 收发消息
 
-|应用平台 |描述 |备注 |
+|SDK |描述 |备注 |
 |:------:|:----:|:----:|
-|Web|同一个用户允许同时登录多个UA|消息多平台多终端同步|
+|WebJS|同一个用户允许同时登录多个UA|消息多平台多终端同步|
 |iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|
 |Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|
-
+|Java|同一个用户允许同时登录多个设备|消息多平台多终端同步|
+|C#|同一个用户允许同时登录多个设备|消息多平台多终端同步|
+|C++（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|
+|Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|
 #### 1）[Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
 
 #### 2）[Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
 
 #### 3）[iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
+#### 4）[Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+#### 5）[C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
+#### 6）[C++](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)（即将推出）
+#### 7）[go](https://github.com/Xiaomi-mimc/mimc-go-sdk)（即将推出）
 
 ## 整体架构
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
@@ -178,10 +187,10 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
 MIMC适用于所有消息传递场景，不限于单聊/群聊/在线客服/私信/IoT信令传递等
 ```
 
-#### 支持哪些平台
+#### 提供哪些语言的SDK
 
 ```
-当前MIMC已经支持安卓/iOS/Web三平台，开发者若有其他平台开发需求，请提前联系我们
+当前MIMC已经支持安卓/iOS/WebJS/Java/C#等平台开发语言的SDK，开发者若有其他开发语言的需求，请提前联系我们
 ```
 * [联系我们](#联系我们)
 
