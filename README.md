@@ -7,8 +7,8 @@
     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
     * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
     * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
-    * [C++](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)（即将推出）
-    * [go](https://github.com/Xiaomi-mimc/mimc-go-sdk)（即将推出）
+    * [C++（即将推出）](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)
+    * [go（即将推出）](https://github.com/Xiaomi-mimc/mimc-go-sdk)
 * [整体架构](#整体架构)
 * [创建应用](#创建应用)
 * [安全认证](#安全认证)
