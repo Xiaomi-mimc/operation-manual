@@ -2,14 +2,6 @@
 
 ## 目录
 * [收发消息](#收发消息)
-    * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-    * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-    * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-    * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
-    * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)
-    * [C++（即将推出）](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)
-    * [go（即将推出）](https://github.com/Xiaomi-mimc/mimc-go-sdk)
-    
 * [整体架构](#整体架构)
 * [创建应用](#创建应用)
 * [安全认证](#安全认证)
@@ -180,7 +172,6 @@ MIMC适用于所有消息传递场景，不限于单聊/群聊/在线客服/私�
 ```
 
 #### 提供哪些语言的SDK
-
 ```
 当前MIMC已经支持安卓/iOS/WebJS/Java/C#等平台开发语言的SDK，开发者若有其他开发语言的需求，请提前联系我们
 ```
