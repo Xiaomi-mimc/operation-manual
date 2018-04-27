@@ -2,6 +2,13 @@
 
 ## 目录
 * [收发消息](#收发消息)
+     * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
+     * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
+     * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
+     * [Java](https://github.com/Xiaomi-mimc/mimc-java-sdk)
+     * [C#](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)     
+     * [C++](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)（即将推出）
+     * [go](https://github.com/Xiaomi-mimc/mimc-go-sdk)（即将推出）
 * [整体架构](#整体架构)
 * [创建应用](#创建应用)
 * [安全认证](#安全认证)
