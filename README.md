@@ -68,7 +68,7 @@
     * [删除指定群聊会话](#删除指定群聊会话)
 * [单聊黑名单](#单聊黑名单)
 * [联系我们](#联系我们)
-
+[回到顶部](#readme)
 ## 收发消息
 
 |SDK |描述 |备注 |链接 |
@@ -80,10 +80,10 @@
 |C#|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C# 点击查看](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)|
 |C++（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C++ 点击查看](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)|
 |Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[go 点击查看](https://github.com/Xiaomi-mimc/mimc-go-sdk)|
-
+[回到顶部](#readme)
 ## 整体架构
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
-
+[回到顶部](#readme)
 ## 创建应用
 
 APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret。
@@ -92,7 +92,7 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
 
 #### 备注1：建议MIMC与小米推送使用的APP信息一致
 #### 备注2：安卓/iOS/Web用一个APP即可，不需要申请多个
-
+[回到顶部](#readme)
 ## 安全认证
 
 #### APP客户端获取Token的逻辑如下：
@@ -123,7 +123,7 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
     2. 用户在APP系统内的合法鉴权
     3. 调用小米TokenService服务，并将[小米TokenService下发的原始数据]返回客户端
 ```
-
+[回到顶部](#readme)
 #### AppProxyService访问小米TokenService的方式如下：
 ###### 参数列表
 
@@ -174,7 +174,7 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
     发送消息数，注册用户数，多终端登录，创建群个数，群历史消息，实时/离线消息回调，推送消息数等
 当然，对于恶意使用者，我们仍然保留封禁的权利
 ```
-
+[回到顶部](#readme)
 #### 适用于哪些应用场景
 
 ```
@@ -186,7 +186,7 @@ MIMC适用于所有消息传递场景，不限于单聊/群聊/在线客服/私�
 当前MIMC已经支持安卓/iOS/WebJS/Java/C#等平台开发语言的SDK，开发者若有其他开发语言的需求，请提前联系我们
 ```
 * [联系我们](#联系我们)
-
+[回到顶部](#readme)
 #### 需要做哪些开发工作
 
 ###### 开发者需要自己实现聊天界面
@@ -196,7 +196,7 @@ MIMC适用于所有消息传递场景，不限于单聊/群聊/在线客服/私�
 ```
 * [如何接入](#如何接入)
 * [安全认证](#安全认证)
-
+[回到顶部](#readme)
 ###### 开发者需要自己定义消息体格式
 ```
 请参阅：
@@ -229,7 +229,7 @@ MIMC适用于所有消息传递场景，不限于单聊/群聊/在线客服/私�
        IM聊天只是MIMC的一个特殊使用场景，还存在IoT信令传递等各种消息传递场景
 所以，我们认为由开发者根据自己APP的实际需求，参考我们推荐的消息格式，来定义消息体格式比较合适
 ```
-
+[回到顶部](#readme)
 #### 开发者需要维护帐号映射吗
 
 ```
@@ -250,7 +250,7 @@ APP开发者接入其他IM提供商时，要访问IM提供商服务，主动为�
 所以，MIMC(小米即时消息云)没有采取以上方案，MIMC自维护帐号映射，保证MIMC ID对开发者透明
 这不仅降低了开发者负担，增强了帐号安全性，还能让开发者感觉MIMC就是"自己的"消息系统
 ```
-
+[回到顶部](#readme)
 ###### 举例说明：
 
 ```
@@ -278,7 +278,7 @@ APP开发者接入其他IM提供商时，要访问IM提供商服务，主动为�
         因为B在MIMC已经有了ID，所以MIMC后台服务不会再为其分配新ID
         MIMC后台服务检测到B登录，下发离线消息"Hello B"给B
 ```
-
+[回到顶部](#readme)
 #### APP在后台收不到消息如何处理
 
 ```
@@ -291,7 +291,7 @@ iOS平台下，APP进入后台时，进程代码执行会暂停，连接过一�
 
 备注: 建议开发者在APP切换入前台时，主动触发一下login操作（若用户当前长连接完好，则无任何影响；若用户当前处于离线状态，会触发登录操作）
 ```
-
+[回到顶部](#readme)
 ## 推荐消息格式
 
 #### MIMC系统不对传输的消息格式/内容进行理解，在MIMC看来传输的都是二进制数据，消息格式由APP开发者自定义自解析
@@ -324,6 +324,7 @@ Pong消息建议格式：
         payload: "appAccount_B",
     }
 ```
+[回到顶部](#readme)
 #### 文本消息
 + 用户A`通过MIMC`发送文本消息`(msgId="TEXT_12345")`给用户B
 + 用户B接收文本消息`(msgId="TEXT_12345")`
@@ -338,6 +339,7 @@ Pong消息建议格式：
         payload: "欢迎使用小米即时消息云(MIMC)",
     }
 ```
+[回到顶部](#readme)
 #### 多媒体消息
 
 + 用户A将图片文件/语音文件/视频文件`(非实时语音视频聊天)`上传到文件存储服务器，获得一个URL
@@ -353,7 +355,7 @@ Pong消息建议格式：
         payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
     }
 ```
-
+[回到顶部](#readme)
 #### 撤回消息
 + 用户A发送文本消息`(msgId="TEXT_12345")`给用户B
 + 用户B接收文本消息`(msgId="TEXT_12345")`
@@ -369,7 +371,7 @@ Pong消息建议格式：
         payload: {recall_msgId: "TEXT_12345"}, // 撤回msgId为TEXT_12345的消息
     }
 ```
-
+[回到顶部](#readme)
 #### 已读消息
 + 用户A发送文本消息`(msgId="TEXT_12345")`给用户B
 + 用户B接收文本消息`(msgId="TEXT_12345")`
@@ -386,7 +388,7 @@ Pong消息建议格式：
         payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
 ```
-
+[回到顶部](#readme)
 #### 添加好友
 + 用户A发送添加好友请求`(msgId="ADD_FRIEND_REQUEST_12345")`给用户B
 + 用户B接收添加好友请求`(msgId="ADD_FRIEND_REQUEST_12345")`
@@ -437,7 +439,7 @@ Pong消息建议格式：
 |   $topicId          |   表示群ID                           |
 |   $topicIds         |   表示群ID集合($topicIds是一个List<Long>类型的数据集合，例如[$topicId1,$topicId2])|
 |   $packetId         |   表示发送消息包ID，由随机串+递增ID构成，在单个appAccount角度看可认为唯一 |
-
+[回到顶部](#readme)
 ### 单用户推送单聊信息
 
 + HTTP 请求
@@ -478,7 +480,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2p/more -XPOST
     "message":"success"
 }
 ```
-
+[回到顶部](#readme)
 ### 单群组推送群聊信息
 
 + HTTP 请求
@@ -540,7 +542,7 @@ curl https://mimc.chat.xiaomi.net/api/push/p2t/more -XPOST
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/msgcallback.png"/></div>
 
 * [联系我们](#联系我们)
-
+[回到顶部](#readme)
 ### 单聊即时消息回调
 + Post的body中JSON字符串结果
 ```
@@ -633,7 +635,7 @@ uuid的获取使用User.getUuid()方法，uuid由MIMC根据($appId, $appAccount)
 身份认证有两种方式：1. token（$ownerToken/$userToken1）; 2. app信息,app帐号（$appKey，$appSecret，$ownerAccount/$userAccount1）。
 当两种认证信息都存在时，优先验证前者。前者一般用于app客户端，后者一般用于app服务端。下面给出了这两种的使用方式。
 ```
-
+[回到顶部](#readme)
 ### 创建群
 
 #### 如下为$ownerAccount创建群
@@ -674,7 +676,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId" -XPOST
     }
 }
 ```
-
+[回到顶部](#readme)
 ### 查询指定群信息
 
 #### 如下为$userAccount1查询群信息
@@ -713,7 +715,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XGET
      }
 }
 ```
-
+[回到顶部](#readme)
 ### 查询所属群信息
 
 #### 如下为$userAccount1查询加入的所有群信息
@@ -754,7 +756,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/account" -XGET
     ]
 }
 ```
-
+[回到顶部](#readme)
 ### 邀请用户加入群
 
 #### 如下为$userAccount1邀请$userAccount4,$userAccount5加入群
@@ -797,7 +799,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts" -XPOST
     }
 }
 ```
-
+[回到顶部](#readme)
 ### 非群主用户退群
 
 #### 如下为$userAccount1退群
@@ -824,7 +826,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/account" -XDELETE
 ```
 {"code":500,"message":"quit topic fail","data":null}
 ```
-
+[回到顶部](#readme)
 ### 群主踢用户退群
 
 #### 如下为$ownerAccount踢$userAccount4,$userAccount5退出群
@@ -862,7 +864,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId/accounts?accounts=$
     }
 }
 ```
-
+[回到顶部](#readme)
 ### 群主更新群信息
 
 #### 如下为$ownerAccount更新群信息：群主为$userAccount2，群名称为$newTopicName，群公告为$newBulletin,也可只对某一项修改，如群名称，其它项不传数据即可。
@@ -902,7 +904,7 @@ curl "https://mimc.chat.xiaomi.net/api/topic/$appId/$topicId" -XPUT
     }
 }
 ```
-
+[回到顶部](#readme)
 ### 群主销毁群
 
 #### 如下为群主销毁群
@@ -1002,6 +1004,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnTime -XPOST
 utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime);
 timestamp字段在这个请求的响应中没有意义。
 ```
+[回到顶部](#readme)
 ### 拉取指定数目单聊消息记录
 ```
 指的是拉取从指定的时间戳utcToTime(不包含utcToTime)向前count条的A与B之间的聊天记录。
@@ -1043,7 +1046,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnCount/ -XPOST
 ```
 timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
 ```
-
+[回到顶部](#readme)
 ### 拉取指定序列号单聊消息记录
 ```
 指的是拉取从startSeq到stopSeq之间的A与B之间的聊天记录。
@@ -1085,7 +1088,7 @@ curl https://mimc.chat.xiaomi.net/api/msg/p2p/queryOnSequence/ -XPOST
 ```
 timestamp字段表示当前的聊天记录最早的时间戳(单位：毫秒)。
 ```
-
+[回到顶部](#readme)
 ### 拉取群聊消息记录
 
 #### 如下为拉取群聊消息记录
@@ -1138,7 +1141,7 @@ PS：URL中的$account与$token需要相匹配（即$token应该是$account用�
 ```
 timestamp字段在这个请求的响应中没有意义。
 ```
-
+[回到顶部](#readme)
 ### 拉取指定数目群聊消息记录
 ```
 指的是拉取从指定的时间戳utcToTime(不包含utcToTime)向前count条的指定的topicId的群聊天记录。
@@ -1182,7 +1185,7 @@ PS：URL中的$account与$token需要相匹配（即$token应该是$account用�
 ```
 timestamp字段在这个请求的响应中表示当前的聊天记录最早的时间戳(单位：毫秒)。
 ```
-
+[回到顶部](#readme)
 ### 拉取指定序列号群聊消息记录
 ```
 指的是拉取从startSeq到stopSeq之间的指定的topicId的群聊天记录。
@@ -1316,7 +1319,7 @@ curl "https://mimc.chat.xiaomi.net/api/contact/ -XGET
     "message":"success"
 }
 ```
-
+[回到顶部](#readme)
 ### 删除指定单聊会话
 + HTTP 请求
 ```
@@ -1383,6 +1386,7 @@ curl https://mimc.chat.xiaomi.net/api/blacklist/ -XPOST
     "data":null,
 }
 ```
+[回到顶部](#readme)
 ### 取消拉黑
 + HTTP 请求
 ```
