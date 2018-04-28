@@ -1,14 +1,17 @@
 # operation-manual
 
+|SDK |描述 |备注 |链接 |
+|:------:|:----:|:----:|:----:|
+|WebJS|同一个用户允许同时登录多个UA|消息多平台多终端同步|[WebJS 点击查看](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)|
+|iOS|同一个用户允许同时登陆多个设备|消息多平台多终端同步|[iOS 点击查看](https://github.com/Xiaomi-mimc/mimc-ios-sdk)|
+|Android|同一个用户允许同时登录多个设备|消息多平台多终端同步|[Android 点击查看](https://github.com/Xiaomi-mimc/mimc-android-sdk)|
+|Java|同一个用户允许同时登录多个设备|消息多平台多终端同步|[Java 点击查看](https://github.com/Xiaomi-mimc/mimc-java-sdk)|
+|C#|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C# 点击查看](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)|
+|C++（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C++ 点击查看](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)|
+|Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[go 点击查看](https://github.com/Xiaomi-mimc/mimc-go-sdk)|
+
 ## 目录
 * [收发消息](#收发消息)
-     * [Android:https://github.com/Xiaomi-mimc/mimc-android-sdk](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-     * [iOS:https://github.com/Xiaomi-mimc/mimc-ios-sdk](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
-     * [Web JS:https://github.com/Xiaomi-mimc/mimc-webjs-sdk](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-     * [Java:https://github.com/Xiaomi-mimc/mimc-java-sdk](https://github.com/Xiaomi-mimc/mimc-java-sdk)
-     * [C#:https://github.com/Xiaomi-mimc/mimc-csharp-sdk](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)     
-     * [C++:https://github.com/Xiaomi-mimc/mimc-cpp-sdk](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)（即将推出）
-     * [go:https://github.com/Xiaomi-mimc/mimc-go-sdk](https://github.com/Xiaomi-mimc/mimc-go-sdk)（即将推出）
 * [整体架构](#整体架构)
 * [创建应用](#创建应用)
 * [安全认证](#安全认证)
@@ -91,7 +94,6 @@ APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret
 #### 备注2：安卓/iOS/Web用一个APP即可，不需要申请多个
 
 ## 安全认证
-<div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
 
 #### APP客户端获取Token的逻辑如下：
 ```
