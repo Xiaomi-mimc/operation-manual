@@ -68,7 +68,7 @@
     * [删除指定群聊会话](#删除指定群聊会话)
 * [单聊黑名单](#单聊黑名单)
 * [联系我们](#联系我们)
-[回到顶部](#readme)
+* [回到顶部](#readme)
 ## 收发消息
 
 |SDK |描述 |备注 |链接 |
@@ -80,6 +80,7 @@
 |C#|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C# 点击查看](https://github.com/Xiaomi-mimc/mimc-csharp-sdk)|
 |C++（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[C++ 点击查看](https://github.com/Xiaomi-mimc/mimc-cpp-sdk)|
 |Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[go 点击查看](https://github.com/Xiaomi-mimc/mimc-go-sdk)|
+
 [回到顶部](#readme)
 ## 整体架构
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
