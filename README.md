@@ -1264,11 +1264,11 @@ APP开启临时账号功能后，所申请账号会在一段时间后被删除�
 |   $appId            |   小米开放平台申请的AppId             |
 |   $appKey           |   小米开放平台申请的AppKey            |
 |   $appSecret        |   小米开放平台申请的AppSecret         |
-|   $appAccount       |   表示查询方在APP帐号系统内唯一ID      |
+|   $appAccount       |   查询方在APP帐号系统内唯一ID      |
 |   $token            |   查询方的token（使用user.getToken()获取）       |
-|   $member           |   表示所要删除会话的会话者在APP帐号系统内唯一ID    |
-|   $topicId          |   表示所要删除会话的群聊会话在APP帐号系统内唯一ID   |
-|   $sequence         |  sequence主要用来做消息的排序和去重，全局唯一           |
+|   $member           |   与查询方进行会话的用户在APP帐号系统内唯一ID    |
+|   $topicId          |   与查询方进行会话的群在APP帐号系统内唯一ID   |
+|   $sequence         |   sequence主要用来做消息的排序和去重，全局唯一           |
 
 ### 获取最近通讯列表
 + HTTP 请求
