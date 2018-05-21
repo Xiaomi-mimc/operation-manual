@@ -28,10 +28,6 @@
     * [do developers need to maintain account mapping?](#do-developers-need-to-maintain-account-mapping)
     * [How to do if app does not receive messages in the background](#how-to-do-if-app-does-not-receive-messages-in-the-background)
 * [Overall Architecture](#overall-architecture)
-* [Send and Receive Messages](#send-and-receive-messages)
-    * [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-    * [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-    * [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
 * [How to Access](#how-to-access)
 
 
@@ -202,20 +198,6 @@
 ## Overall Architecture
 
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
-
-## Send and Receive Messages
-
-| Application Platform |                               Description                               |                           Notes                           |
-|:--------------------:|:-----------------------------------------------------------------------:|:---------------------------------------------------------:|
-|         Web          | The same user is allowed to log in to multiple UA at the same time      | Multi-platform and multi-terminal message synchronization |
-|         iOS          | The same user is allowed to log in to multiple devices at the same time | Multi-platform and multi-terminal message synchronization |
-|       Android        | The same user is allowed to log in to multiple devices at the same time | Multi-platform and multi-terminal message synchronization |
-
-#### 1) [Android](https://github.com/Xiaomi-mimc/mimc-android-sdk)
-
-#### 2) [Web](https://github.com/Xiaomi-mimc/mimc-webjs-sdk)
-
-#### 3) [iOS](https://github.com/Xiaomi-mimc/mimc-ios-sdk)
 
 ## How to Access
 
