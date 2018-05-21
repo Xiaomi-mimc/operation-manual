@@ -86,11 +86,9 @@
 |Go（即将推出）|同一个用户允许同时登录多个设备|消息多平台多终端同步|[go 点击查看](https://github.com/Xiaomi-mimc/mimc-go-sdk)|
 
 [回到顶部](#readme)
-
 ## 整体架构
 <div align="center"><img width="900" height="600" src="https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Arch.jpg"/></div>
 [回到顶部](#readme)
-
 ## 创建应用
 
 APP开发者访问小米开放平台（dev.mi.com）申请appId/appKey/appSecret。
