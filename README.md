@@ -1,5 +1,4 @@
-[点击查看文档](https://admin.mimc.chat.xiaomi.net/docs/)
-
+# MIMC官方详细文档点击此链接：[详细文档](https://admin.mimc.chat.xiaomi.net/docs/)
 
 ## 联系我们
 
