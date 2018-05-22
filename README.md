@@ -49,7 +49,7 @@
 * [无限群聊](#无限群聊)
 * [群聊消息](#群聊消息)
     * [人数上限](#人数上限)
-    * [创建群](#创建群)    
+    * [创建群](#创建群)
     * [查询指定群信息](#查询指定群信息)
     * [查询所属群信息](#查询所属群信息)
     * [邀请用户加入群](#邀请用户加入群)
@@ -305,7 +305,7 @@ Ping消息建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
         msgId: "PING_12345", // APP业务层面自维护消息ID
-        msgType: "PING", // PING|PONG|...
+        type: "PING", // PING|PONG|...
         timestamp: "1516763973000", // 建议精确到毫秒
         payload: "appAccount_A",
     }
@@ -316,7 +316,7 @@ Pong消息建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
         msgId: "PONG_12345", // APP业务层面自维护消息ID
-        msgType: "PONG", // PING|PONG|...
+        type: "PONG", // PING|PONG|...
         timestamp: "1516763973000", // 建议精确到毫秒
         payload: "appAccount_B",
     }
@@ -331,7 +331,7 @@ Pong消息建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
         msgId: "TEXT_12345", // APP业务层面自维护消息ID
-        msgType: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
+        type: "TEXT", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
         timestamp: "1516763973000", // 建议精确到毫秒
         payload: "欢迎使用小米即时消息云(MIMC)",
     }
@@ -347,7 +347,7 @@ Pong消息建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
         msgId: "PIC_FILE_12345", // APP业务层面自维护消息ID
-        msgType: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
+        type: "PIC_FILE", // TEXT|PIC_FILE|AUDIO_FILE|BIN_FILE|...
         timestamp: "1516763973000", // 建议精确到毫秒
         payload: "https://github.com/Xiaomi-mimc/operation-manual/blob/master/img-folder/MIMC-Official-Accounts.jpg",
     }
@@ -363,7 +363,7 @@ Pong消息建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
         msgId: "TEXT_RECALL_12345", // APP业务层面自维护消息ID
-        msgType: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
+        type: "TEXT_RECALL", // TEXT_RECALL|PIC_FILE_RECALL|AUDIO_FILE_RECALL|BIN_FILE_RECALL|...
         timestamp: "1516763973090", // 建议精确到毫秒
         payload: {recall_msgId: "TEXT_12345"}, // 撤回msgId为TEXT_12345的消息
     }
@@ -380,7 +380,7 @@ Pong消息建议格式：
     {
         version: 0, // 建议保留version字段，方便后续协议升级兼容
         msgId: "TEXT_READ_12345", // APP业务层面自维护消息ID
-        msgType: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+        type: "TEXT_READ", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
         timestamp: "1516763973134", // 建议精确到毫秒
         payload: {read_msgId: "TEXT_12345"}, // 已读msgId为TEXT_12345的消息
     }
@@ -395,7 +395,7 @@ Pong消息建议格式：
 {
     version: 0, // 建议保留version字段，方便后续协议升级兼容
     msgId: "ADD_FRIEND_REQUEST_12345", // APP业务层面自维护消息ID
-    msgType: "ADD_FRIEND_REQUEST", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+    type: "ADD_FRIEND_REQUEST", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
     timestamp: "1516763973134", // 建议精确到毫秒
     payload: {add_requester: "accountA"},
 }
@@ -404,7 +404,7 @@ Pong消息建议格式：
 {
     version: 0, // 建议保留version字段，方便后续协议升级兼容
     msgId: "ADD_FRIEND_RESPONSE_12345", // APP业务层面自维护消息ID
-    msgType: "ADD_FRIEND_RESPONSE", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
+    type: "ADD_FRIEND_RESPONSE", // TEXT_READ|PIC_FILE_READ|AUDIO_FILE_READ|BIN_FILE_READ|...
     timestamp: "1516763973134", // 建议精确到毫秒
     payload: {add_responser: "accountB", accepted:true/false},
 }
