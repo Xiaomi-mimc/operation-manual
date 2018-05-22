@@ -17,4 +17,11 @@
     * [C#](0405-csharp.md)
 * [推荐消息格式](06-msgformat.md)
 * [跨应用聊天](07-acrossapp.md)
-
+* [消息推送](08-push.md)
+* [消息回调](09-callback.md)
+* [群组管理](10-group.md)
+* [历史消息](11-history.md)
+* [临时用户](12-tmpuser.md)
+* [通讯列表](13-chatlist.md)
+* [黑名单](14-blacklist.md)
+* [联系我们](00-us.md)
