@@ -15,5 +15,6 @@
     * [WebJS](0403-webjs.md)
     * [Java](0404-java.md)
     * [C#](0405-csharp.md)
-
+* [推荐消息格式](06-msgformat.md)
+* [跨应用聊天](07-acrossapp.md)
 

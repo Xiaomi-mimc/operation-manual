@@ -411,7 +411,7 @@ Pong消息建议格式：
 ```
 
 #### 其他自定义消息功能
-+ 参考以上，设置对应的msgType/payload
++ 参考以上，设置对应的type/payload
 
 [回到顶部](#readme)
 
