@@ -1,5 +1,3 @@
-# MIMC官方详细文档点击此链接：[详细文档](https://github.com/Xiaomi-mimc/operation-manual)
-
 ## 目录
 * [安卓应用配置修改](#安卓应用配置修改)
 * [用户初始化](#用户初始化)
@@ -81,7 +79,7 @@ MIMCUser user = new MIMCUser(appAccount);
 ```
 
 ## 安全认证
-#### 参考 [详细文档安全认证](https://github.com/Xiaomi-mimc/operation-manual/blob/master/README.md#%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81)
+#### 参考 [安全认证](03-auth.html)
 ``` java
 user.registerTokenFetcher(MIMCTokenFetcher fetcher);
 interface MIMCTokenFetcher {
