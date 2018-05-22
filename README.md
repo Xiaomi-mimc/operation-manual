@@ -1,1 +1,1 @@
-[文档链接](https://admin.mimc.chat.xiaomi.net/docs/)
+[点击查看文档](https://admin.mimc.chat.xiaomi.net/docs/)
